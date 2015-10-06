@@ -1,0 +1,73 @@
+.appriseOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.3);
+	display: none;
+}
+.appriseOuter {
+	background: #eee;
+	
+	border: 1px solid #5a4c38;
+	box-shadow: 0 3px 7px #372d21;
+	-moz-box-shadow: 0 3px 7px #372d21;
+	-webkit-box-shadow: 0 3px 7px #372d21;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-khtml-border-radius: 10px;
+	z-index: 99999999;
+	min-width: 200px;
+	min-height: 50px;
+	max-width: 75%;
+	position: fixed;
+	display: none;
+	font-size: 19px;
+}
+.appriseInner {
+	color: #D56C5B;
+	text-shadow: 0 1px 0 #000;
+	padding: 20px;
+	 font-family: 'Sentinel-Medium';
+	font-size: 20px;
+	font-weight: bold;
+}
+.appriseInner button {	
+	border: 0px;
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	border-radius: 30px;
+	-khtml-border-radius: 30px;
+	background-color: #faa61a;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 700;	
+	cursor: pointer;
+	box-shadow: 0 1px 2px #7e684d;
+	-moz-box-shadow: 0 1px 2px #7e684d;
+	-webkit-box-shadow: 0 1px 2px #7e684d;
+	margin: 0 3px;
+	padding: 4px 10px;
+	 font-family: 'Sentinel-Medium';
+	
+}
+.appriseInner button:hover {
+	color: #d85054;
+}
+.aButtons, .aInput {
+	text-align: center;
+	margin: 20px 10px 0;
+}
+.aTextbox {
+	border: 1px solid #aaa;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-khtml-border-radius: 10px;
+	box-shadow: 0 1px 0 #fff;
+	-moz-box-shadow: 0 1px 0 #fff;
+	-webkit-box-shadow: 0 1px 0 #fff;
+	width: 200px;
+	
+	padding: 5px 10px;
+}

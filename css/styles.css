@@ -1,0 +1,1008 @@
+/* CSS Document by Dieter Schneider for www.csstemplateheaven.com */
+
+* {margin: 0;
+    padding: 0;
+}
+
+body { font-family:Arial, Helvetica, sans-serif;
+       font-size: 62.5%;
+       background-color: #fff;
+}
+
+input:focus,textarea:focus, select:focus{
+ 	background-color: #A9D0F5;
+ 	
+}
+input[type=checkbox]:focus{
+outline:5px solid #A9D0F5;
+ 	background-color: #A9D0F5;
+}
+a:focus{
+ 	background-color: #A9D0F5;
+ 	border: 2px solid #A9D0F5;
+}
+
+
+#header {
+
+	background-color: #D8D8D8;
+	height: 40px;
+	width:100%;
+}
+#header_left{
+ float:left;
+ width: 400px;
+ height: 20px;
+
+}
+#header_right{
+ float:left;
+ height: 20px;
+}
+
+.header_link{
+	color: #FFFFFF !important;
+	padding-top: 10px;
+	padding-left: 50px;
+	font-size: 16px;
+	font-weight: bold; 
+}
+
+.username{
+padding-left: 10px;
+float:left;
+}
+.fecha{
+padding-left: 20px;
+float:left;
+}
+.estadistica_header{
+float:left;
+font-size: 12px;
+font-weight:bold;
+color: #333;
+}
+#container {
+	font-size: 1.2em;
+	float:left;
+	width:100%;
+
+}
+
+#left {
+	float: left;
+	width: 200px;
+	margin-left: 20px!important;
+	margin-left: 10px;
+  padding-top: 27px;
+}
+
+#right {
+	float: right;
+	width: 250px;
+	margin-right: 5px;
+	padding-top: 27px;
+}
+
+#content {
+	
+	padding: 5px;
+  float:left;	
+  min-height: 450px;
+  
+  
+}
+
+#content form{
+  float:left;
+  margin-left: 40px;  
+}
+
+#footer {
+	background-image: url(../images/footer_bg.jpg);
+	background-repeat: repeat-x;
+	height: 23px;
+	text-align: center;
+	font-size: .9em;
+	padding-top: 60px;
+	clear:both;
+}
+
+p{  margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+h1{
+	color: #FFFFFF;
+	font-size: 3em;
+	padding-top: 10px;
+	padding-left: 50px;
+}
+.info_top{
+color: #333;
+font-weight: bold;
+font-size: 12px;
+float:left;
+}
+/*hora*/
+.recuadro3{
+float:left;
+}
+.hora{
+border: 0;
+background-color: #D8D8D8;
+font-weight: bold;
+color:#333333;
+font-size: 12px;
+padding-left:20px; 
+}
+
+
+.heading_color{
+	color: #FF9900;	
+}
+
+
+h2 {
+	margin-bottom: 15px;
+	border-bottom: 1px solid #A7AAB3;
+}
+
+h3 {margin-top: 15px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #A7AAB3;
+}
+
+
+
+
+/***********************************'  Header Menu  ****************/
+
+#top-bar {
+	float:left;
+	width:603px;
+	border-left:2px solid #f70;
+	padding:0 0 0 9px;
+	margin:0 0 4px 0;
+	margin-top: 20px;
+	}
+/* text page header */
+#top-bar h2 {
+	font:20px/21px verdana,sans-serif;
+	color:#43729F;
+	margin:0 0 4px 0;
+	border-bottom: 0;
+	float:left;
+	}
+/* orange button */
+#top-bar a.button {
+	float:right;
+	display:block;
+	width:75px;
+	height:35px;
+	text-align:center;
+	color:#fff;
+	text-transform:uppercase;
+	font-weight:bold;
+	line-height:27px;
+	background:url(../images/img/bg-orange-button.gif) no-repeat;
+	}
+	
+.separador {
+	clear:both;
+	border-top:2px solid #f70;
+	
+	}
+
+#formlogin{
+margin-top:100px;
+}
+
+.form_col{
+width: 340px;
+}
+
+.rowform{
+padding:5px;
+font-family:Trebuchet,Verdana;
+font-size: 11px;
+color: #333;
+float:left;
+width: 340px;
+}
+
+.rowformMiddle{
+padding:5px;
+font-family:Trebuchet,Verdana;
+font-size: 11px;
+color: #333;
+float:left;
+width: 100%;
+
+}
+
+.rowform1{
+padding:5px;
+font-family:Trebuchet,Verdana;
+font-size: 11px;
+color: #333;
+float:left;
+width: 680px;
+}
+
+.rowform-input{
+width: 220px;
+float:left;
+}
+
+.rowform-input textarea{
+width: 220px;
+
+}
+
+
+.rowform-label{
+width: 120px;
+float:left;
+}
+
+.subpermiso{
+ padding-left: 10px;
+ width: 100px;
+}
+.divsubpermisos{
+ 
+  float:left;
+}
+.divreporte{
+  border-bottom: 1px solid #333;
+  
+  clear:both;
+ 
+}
+.rowform-text{
+float:left;
+width: 220px;
+min-height:13px;
+}
+
+.rowform-button{
+width: 50%;
+margin:auto;
+float:left;
+
+}
+.selector{
+width: 180px;
+}
+/*MENU CURVATURAS*/
+dl.curved {background:#D8D8D8 /*url(../images/c_tl.gif) top left no-repeat*/; margin:15px 0; padding:0; width:100%;}
+dl.curved dt {/*background:transparent url(../images/c_tr.gif) top right no-repeat; */padding:10px; text-align:center; font-weight: bold; color:#333;}
+dl.curved dd {background:#eee url(../images/c_bl.gif) bottom left no-repeat; padding:0; margin:0;}
+dl.curved dd p {margin:0; padding:10px; line-height:1.53em;}
+dl.curved dd p.last {background:transparent url(../images/c_br.gif) bottom right no-repeat; }
+
+#menu{
+height: 20px;
+width: 100%;
+float:left;
+}
+
+#listado{
+list-style-type: none;
+height: 20px;
+width: 1020px;
+margin: auto;
+
+}
+#listado li {
+background : inherit;
+color : #333;
+font-weight: bold;
+float:left;
+padding-left: 10px;
+font-size: 12px;
+line-height: 20px;
+}
+
+a img {
+border: none;
+}
+a:link, a:visited {
+color : #286e87;
+
+text-decoration : none;
+}
+a:hover {
+text-decoration : none;
+color : #999;
+
+}
+
+/*Scrollable tabla*/
+div.tableContainer {
+	clear: both;
+	border: 1px solid #558FA6;;
+	margin-top: 10px;
+	height: 360px;
+	overflow: auto;
+	width: 980px
+}
+
+/* Reset overflow value to hidden for all non-IE browsers. */
+html>body div.tableContainer {
+	overflow: hidden;
+	width: 980px
+}
+
+/* define width of table. IE browsers only                 */
+div.tableContainer table {
+	float: left;
+	width: 970px
+}
+
+/* define width of table. Add 16px to width for scrollbar.           */
+/* All other non-IE browsers.                                        */
+html>body div.tableContainer table {
+	width: 970px
+}
+
+/* set table header to a fixed position. WinIE 6.x only                                       */
+/* In WinIE 6.x, any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+thead.fixedHeader tr {
+	position: relative
+}
+
+/* set THEAD element to have block level attributes. All other non-IE browsers            */
+/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
+html>body thead.fixedHeader tr {
+	display: block
+}
+
+/* make the TH elements pretty */
+thead.fixedHeader th {
+
+	text-align: left
+	
+	padding: 2px;
+font-size: 11px;
+background-color: #83aec0;
+background-image: url(../images/img/fondo_th.png);
+background-repeat: repeat-x;
+color: #FFFFFF;
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-right-style: solid;
+border-bottom-style: solid;
+border-right-color: #558FA6;
+border-bottom-color: #558FA6;
+font-family: "Trebuchet MS", Arial;
+	
+}
+
+/* make the A elements pretty. makes for nice clickable headers                */
+thead.fixedHeader a, thead.fixedHeader a:link, thead.fixedHeader a:visited {
+	color: #FFF;
+	display: block;
+	text-decoration: none;
+	width: 100%
+}
+
+/* make the A elements pretty. makes for nice clickable headers                */
+/* WARNING: swapping the background on hover may cause problems in WinIE 6.x   */
+thead.fixedHeader a:hover {
+	color: #FFF;
+	display: block;
+	text-decoration: underline;
+	width: 100%
+}
+
+/* define the table content to be scrollable                                              */
+/* set TBODY element to have block level attributes. All other non-IE browsers            */
+/* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
+/* induced side effect is that child TDs no longer accept width: auto                     */
+html>body tbody.scrollContent {
+	display: block;
+	height: 360px;
+	overflow: auto;
+	width: 100%
+}
+
+/* make TD elements pretty. Provide alternating classes for striping the table */
+/* http://www.alistapart.com/articles/zebratables/                             */
+tbody.scrollContent td, tbody.scrollContent tr.normalRow td {
+	background: #FFF;
+	border-bottom: none;
+	border-left: none;
+	border-right: 1px solid #CCC;
+	border-top: 1px solid #DDD;
+	
+}
+
+tbody.scrollContent tr.alternateRow td {
+	background: #EEE;
+	border-bottom: none;
+	border-left: none;
+	border-right: 1px solid #CCC;
+	border-top: 1px solid #DDD;
+	
+}
+
+
+.col130{
+width: 130px;
+}
+.col140{
+width: 140px;
+}
+.col150{
+width: 150px;
+}
+.col30{
+width: 30px;
+}
+.col35{
+width: 35px;
+}
+.col25{
+width: 25px;
+}
+
+div.tableContainer table .modotr{
+font-size: 12px;
+font-weight:bold;
+background-color: #D8D8D8;
+background-repeat: repeat-x;
+color: #990000;
+font-family: "Trebuchet MS", Arial;
+text-align:center;
+}
+
+
+
+
+div.tableContainer table .modotr.selected {background-color: #D8D8D8; color: #000;}
+
+div.tableContainer table .modotr.borrado{
+background-color: #F2F2F2; color: #990000;
+}
+div.tableContainer table .modotr.borrado.selected {background-color: #F2F2F2; color: #333;}
+
+div.tableContainer table .modotr.incumplido{
+background-color: #8A0808; color: #04B4AE;
+}
+
+div.tableContainer table .modotr.incumplido.selected {background-color: #8A0808; color: white;}
+
+div.tableContainer table .modotr.red{
+background-color: #8A0808; color: #D7DF01;
+}
+div.tableContainer table .modotr.red.selected {background-color: #8A0808; color: white;}
+
+div.tableContainer table .modotr.green{
+background-color: #0B3861; color: #088A4B;
+}
+div.tableContainer table .modotr.green2{
+background-color: #0B3861; color: #D7DF01;
+}
+div.tableContainer table .modotr.green.selected {background-color:#0B3861; color: white;}
+div.tableContainer table .modotr.green2.selected {background-color:#0B3861; color: white;}
+
+div.tableContainer table tbody td{
+word-wrap:break-word;
+}
+
+
+
+/*Listado de tablas*/
+.tablelist{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size:12px;
+  text-align: center;
+  width: 980px;
+  table-layout: fixed;
+}
+.tablelist th{
+padding: 2px ;
+font-size: 11px !important;
+background-color: #83aec0;
+background-image: url(../images/img/fondo_th.png);
+background-repeat: repeat-x;
+color: #FFFFFF;
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-right-style: solid;
+border-bottom-style: solid;
+border-right-color: #558FA6;
+border-bottom-color: #558FA6;
+font-family: "Trebuchet MS", Arial !important;
+font-weight:bold !important;
+}
+.tablelist .modotr{
+font-size: 12px;
+font-weight:bold;
+background-color: #D8D8D8;
+background-repeat: repeat-x;
+color: #990000;
+font-family: "Trebuchet MS", Arial;
+text-align:center;
+}
+
+.tablelist .modotr.selected {background-color: #D8D8D8; color: #000;}
+
+.tablelist .modotr.borrado{
+background-color: #F2F2F2; color: #990000;
+}
+.tablelist .modotr.borrado.selected {background-color: #F2F2F2; color: #333;}
+
+.tablelist .modotr.incumplido{
+background-color: #8A0808; color: #04B4AE;
+}
+.tablelist .modotr.hasMudanza{
+  background-color: #DA81F5; color: #000;
+}
+.tablelist .modotr.incumplido.selected {background-color: #8A0808; color: white;}
+
+.tablelist .modotr.red{
+background-color: #8A0808; color: #D7DF01;
+}
+.tablelist .modotr.red.selected {background-color: #8A0808; color: white;}
+
+.tablelist .modotr.green{
+background-color: #0B3861; color: #088A4B;
+}
+.tablelist .modotr.green2{
+background-color: #0B3861; color: #D7DF01;
+}
+.tablelist .modotr.green.selected {background-color:#0B3861; color: white;}
+.tablelist .modotr.green2.selected {background-color:#0B3861; color: white;}
+
+.tablelist tbody td{
+word-wrap:break-word;
+border-right:1px solid #fff;
+border-bottom:1px solid #fff;
+}
+
+.tablelistpanel{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size:11px;
+  text-align: right;
+  width: 880px;
+  padding:0;
+  margin:0;
+  table-layout: fixed;
+}
+.tablelistpanel th{
+padding: 2px;
+font-size: 11px;
+background-color: #83aec0;
+background-image: url(../images/img/fondo_th.png);
+background-repeat: repeat-x;
+color: #FFFFFF;
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-right-style: solid;
+border-bottom-style: solid;
+border-right-color: #558FA6;
+border-bottom-color: #558FA6;
+font-family: "Trebuchet MS", Arial;
+text-align:center;
+}
+.tablelistpanel .modotr{
+font-size: 11px;
+font-weight:bold;
+background-color: #D8D8D8;
+background-repeat: repeat-x;
+color: #990000;
+font-family: "Trebuchet MS", Arial;
+text-align:center;
+}
+
+.tablelistpanel .modotr.selected {background-color: #D8D8D8; color: #000;}
+
+.tablelistpanel .modotr.borrado{
+background-color: #F2F2F2; color: #333;
+}
+.tablelistpanel .modotr.borrado.selected {background-color: #F2F2F2; color: white;}
+
+.tablelistpanel .modotr.incumplido{
+background-color: #8A0808; color: #04B4AE;
+}
+
+.tablelistpanel .modotr.incumplido.selected {background-color: #8A0808; color: white;}
+
+.tablelistpanel .modotr.red{
+background-color: #8A0808; color: #D7DF01;
+}
+.tablelistpanel .modotr.red.selected {background-color: #8A0808; color: white;}
+
+.tablelistpanel .modotr.green{
+background-color: #0B3861; color: #088A4B;
+}
+.tablelistpanel .modotr.green2{
+background-color: #0B3861; color: #D7DF01;
+}
+.tablelistpanel .modotr.green.selected {background-color:#0B3861; color: white;}
+.tablelistpanel .modotr.green2.selected {background-color:#0B3861; color: white;}
+
+.tablelistpanel tbody td{
+word-wrap:break-word;
+}
+
+.table_base{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size:12px;
+  width: 880px;
+  padding:0;
+  margin:0;
+  table-layout: fixed;
+}
+
+.table_base th{
+padding: 2px;
+font-size: 11px;
+background-color: #83aec0;
+background-image: url(../images/img/fondo_th.png);
+background-repeat: repeat-x;
+color: #FFFFFF;
+border-right-width: 1px;
+border-bottom-width: 1px;
+border-right-style: solid;
+border-bottom-style: solid;
+border-right-color: #558FA6;
+border-bottom-color: #558FA6;
+font-family: "Trebuchet MS", Arial;
+text-align:center;
+}
+
+.table_base tr{
+font-size: 11px;
+font-weight:bold;
+background-color: #D8D8D8;
+background-repeat: repeat-x;
+color: #990000;
+font-family: "Trebuchet MS", Arial;
+text-align:left;
+}
+.table_base tbody td{
+word-wrap:break-word;
+}
+
+.select-bar{
+padding-top: 10px;
+padding-bottom: 10px;
+clear: both;
+height: 30px;
+}
+
+#form_left{
+float:left;
+width: 350px;
+}
+#form_rigth{
+float:left;
+width: 350px;
+}
+.form_left{
+float:left;
+width: 50%;
+
+}
+.form_rigth{
+float:left;
+width: 50%;
+
+}
+.first_row{
+  float: left;
+  width: 100%;
+}
+.buttons{
+  float: left;
+  width: 100%;
+}
+
+
+.subtitle{
+color: #43729F;
+font-family: verdana,sans-serif;
+font-size: 12px;
+font-weight: bold;
+border-bottom: 2px solid #FF7700;
+padding-bottom: 6px;
+margin-bottom: 6px;
+}
+
+#left_reserva{
+float:left;
+width: 500px;
+}
+#right_reserva{
+float:left;
+width: 150px;
+}
+
+#panel_viajes{
+width:980px;
+height: 350px;
+background-color: #fff;
+overflow: auto;
+}
+#panel_bottom
+{
+/*width:900px;*/
+height: 200px;
+
+}
+
+#panel_reserva{
+width:880px;
+height:280px;
+background-color: #fff;
+float:left;
+overflow: auto;
+}
+
+#panel_base{
+width:100px;
+float:left;
+}
+
+#navigation {
+font-size:0.75em; 
+width:100px;
+float:left;
+}
+
+/*#navigation ul {margin:0; padding:0;}
+
+#navigation li {
+list-style-type: none;
+
+}
+
+ul.top-level {background:#666;}
+ul.top-level li {
+ border-bottom: #fff solid;
+ border-top: #fff solid;
+ border-width: 1px;
+}
+#navigation a {
+ color: #fff;
+ cursor: pointer;
+ display:block;
+ height:25px;
+ line-height: 25px;
+ text-indent: 10px;                   
+ text-decoration:none;
+
+ 
+}
+#navigation a:hover{
+ text-decoration:underline;
+}
+#navigation li:hover {
+ background: #f90;
+ position: relative;
+}
+ul.sub-level {
+    display: none;
+
+}
+li:hover .sub-level {
+    background: #999;
+    border: #fff solid;
+    border-width: 1px;
+    display: block;
+    position: absolute;
+    left: 75px;
+    top: 5px;
+}
+ul.sub-level li {
+    border: none;
+    float: left;
+    color: #fff;
+    width: 400px;
+    line-height: 25px;
+    text-indent: 10px;                   
+    word-wrap:break-word;
+     
+}
+#navigation .sub-level {
+    background: #999;
+}
+*/
+
+
+.rowempty{
+height: 20px;
+
+}
+.tiempo_abordo{
+float:left;
+text-align: right;
+font-size: 14px;
+font-weight:bold;
+font-family: "Trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
+margin-left: 20px;
+}
+
+#formbase{
+width: 400px;
+}
+#permisos{
+width: 600px;
+float:left;
+}
+
+.rowform-repeticion{
+ float:left;
+ width: 120px;
+}
+.rowform-label-repeticion{
+float:left;
+width: 60px;
+}
+.rowform-input-repeticion{
+float:left;
+width: 30px;
+}
+
+.rowform-permiso{
+ float:left;
+ width: 150px;
+}
+.rowform-input-permiso{
+float:left;
+width: 30px;
+}
+.resumen_recaudacion{
+width: 680px;
+}
+
+.link_page{
+ float:left;
+ 
+}
+
+#first{
+float:left;
+}
+#first a{
+padding-right: 3px;
+ padding-left: 3px;
+}
+#last{
+float:left;
+}
+#last a{
+padding-right: 3px;
+ padding-left: 3px;
+}
+#next{
+float:left;
+}
+#next a{
+padding-right: 3px;
+ padding-left: 3px;
+}
+#prev{
+float:left;
+}
+#prev a{
+ padding-right: 3px;
+ padding-left: 3px;
+}
+#current{
+ float:left;
+ padding-right: 3px;
+ padding-left: 3px;
+ font-weight: bold;
+}
+.digit{
+float:left;
+}
+.digit a{
+padding-right: 3px;
+ padding-left: 3px;
+}
+
+.div_base{
+float:left;
+width: 50px;
+height: 20px;
+text-align: left;
+font-size: 12px;
+font-family: "Trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
+line-height: 20px;
+background-color: #666;/*#f90;*/
+color: #fff;
+
+
+}
+.div_movil{
+float:left;
+height: 20px;
+width: 50px;
+text-align: left;
+font-size: 12px;
+font-family: "Trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
+line-height: 20px;
+overflow:hidden;
+z-index: 10;
+position:absolute;
+left:55px;
+background-color: #666;
+color:#fff;
+}
+.contiene_movil{
+float:left;
+width:50px;
+height: 20px;
+}
+
+.banner_aviso{
+background-color:#FFBF00;
+z-index: 100;
+top: 100px;
+right: 0px;
+position:absolute;
+min-height: 50px;
+display:none;
+}
+.banner_aviso ul li{
+list-style-type: none;
+padding: 10px;
+font-weight: bold;
+}
+.banner_aviso a{
+float:right;
+text-decoration: none;
+}
+#previus_reservas{
+ display:none;
+}
+#table_previus_reservas{
+width: 450px !important;
+margin-left: 20px;
+border-left: 0px !important;
+border-right: 0px !important;  
+}
+
+#table_previus_reservas tbody tr{
+font-size: 12px;
+font-family: "Trebuchet MS", Arial;
+text-align:center;
+}
+
+#table_previus_reservas tbody td{
+border-bottom: 1px solid #333;
+}
+.porcentaje{
+  float: right;
+  width: 40px;
+}
+.span_total_viaje{
+font-size: 26px;
+}
+.tableReporte {
+ border-collapse: collapse;
+ word-wrap: break-word;
+}
+.link_reporte_rendir{
+ float: right;
+ 
+}
+.link_reporte_rendir a{
+ font-weight: bold;
+ color: #43729F;
+ background-color: #D8D8D8;
+ padding: 10px;
+}
+
+
+
+
+
