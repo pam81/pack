@@ -52,7 +52,7 @@ $db['default']['dbcollat'] = "utf8_general_ci";*/
 
 $db['default']['hostname'] = "localhost";
 $db['default']['username'] = "root";
-$db['default']['password'] = "";
+$db['default']['password'] = "barabani";
 $db['default']['database'] = "fletpack";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";

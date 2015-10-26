@@ -514,7 +514,8 @@ class Viaje extends Controller {
      {
       if ( $this->lock($id) )
       {
-      $sql="select v.*,c.name as cliente,c.show_banner,c.banner,p.phone,r.fecha as fecha,r.id as nro_reserva,r.presupuesto_aprox,
+      $sql="select v.*,c.name as cliente,c.show_banner,c.banner,p.phone,r.fecha as fecha,
+           r.id as nro_reserva,r.presupuesto_aprox, r.hasMudanza, 
            r.reservo,r.fecha_reserva,r.hora_reserva, r.desde, r.destino,r.valor_mercaderia,r.art, r.art_valor,
            r.mercaderia_excedente,r.monto_excedente,r.codigo_excedente,m.marca,
             ch.name,ch.lastname,m.movil, u.name as categoria
@@ -849,7 +850,7 @@ class Viaje extends Controller {
       
       $sql="select v.*,c.name as cliente,p.phone,r.fecha as fecha,r.id as nro_reserva,r.presupuesto_aprox,
            r.reservo,r.fecha_reserva,r.hora_reserva, r.desde, r.destino,r.valor_mercaderia,r.art, r.art_valor,
-           r.mercaderia_excedente,r.monto_excedente,r.codigo_excedente,m.marca,
+           r.mercaderia_excedente,r.monto_excedente,r.codigo_excedente,m.marca,r.hasMudanza,
             ch.name,ch.lastname,m.movil, u.name as categoria
             from viajes v,clientes c, phones p,
             reservas r, movil m, movil_chofer mc, choferes ch,

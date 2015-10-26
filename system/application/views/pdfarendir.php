@@ -49,7 +49,7 @@
        <th><?php echo $this->lang->line("title_iva");?></th>
        
        <th> <?php echo $this->lang->line("title_art");?> </th>
-       <th> %<?php echo $this->lang->line("title_mudanza");?></th>
+       <th> <?php echo $this->lang->line("title_mudanza");?></th>
        
       
         
@@ -60,7 +60,7 @@
      
       $totalviajes=0;
       $totalart=0;
-      $total_porcentajemudanza=0;
+      $total_mudanza=0;
       $total_iva=0;
       $total_recaudacion = 0;
       $total_ctacte=0;
@@ -95,7 +95,7 @@
         
           <td><?php if (isset($u["total_iva"])) {echo $u["total_iva"]; $total_iva += $u["total_iva"];  }?>  </td>
           <td><?php if (isset($u["total_art"])) {echo $u["total_art"]; $totalart += $u["total_art"]; }?>  </td>
-          <td><?php if (isset($u["total_porcentajemudanza"])) {echo $u["total_porcentajemudanza"]; $total_porcentajemudanza += $u["total_porcentajemudanza"]; }?>  </td>
+          <td><?php if (isset($u["total_mudanza"])) {echo $u["total_mudanza"]; $total_mudanza += $u["total_mudanza"]; }?>  </td>
            
          
                       
@@ -129,7 +129,7 @@
     
     
     <tr>
-     <td> <?php echo $this->lang->line("title_total_porcentaje_mudanza"); ?>:</td> <td><?php echo $total_porcentajemudanza; ?> </td>
+     <td> <?php echo $this->lang->line("title_total_mudanza"); ?>:</td> <td><?php echo $total_mudanza; ?> </td>
     </tr>
     
     

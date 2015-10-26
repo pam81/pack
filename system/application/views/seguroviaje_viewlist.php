@@ -124,8 +124,8 @@ function searching(e)
           <th> <?php echo $this->lang->line("title_seguro");?> </th>
           <th> <?php echo $this->lang->line("title_cod_seguro");?> </th>
           <th> <?php echo $this->lang->line("title_art");?> </th>
-          <th> <?php echo substr($this->lang->line("title_mudanza"),0,4);?></th>
-       <th> %<?php echo substr($this->lang->line("title_mudanza"),0,4);?></th>
+          
+       
        <th>% <?php echo $this->lang->line("title_ctacte");?></th>
        <th> <?php echo $this->lang->line("title_iva");?></th>
         <th> <?php echo $this->lang->line("title_cancelar");?> </th>
@@ -145,8 +145,7 @@ function searching(e)
       $otros=0;
       $seguro=0;
       $art=0;
-      $mudanza=0;
-     $porcentaje_mudanza=0;
+      
      $porcentaje_ctacte=0;
      $iva=0;
          foreach($viajes as $u) {
@@ -187,8 +186,7 @@ function searching(e)
           <td> <?php echo $u->monto_excedente; $seguro +=$u->monto_excedente; ?>  </td>
           <td> <?php echo $u->codigo_excedente; ?>  </td>
           <td> <?php echo $u->art_valor; ?>  </td>
-          <td> <?php echo $u->mudanza; $mudanza += $u->mudanza;?></td>
-        <td> <?php echo $u->porcentaje_mudanza; $porcentaje_mudanza += $u->porcentaje_mudanza;?></td>
+          
         <td> <?php echo $u->porcentaje_ctacte; $porcentaje_ctacte += $u->porcentaje_ctacte;?></td>
         <td> <?php echo $u->iva; $iva += $u->iva;?></td>
          <td>

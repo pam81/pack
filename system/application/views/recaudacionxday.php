@@ -49,7 +49,7 @@ $('*').keyup(function(e){
         <th> <?php echo $this->lang->line("title_seguro");?> </th>
         <th> <?php echo $this->lang->line("title_art");?> </th>
         <th> <?php echo substr($this->lang->line("title_mudanza"),0,4);?></th>
-       <th> %<?php echo substr($this->lang->line("title_mudanza"),0,4);?></th>
+      
        <th>% <?php echo $this->lang->line("title_ctacte");?></th>
        <th><?php echo $this->lang->line("title_iva");?></th>
     </tr>    
@@ -69,7 +69,7 @@ $('*').keyup(function(e){
       $seguro=0;
       $art=0;
       $mudanza=0;
-      $porcentaje_mudanza=0;
+      
       $porcentaje_ctacte=0;
       $iva=0;
       foreach($viajes as $v) {
@@ -106,7 +106,7 @@ $('*').keyup(function(e){
       <td> <?php echo $v->monto_excedente; $seguro += $v->monto_excedente; ?>  </td>
       <td> <?php echo $v->art_valor; $art += $v->art_valor; ?>  </td>
       <td><?php echo $v->mudanza; $mudanza +=$v->mudanza; ?></td>
-     <td><?php echo $v->porcentaje_mudanza; $porcentaje_mudanza +=$v->porcentaje_mudanza; ?></td>
+     
      <td><?php echo $v->porcentaje_ctacte; $porcentaje_ctacte +=$v->porcentaje_ctacte; ?></td>
      <td><?php echo $v->iva; $iva +=$v->iva; ?></td>
        </tr>
@@ -179,10 +179,7 @@ $('*').keyup(function(e){
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_mudanza"); ?>: </label></div> 
       <div class="rowform-text"> <?php echo $mudanza;?> </div>
 	    </div>
-      <div class="rowform">
-	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_porcentaje_mudanza"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $porcentaje_mudanza;?> </div>
-	    </div>
+     
       <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_porcentaje_ctacte"); ?>: </label></div> 
       <div class="rowform-text"> <?php echo $porcentaje_ctacte;?> </div>
@@ -193,7 +190,7 @@ $('*').keyup(function(e){
 	    </div>
      <div class="rowform">
 	    <div class="rowform-label"><label><?php echo $this->lang->line("title_total"); ?>: </label></div> 
-      <div class="rowform-text">  <?php echo ($efvo + $ctacte + $peones+$espera+$peaje+$estacionamiento+$otros + $art + $seguro+$mudanza+$porcentaje_mudanza+$porcentaje_ctacte+$iva); ?> </div>
+      <div class="rowform-text">  <?php echo ($efvo + $ctacte + $peones+$espera+$peaje+$estacionamiento+$otros + $art + $seguro+$porcentaje_ctacte+$iva); ?> </div>
 	    </div>
 	 	<?php } if ( $this->Current_User->isHabilitado("PRINTRECDAY") ) { ?>
 	    <a href="<?php echo site_url()."reporte/pdfxday/$opciones";?>"> <img src="<?php echo base_url()."images/img/pdf_icon.png";?>" width="50" height="50" alt="pdf" />

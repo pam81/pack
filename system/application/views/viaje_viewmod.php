@@ -330,7 +330,7 @@ $(document).ready(function(){
       <?php
         $total= $viaje[0]->valor + $viaje[0]->espera + $viaje[0]->peones + 
             $viaje[0]->estacionamiento + $viaje[0]->peaje +   $viaje[0]->art_valor + $viaje[0]->otros +
-            $viaje[0]->mudanza + $viaje[0]->porcentaje_mudanza + $viaje[0]->iva;
+             $viaje[0]->iva;
             
         echo $total;
        ?>
@@ -343,9 +343,16 @@ $(document).ready(function(){
        
         }?>
    
-  
+        <?php if ($viaje[0]->hasMudanza ){
+            $total_mudanza = $total - $viaje[0]->mudanza;
+            echo '<input type="hidden" name="comision_mudanza" id="comision_mudanza" value="'.$comision->mudanza.'">';
+            echo "<br><span class=\"span_total_viaje\">TOTAL Chofer = $</span><span class=\"span_total_viaje\" id=\"total_viaje_mudanza\"> $total_mudanza</span>";
+       
+       
+        }?>
+        
   </div>
-   
+    
      <div class="rowform">
    <div class="rowform-label"> <label for="subtotal"> <?php echo $this->lang->line("title_subtotal")." $"; ?>  </label>
    </div>
@@ -361,22 +368,21 @@ $(document).ready(function(){
     </div>
    </div>
     
-    <div class="rowform">
-   <div class="rowform-label"> <label for="mudanza"> <?php echo $this->lang->line("title_mudanza")." $"; ?>  </label>
-   </div>
-    <div class="rowform-input">
-    <input type="text" name="mudanza" id="mudanza" value="<?php echo set_value("mudanza",$viaje[0]->mudanza);?>" tabindex="15" onKeyUp="getTotal()"/>
-    <label for="porcentaje_mudanza"> % </label>
-    <input type="text" class="porcentaje" readonly="true" name="porcentaje_mudanza" id="porcentaje_mudanza" value="<?php echo set_value("porcentaje_mudanza",$viaje[0]->porcentaje_mudanza);?>" tabindex="15" />
-    <input type="hidden" name="comision_mudanza" id="comision_mudanza" value="<?php echo $comision->mudanza; ?>">
-    </div>
-   </div>
+   
    
     <div class="rowform">
    <div class="rowform-label"> <label for="iva"> <?php echo $this->lang->line("title_iva")." $"; ?>  </label>
    </div>
     <div class="rowform-input">
     <input type="text" id="iva" name="iva" value="<?php echo set_value("iva",$viaje[0]->iva);?>" tabindex="11" onKeyUp="getTotal()"/>
+    </div>
+   </div>
+    
+    <div class="rowform">
+   <div class="rowform-label"> <label for="mudanza"> - <?php echo $this->lang->line("title_mudanza")." $"; ?>  </label>
+   </div>
+    <div class="rowform-input">
+    <input type="text" name="mudanza" readonly id="mudanza" value="<?php echo set_value("mudanza",$viaje[0]->mudanza);?>" tabindex="15" onKeyUp="getTotal()"/>
     </div>
    </div>
     

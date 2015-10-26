@@ -51,7 +51,7 @@
         <th> <?php echo $this->lang->line("title_seguro");?> </th>
          <th> <?php echo $this->lang->line("title_art");?> </th>
          <th> <?php echo $this->lang->line("title_mudanza");?></th>
-       <th> %<?php echo $this->lang->line("title_mudanza");?></th>
+       
        <th>% <?php echo $this->lang->line("title_ctacte");?></th>
        <th> <?php echo $this->lang->line("title_iva");?></th>
         <th> <?php echo $this->lang->line("title_total");?> </th>
@@ -73,7 +73,7 @@
       $seguro=0;
       $art=0;
       $mudanza=0;
-     $porcentaje_mudanza=0;
+     
      $porcentaje_ctacte=0;
      $iva=0;
          foreach($viajes as $u) {
@@ -120,9 +120,9 @@
          <td><?php if (isset($u["seguro"])) {echo $u["seguro"]; $seguro += $u["seguro"]; }?>  </td>
           <td><?php if (isset($u["art"])) {echo $u["art"]; $art += $u["art"]; }?>  </td>
          <td> <?php if (isset($u["mudanza"])) { echo $u["mudanza"]; $mudanza += $u["mudanza"]; } ?></td>
-        <td> <?php if (isset($u["porcentaje_mudanza"])) { echo $u["porcentaje_mudanza"]; $porcentaje_mudanza += $u["porcentaje_mudanza"];}?></td>
+       
         <td> <?php if (isset($u["porcentaje_ctacte"])){ echo $u["porcentaje_ctacte"]; $porcentaje_ctacte += $u["porcentaje_ctacte"];}?></td>
-        <td> <?php if (isset($u["porcentaje_ctacte"])){ echo $u["iva"]; $iva += $u["iva"];}?></td>
+        <td> <?php if (isset($u["iva"])){ echo $u["iva"]; $iva += $u["iva"];}?></td>
          <td> <?php if (isset($u["total"])) echo $u["total"]; ?> </td> 
                       
        </tr>
@@ -167,9 +167,7 @@
     <tr>
      <td> <?php echo $this->lang->line("title_total_mudanza"); ?>:</td> <td><?php echo $mudanza;?> </td>
     </tr>
-    <tr>
-     <td> <?php echo $this->lang->line("title_total_porcentaje_mudanza"); ?>:</td> <td><?php echo $porcentaje_mudanza;?> </td>
-    </tr>
+   
     <tr>
      <td> <?php echo $this->lang->line("title_total_porcentaje_ctacte"); ?>:</td> <td><?php echo $porcentaje_ctacte;?> </td>
     </tr>
@@ -177,7 +175,7 @@
      <td> <?php echo $this->lang->line("title_total_iva"); ?>:</td> <td><?php echo $iva;?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total"); ?>:</td> <td><?php echo ($efvo + $ctacte+$peones+$espera+$peaje+$estacionamiento+$otros+$seguro+$art+$mudanza+$porcentaje_mudanza+$porcentaje_ctacte+$iva); ?> </td>
+     <td> <?php echo $this->lang->line("title_total"); ?>:</td> <td><?php echo ($efvo + $ctacte+$peones+$espera+$peaje+$estacionamiento+$otros+$seguro+$art+$porcentaje_ctacte+$iva); ?> </td>
     </tr>
    
     </table>

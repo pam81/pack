@@ -97,7 +97,7 @@ $('*').keyup(function(e){
        <th>% <?php echo $this->lang->line("title_ctacte");?></th>
 
        <th> <?php echo $this->lang->line("title_art");?> </th>
-       <th> %<?php echo substr($this->lang->line("title_mudanza"),0,4);?></th>
+       
         <th> <?php echo $this->lang->line("title_comisionar");?> </th>
         <th> <?php echo $this->lang->line("title_acliente");?> </th>
       
@@ -132,8 +132,7 @@ $('*').keyup(function(e){
       $artefvo=0;
       $mudanzacc=0;
       $mudanzaefvo=0;
-      $porcentaje_mudanzacc=0;
-      $porcentaje_mudanzaefvo=0;
+      
       $porcentaje_ctactecc=0;
       $porcentaje_ctacteefvo=0;
       $ivacc=0;
@@ -177,7 +176,7 @@ $('*').keyup(function(e){
          <td><?php if (isset($u["total_porcentajecc"])) {echo "Efvo: 0 <br> CC: ".$u["total_porcentajecc_cc"]; $total_porcentajecc += $u["total_porcentajecc"]; $porcentaje_ctactecc += $u["total_porcentajecc_cc"];  }?>  </td>
         
           <td><?php if (isset($u["total_art"])) {echo "Efvo: ".$u["total_art_efvo"]." <br> CC: ".$u["total_art_cc"]; $totalart += $u["total_art"]; $artcc += $u["total_art_cc"]; $artefvo += $u["total_art_efvo"]; }?>  </td>
-          <td><?php if (isset($u["total_porcentajemudanza"])) {echo "Efvo: ".$u["total_porcentajemudanza_efvo"]." <br> CC: ".$u["total_porcentajemudanza_cc"]; $total_porcentajemudanza += $u["total_porcentajemudanza"]; $porcentaje_mudanzacc += $u["total_porcentajemudanza_cc"]; $porcentaje_mudanzaefvo += $u["total_porcentajemudanza_efvo"]; }?>  </td>
+          
          <td>
            <?php echo "Efvo:"; ?>
            <?php if (isset($u["parcial_efvo"])) echo $u["parcial_efvo"]; $total_parcial_efvo +=$u["parcial_efvo"];  ?>
@@ -261,10 +260,7 @@ $('*').keyup(function(e){
       <div class="rowform-text">  <?php echo $totalmudanza."<br> [Efvo: $mudanzaefvo + Cta Cte: $mudanzacc ]"; ?> </div>
 	</div>
   
-  <div class="rowform">
-	    <div class="rowform-label"><label><?php echo $this->lang->line("title_total_porcentaje_mudanza"); ?>: </label></div> 
-      <div class="rowform-text">  <?php echo $total_porcentajemudanza."<br> [Efvo: $porcentaje_mudanzaefvo + Cta Cte: $porcentaje_mudanzacc ]"; ?> </div>
-	</div>
+ 
   
   <div class="rowform">
 	    <div class="rowform-label"><label><?php echo $this->lang->line("title_total_porcentaje_ctacte"); ?>: </label></div> 

@@ -291,9 +291,6 @@ class Flete_model extends Model{
            $listado[$v->movil]["total_mudanza_efvo"]=0;
            $listado[$v->movil]["total_mudanza_cc"]=0;
            $listado[$v->movil]["total_mudanza"]=0;
-           $listado[$v->movil]["total_porcentajemudanza_efvo"]=0;
-           $listado[$v->movil]["total_porcentajemudanza_cc"]=0;
-           $listado[$v->movil]["total_porcentajemudanza"]=0;
            $listado[$v->movil]["total_porcentajecc_cc"]=0;
            $listado[$v->movil]["total_porcentajecc"]=0;
            $listado[$v->movil]["total_iva_efvo"]=0;
@@ -312,7 +309,6 @@ class Flete_model extends Model{
                    $listado[$v->movil]["total_seguro_efvo"]=$e->total_seguro;
                    $listado[$v->movil]["total_art_efvo"]=$e->total_art;
                    $listado[$v->movil]["total_mudanza_efvo"]=$e->total_mudanza;
-                   $listado[$v->movil]["total_porcentajemudanza_efvo"]=number_format((float)$e->total_porcentajemudanza, 2);
                    $listado[$v->movil]["total_iva_efvo"]=number_format((float)$e->total_iva, 2);
                  }
               
@@ -329,7 +325,6 @@ class Flete_model extends Model{
                    $listado[$v->movil]["total_seguro_cc"]=$c->total_seguro;
                    $listado[$v->movil]["total_art_cc"]=$c->total_art;
                    $listado[$v->movil]["total_mudanza_cc"]=$c->total_mudanza;
-                   $listado[$v->movil]["total_porcentajemudanza_cc"]=number_format((float)$c->total_porcentajemudanza, 2);
                    $listado[$v->movil]["total_porcentajecc_cc"]=number_format((float)$c->total_porcentajecc, 2);
                    $listado[$v->movil]["total_iva_cc"]=number_format((float)$c->total_iva, 2);
                 }
@@ -344,19 +339,18 @@ class Flete_model extends Model{
          $listado[$v->movil]["total_seguro"]=$listado[$v->movil]["total_seguro_cc"]+$listado[$v->movil]["total_seguro_efvo"];
          $listado[$v->movil]["total_art"]=$listado[$v->movil]["total_art_cc"]+$listado[$v->movil]["total_art_efvo"];
          $listado[$v->movil]["total_mudanza"]=$listado[$v->movil]["total_mudanza_cc"]+$listado[$v->movil]["total_mudanza_efvo"];
-         $listado[$v->movil]["total_porcentajemudanza"]=$listado[$v->movil]["total_porcentajemudanza_cc"]+$listado[$v->movil]["total_porcentajemudanza_efvo"];
          $listado[$v->movil]["total_porcentajecc"]=$listado[$v->movil]["total_porcentajecc_cc"];
          $listado[$v->movil]["total_iva"]=$listado[$v->movil]["total_iva_cc"]+$listado[$v->movil]["total_iva_efvo"];
           //REVISAR    
          $listado[$v->movil]["totalcc"]=$listado[$v->movil]["total_ctacte"]+$listado[$v->movil]["total_peon_cc"]+$listado[$v->movil]["total_espera_cc"]+
                                  $listado[$v->movil]["total_estac_cc"]+$listado[$v->movil]["total_otro_cc"]+$listado[$v->movil]["total_peaje_cc"]+
                                  $listado[$v->movil]["total_seguro_cc"]+$listado[$v->movil]["total_art_cc"]+$listado[$v->movil]["total_porcentajecc_cc"]
-                                 +$listado[$v->movil]["total_mudanza_cc"]+$listado[$v->movil]["total_porcentajemudanza_cc"];
+                                 ;
           //REVISAR                       
          $listado[$v->movil]["total_contado"]=$listado[$v->movil]["total_efvo"]+$listado[$v->movil]["total_espera_efvo"]+$listado[$v->movil]["total_peon_efvo"]+
                                               $listado[$v->movil]["total_estac_efvo"]+$listado[$v->movil]["total_otro_efvo"]+$listado[$v->movil]["total_peaje_efvo"]+
                                               $listado[$v->movil]["total_seguro_efvo"]+$listado[$v->movil]["total_art_efvo"]+
-                                              $listado[$v->movil]["total_mudanza_efvo"]+$listado[$v->movil]["total_porcentajemudanza_efvo"] + $listado[$v->movil]["total_iva_efvo"];
+                                              $listado[$v->movil]["total_iva_efvo"];
                                 
          $listado[$v->movil]["parcial_cc"]= $listado[$v->movil]["total_ctacte"] + $listado[$v->movil]["total_espera_cc"] + $listado[$v->movil]["total_otro_cc"];
          $listado[$v->movil]["parcial_efvo"]= $listado[$v->movil]["total_efvo"] + $listado[$v->movil]["total_espera_efvo"] + $listado[$v->movil]["total_otro_efvo"] ;                                                      
