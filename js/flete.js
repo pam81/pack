@@ -1745,19 +1745,21 @@ function getTotal(){
  var art = ($("#art").val() != '') ? parseFloat($("#art").val()).toFixed(2) : 0;
  var iva = ($("#iva").val() != '') ? parseFloat($("#iva").val()).toFixed(2) : 0;
  var otro = ($("#otro").val() != '') ? parseFloat($("#otro").val()).toFixed(2) : 0;
- var mudanza =  ($("#mudanza").val() != '') ? parseFloat($("#mudanza").val()).toFixed(2) : parseFloat(0).toFixed(2);
+ 
+ 
+ 
  var porcentaje_mudanza = 0;
- if ($("#mudanza").val() != ''){
+ if ($("#comision_mudanza").val()){
    var comision_mudanza = ($("#comision_mudanza").val() != '') ? parseFloat($("#comision_mudanza").val()).toFixed(2) : 0; 
-   porcentaje_mudanza = ((parseFloat(mudanza) + parseFloat(peones) + parseFloat(otro) + parseFloat(espera)) * comision_mudanza) / 100;
-   $("#porcentaje_mudanza").val(parseFloat(porcentaje_mudanza).toFixed(2));
+   porcentaje_mudanza = ((parseFloat(subtotal) + parseFloat(peones) + parseFloat(otro) + parseFloat(espera)) * comision_mudanza) / 100;
+   $("#mudanza").val(parseFloat(porcentaje_mudanza).toFixed(2));
  }else{
-    $("#porcentaje_mudanza").val('');
+    $("#mudanza").val('');
  }
  
  var porcentaje_ctacte = 0; 
- var total1 = parseFloat(subtotal) + parseFloat(espera) + parseFloat(peones)  + parseFloat(estacionamiento) + parseFloat(peaje) + parseFloat(art) + parseFloat(otro) + parseFloat(mudanza) + parseFloat(porcentaje_mudanza)+ parseFloat(iva);
- var suma_ctacte = parseFloat(subtotal) + parseFloat(espera) + parseFloat(peones)  +  parseFloat(otro) + parseFloat(mudanza) + parseFloat(porcentaje_mudanza); 
+ var total1 = parseFloat(subtotal) + parseFloat(espera) + parseFloat(peones)  + parseFloat(estacionamiento) + parseFloat(peaje) + parseFloat(art) + parseFloat(otro) +  parseFloat(iva);
+ var suma_ctacte = parseFloat(subtotal) + parseFloat(espera) + parseFloat(peones)  +  parseFloat(otro)  ; 
  if ($("#comision_ctacte").val()){
     var comision_ctacte = ($("#comision_ctacte").val() != '') ? parseFloat($("#comision_ctacte").val()).toFixed(2)  : 0;
     porcentaje_ctacte = ( suma_ctacte * comision_ctacte) / 100;
@@ -1769,6 +1771,10 @@ function getTotal(){
   
   $("#total_viaje").text(parseFloat(total1).toFixed(2));
   $("#total_viaje_ctacte").text(parseFloat(total).toFixed(2));
+  
+  var total_chofer = total1 - porcentaje_mudanza;
+  
+  $("#total_viaje_mudanza").text(parseFloat(total_chofer).toFixed(2));
 
 }
 

@@ -91,8 +91,8 @@ $('*').keyup(function(e){
         <th > <?php echo mb_convert_case($this->lang->line("title_otros"),MB_CASE_UPPER,"UTF-8");?> </th>
         <th > <?php echo mb_convert_case($this->lang->line("title_seguro"),MB_CASE_UPPER,"UTF-8");?> </th>
         <th > <?php echo mb_convert_case($this->lang->line("title_art"),MB_CASE_UPPER,"UTF-8");?> </th>
-        <th> <?php echo substr($this->lang->line("title_mudanza"),0,4);?></th>
-       <th> %<?php echo substr($this->lang->line("title_mudanza"),0,4);?></th>
+      
+      
        <th><?php echo $this->lang->line("title_iva");?></th>
         <th > <?php echo mb_convert_case($this->lang->line("title_desde"),MB_CASE_UPPER,"UTF-8");?> </th>
         <th > <?php echo mb_convert_case($this->lang->line("title_hasta"),MB_CASE_UPPER,"UTF-8");?> </th>
@@ -115,8 +115,8 @@ $('*').keyup(function(e){
      $otros=0;
      $seguro=0;
      $art=0;
-     $mudanza=0;
-     $porcentaje_mudanza=0;
+    
+   
      $iva=0;
      $total_subtotales=0;
       foreach($viajes as $v) {
@@ -154,8 +154,8 @@ $('*').keyup(function(e){
         <td> <?php echo $v->otros; $otros += $v->otros;?></td>
         <td> <?php echo $v->seguro; $seguro += $v->seguro;?></td>
         <td> <?php echo $v->art_valor; $art += $v->art_valor;?></td>
-        <td> <?php echo $v->mudanza; $mudanza += $v->mudanza;?></td>
-        <td> <?php echo $v->porcentaje_mudanza; $porcentaje_mudanza += $v->porcentaje_mudanza;?></td>
+      
+      
         <td> <?php echo $v->iva; $iva += $v->iva;?></td>
          <td> <?php echo substr($v->desde,0,30);?> </td>
          <td> <?php echo substr($v->destino,0,30);?> </td>
@@ -236,14 +236,8 @@ $('*').keyup(function(e){
       <div class="rowform-text"> <?php echo $art;?> </div>
 	    </div>
       
-      <div class="rowform">
-	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_mudanza"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $mudanza;?> </div>
-	    </div>
-      <div class="rowform">
-	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_porcentaje_mudanza"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $porcentaje_mudanza;?> </div>
-	    </div>
+     
+      
       
       <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_iva"); ?>: </label></div> 

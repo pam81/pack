@@ -74,8 +74,7 @@
         <th > <?php echo $this->lang->line("title_otros");?> </th>
         <th > <?php echo $this->lang->line("title_seguro");?> </th>
         <th > <?php echo $this->lang->line("title_art");?> </th>
-         <th> <?php echo substr($this->lang->line("title_mudanza"),0,4);?></th>
-       <th> %<?php echo substr($this->lang->line("title_mudanza"),0,4);?></th>
+       
        
        <th> <?php echo $this->lang->line("title_iva");?></th>
         <th> <?php echo $this->lang->line("title_desde");?> </th>
@@ -98,8 +97,7 @@
      $otros=0;
      $seguro=0;
      $art=0;
-     $mudanza=0;
-     $porcentaje_mudanza=0;
+    
      $iva=0;
      $total_subtotales=0;
       foreach($viajes as $v) {
@@ -138,8 +136,6 @@
         <td> <?php echo $v->otros; $otros += $v->otros;?></td>
         <td> <?php echo $v->seguro; $seguro += $v->seguro;?></td>
         <td> <?php echo $v->art_valor; $art += $v->art_valor;?></td>
-        <td> <?php echo $v->mudanza; $mudanza += $v->mudanza;?></td>
-        <td> <?php echo $v->porcentaje_mudanza; $porcentaje_mudanza += $v->porcentaje_mudanza;?></td>
         
         <td> <?php echo $v->iva; $iva += $v->iva;?></td>
          <td> <?php echo $v->desde;?> </td>
@@ -202,12 +198,7 @@
    <tr>
      <td> <?php echo $this->lang->line("title_total_art"); ?>:</td> <td><?php echo $art;?> </td>
     </tr>
-       <tr>
-     <td> <?php echo $this->lang->line("title_total_mudanza"); ?>:</td> <td><?php echo $mudanza;?> </td>
-    </tr>
-       <tr>
-     <td> <?php echo $this->lang->line("title_total_porcentaje_mudanza"); ?>:</td> <td><?php echo $porcentaje_mudanza;?> </td>
-    </tr>
+    
     
     <tr>
      <td> <?php echo $this->lang->line("title_total_iva"); ?>:</td> <td><?php echo $iva;?> </td>

@@ -52,7 +52,7 @@
           <th> <?php echo $this->lang->line("title_seguro");?> </th>
           <th> <?php echo $this->lang->line("title_art");?> </th>
           <th> <?php echo $this->lang->line("title_mudanza");?></th>
-         <th> %<?php echo $this->lang->line("title_mudanza");?></th>
+        
          
          <th>% <?php echo $this->lang->line("title_ctacte");?></th>
          <th><?php echo $this->lang->line("title_iva");?></th>
@@ -74,7 +74,7 @@
       $seguro=0;
       $art=0;
       $mudanza=0;
-      $porcentaje_mudanza=0;
+     
       $porcentaje_ctacte=0;
       $iva=0;
       foreach($viajes as $v) {
@@ -108,7 +108,7 @@
           <td> <?php echo $v->monto_excedente; $seguro +=$v->monto_excedente; ?>  </td>
           <td> <?php echo $v->art_valor; $art +=$v->art_valor; ?>  </td>
           <td><?php echo $v->mudanza; $mudanza +=$v->mudanza; ?></td>
-         <td><?php echo $v->porcentaje_mudanza; $porcentaje_mudanza +=$v->porcentaje_mudanza; ?></td>
+        
          <td><?php echo $v->porcentaje_ctacte; $porcentaje_ctacte +=$v->porcentaje_ctacte; ?></td>
         <td><?php echo $u->iva; $iva +=$u->iva; ?></td>
        </tr>
@@ -160,9 +160,7 @@
     <tr>
      <td> <?php echo $this->lang->line("title_total_mudanza"); ?>:</td> <td><?php echo $mudanza; ?> </td>
     </tr>
-    <tr>
-     <td> <?php echo $this->lang->line("title_total_porcentaje_mudanza"); ?>:</td> <td><?php echo $porcentaje_mudanza; ?> </td>
-    </tr>
+   
     <tr>
      <td> <?php echo $this->lang->line("title_total_porcentaje_ctacte"); ?>:</td> <td><?php echo $porcentaje_ctacte; ?> </td>
     </tr>
@@ -170,7 +168,7 @@
      <td> <?php echo $this->lang->line("title_total_iva"); ?>:</td> <td><?php echo $iva; ?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total"); ?>:</td> <td><?php echo ($efvo + $ctacte + $peones+ $espera + $peaje + $estacionamiento + $otros + $seguro + $art + $mudanza + $porcentaje_mudanza +$porcentaje_ctacte+$iva); ?> </td>
+     <td> <?php echo $this->lang->line("title_total"); ?>:</td> <td><?php echo ($efvo + $ctacte + $peones+ $espera + $peaje + $estacionamiento + $otros + $seguro + $art + $porcentaje_ctacte+$iva); ?> </td>
     </tr>
     
     </table>

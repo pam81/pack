@@ -123,7 +123,7 @@ function searching(e)
           <th> <?php echo $this->lang->line("title_seguro");?> </th>
           <th> <?php echo $this->lang->line("title_art");?> </th>
            <th> <?php echo substr($this->lang->line("title_mudanza"),0,4);?></th>
-       <th> %<?php echo substr($this->lang->line("title_mudanza"),0,4);?></th>
+      
        <th>% <?php echo $this->lang->line("title_ctacte");?></th>
        <th>% <?php echo $this->lang->line("title_iva");?></th>
           <th> <?php echo $this->lang->line("title_total");?> </th>
@@ -144,7 +144,7 @@ function searching(e)
       $seguro=0;
       $art=0;
       $mudanza=0;
-     $porcentaje_mudanza=0;
+    
      $porcentaje_ctacte=0;
      $iva=0;
          foreach($viajes as $u) {
@@ -194,7 +194,7 @@ function searching(e)
           <td> <?php echo $u["seguro"]; $seguro +=$u["seguro"]; ?>  </td>
            <td> <?php echo $u["art"]; $art +=$u["art"]; ?>  </td>
            <td> <?php echo $u["mudanza"]; $mudanza += $u["mudanza"];?></td>
-        <td> <?php echo $u["porcentaje_mudanza"]; $porcentaje_mudanza += $u["porcentaje_mudanza"];?></td>
+        
         <td> <?php echo $u["porcentaje_ctacte"]; $porcentaje_ctacte += $u["porcentaje_ctacte"];?></td>
         <td> <?php echo $u["iva"]; $iva += $u["iva"];?></td>
         <td>   <?php echo $u["total"];  ?>  </td>
@@ -252,10 +252,7 @@ function searching(e)
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_mudanza"); ?>: </label></div> 
       <div class="rowform-text"> <?php echo $mudanza;?> </div>
 	    </div>
-      <div class="rowform">
-	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_porcentaje_mudanza"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $porcentaje_mudanza;?> </div>
-	    </div>
+     
       <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_porcentaje_ctacte"); ?>: </label></div> 
       <div class="rowform-text"> <?php echo $porcentaje_ctacte;?> </div>
@@ -266,7 +263,7 @@ function searching(e)
 	    </div>
      <div class="rowform">
 	    <div class="rowform-label"><label><?php echo $this->lang->line("title_total"); ?>: </label></div> 
-      <div class="rowform-text">  <?php echo ($efvo + $ctacte+$peones+$espera+$peaje+$estacionamiento+$otros+$seguro+$art+$mudanza+$porcentaje_mudanza+$porcentaje_ctacte+$iva); ?> </div>
+      <div class="rowform-text">  <?php echo ($efvo + $ctacte+$peones+$espera+$peaje+$estacionamiento+$otros+$seguro+$art+$porcentaje_ctacte+$iva); ?> </div>
 	    </div>
 	    	<?php } 
    if ( $this->Current_User->isHabilitado("PRINTMOVIL") )
