@@ -108,22 +108,22 @@
           ?>  </td>
           <td> <?php echo $u["cant_viajes"];?> </td>
        
-         <td> <?php if(isset($u["efvo"])) {echo $u["efvo"]; $efvo += $u["efvo"];}?> </td>
+         <td> <?php if(isset($u["efvo"])) {echo number_format($u["efvo"],2,".",''); $efvo += $u["efvo"];}?> </td>
         
-         <td> <?php if (isset($u["ctacte"])) {echo $u["ctacte"]; $ctacte += $u["ctacte"]; }?> </td>
+         <td> <?php if (isset($u["ctacte"])) {echo number_format($u["ctacte"],2,".",''); $ctacte += $u["ctacte"]; }?> </td>
               
-         <td><?php if (isset($u["peones"])) {echo $u["peones"]; $peones += $u["peones"]; }?>  </td>
-         <td><?php if (isset($u["espera"])) {echo $u["espera"]; $espera += $u["espera"]; }?>  </td>
-         <td><?php if (isset($u["peaje"])) {echo $u["peaje"]; $peaje += $u["peaje"]; }?>  </td><br>
-         <td><?php if (isset($u["estac"])) {echo $u["estac"]; $estacionamiento += $u["estac"]; }?>  </td>
-         <td><?php if (isset($u["otros"])) {echo $u["otros"]; $otros += $u["otros"]; }?>  </td>
-         <td><?php if (isset($u["seguro"])) {echo $u["seguro"]; $seguro += $u["seguro"]; }?>  </td>
-          <td><?php if (isset($u["art"])) {echo $u["art"]; $art += $u["art"]; }?>  </td>
-         <td> <?php if (isset($u["mudanza"])) { echo $u["mudanza"]; $mudanza += $u["mudanza"]; } ?></td>
+         <td><?php if (isset($u["peones"])) {echo number_format($u["peones"],2,".",''); $peones += $u["peones"]; }?>  </td>
+         <td><?php if (isset($u["espera"])) {echo number_format($u["espera"],2,".",''); $espera += $u["espera"]; }?>  </td>
+         <td><?php if (isset($u["peaje"])) {echo number_format($u["peaje"],2,".",''); $peaje += $u["peaje"]; }?>  </td><br>
+         <td><?php if (isset($u["estac"])) {echo number_format($u["estac"],2,".",''); $estacionamiento += $u["estac"]; }?>  </td>
+         <td><?php if (isset($u["otros"])) {echo number_format($u["otros"],2,".",''); $otros += $u["otros"]; }?>  </td>
+         <td><?php if (isset($u["seguro"])) {echo number_format($u["seguro"],2,".",''); $seguro += $u["seguro"]; }?>  </td>
+          <td><?php if (isset($u["art"])) {echo number_format($u["art"],2,".",''); $art += $u["art"]; }?>  </td>
+         <td> <?php if (isset($u["mudanza"])) { echo number_format($u["mudanza"],2,".",''); $mudanza += $u["mudanza"]; } ?></td>
        
-        <td> <?php if (isset($u["porcentaje_ctacte"])){ echo $u["porcentaje_ctacte"]; $porcentaje_ctacte += $u["porcentaje_ctacte"];}?></td>
-        <td> <?php if (isset($u["iva"])){ echo $u["iva"]; $iva += $u["iva"];}?></td>
-         <td> <?php if (isset($u["total"])) echo $u["total"]; ?> </td> 
+        <td> <?php if (isset($u["porcentaje_ctacte"])){ echo number_format($u["porcentaje_ctacte"],2,".",''); $porcentaje_ctacte += $u["porcentaje_ctacte"];}?></td>
+        <td> <?php if (isset($u["iva"])){ echo number_format($u["iva"],2,".",''); $iva += $u["iva"];}?></td>
+         <td> <?php if (isset($u["total"])) echo number_format($u["total"],2,".",''); ?> </td> 
                       
        </tr>
     <?php } ?>
@@ -136,46 +136,46 @@
    
    
     <tr>
-     <td> <?php echo $this->lang->line("title_total_efectivo"); ?>: </td> <td> <?php echo $efvo;?>  </td>
+     <td> <?php echo $this->lang->line("title_total_efectivo"); ?>: </td> <td> <?php echo "$ ".number_format($efvo,2,".",'');?>  </td>
     </tr>
     
     <tr>
-     <td> <?php echo $this->lang->line("title_total_ctacte"); ?>:</td> <td><?php echo $ctacte;?> </td>
+     <td> <?php echo $this->lang->line("title_total_ctacte"); ?>:</td> <td><?php echo "$ ".number_format($ctacte,2,".",'');?> </td>
     </tr>
    
     <tr>
-     <td> <?php echo $this->lang->line("title_total_peones"); ?>:</td> <td><?php echo $peones;?> </td>
+     <td> <?php echo $this->lang->line("title_total_peones"); ?>:</td> <td><?php echo "$ ".number_format($peones,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_tespera"); ?>:</td> <td><?php echo $espera;?> </td>
+     <td> <?php echo $this->lang->line("title_total_tespera"); ?>:</td> <td><?php echo "$ ".number_format($espera,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_peaje"); ?>:</td> <td><?php echo $peaje;?> </td>
+     <td> <?php echo $this->lang->line("title_total_peaje"); ?>:</td> <td><?php echo "$ ".number_format($peaje,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_estacionamiento"); ?>:</td> <td><?php echo $estacionamiento;?> </td>
+     <td> <?php echo $this->lang->line("title_total_estacionamiento"); ?>:</td> <td><?php echo "$ ".number_format($estacionamiento,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_otros"); ?>:</td> <td><?php echo $otros;?> </td>
+     <td> <?php echo $this->lang->line("title_total_otros"); ?>:</td> <td><?php echo "$ ".number_format($otros,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_seguro"); ?>:</td> <td><?php echo $seguro;?> </td>
+     <td> <?php echo $this->lang->line("title_total_seguro"); ?>:</td> <td><?php echo "$ ".number_format($seguro,2,".",'');?> </td>
     </tr>
      <tr>
-     <td> <?php echo $this->lang->line("title_total_art"); ?>:</td> <td><?php echo $art;?> </td>
+     <td> <?php echo $this->lang->line("title_total_art"); ?>:</td> <td><?php echo "$ ".number_format($art,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_mudanza"); ?>:</td> <td><?php echo $mudanza;?> </td>
+     <td> <?php echo $this->lang->line("title_total_mudanza"); ?>:</td> <td><?php echo "$ ".number_format($mudanza,2,".",'');?> </td>
     </tr>
    
     <tr>
-     <td> <?php echo $this->lang->line("title_total_porcentaje_ctacte"); ?>:</td> <td><?php echo $porcentaje_ctacte;?> </td>
+     <td> <?php echo $this->lang->line("title_total_porcentaje_ctacte"); ?>:</td> <td><?php echo "$ ".number_format($porcentaje_ctacte,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_iva"); ?>:</td> <td><?php echo $iva;?> </td>
+     <td> <?php echo $this->lang->line("title_total_iva"); ?>:</td> <td><?php echo "$ ".number_format($iva,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total"); ?>:</td> <td><?php echo ($efvo + $ctacte+$peones+$espera+$peaje+$estacionamiento+$otros+$seguro+$art+$porcentaje_ctacte+$iva); ?> </td>
+     <td> <?php echo $this->lang->line("title_total"); ?>:</td> <td><?php echo "$ ".number_format(($efvo + $ctacte+$peones+$espera+$peaje+$estacionamiento+$otros+$seguro+$art+$porcentaje_ctacte+$iva),2,".",''); ?> </td>
     </tr>
    
     </table>

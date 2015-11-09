@@ -74,10 +74,6 @@ class Reporte extends Controller {
     
    $data["fhasta"]=$fhasta;
     
-       
-    
-     
-     
     $data["viajes"]= $this->flete->getRecaudacionGral($fdesde,$fhasta);
  
     
