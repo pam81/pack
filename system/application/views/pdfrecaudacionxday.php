@@ -97,22 +97,22 @@
          <td> <?php echo $v->destino;?> </td>
          <td> <?php echo mb_convert_case($v->cliente,MB_CASE_TITLE);?> </td>
         
-         <td> <?php if ($v->forma_pago == 1) { echo $v->valor; $efvo += $v->valor; }?> </td>
+         <td> <?php if ($v->forma_pago == 1) { echo number_format($v->valor,2,".",''); $efvo += $v->valor; }?> </td>
         
           <td> <?php echo $v->voucher;?> </td>
-         <td> <?php if ($v->forma_pago == 2) { echo $v->valor; $ctacte += $v->valor; }?> </td>
+         <td> <?php if ($v->forma_pago == 2) { echo number_format($v->valor,2,".",''); $ctacte += $v->valor; }?> </td>
         
-         <td><?php echo $v->peones; $peones += $v->peones;?></td>
-         <td><?php echo $v->espera; $espera += $v->espera;?></td>
-         <td><?php echo $v->peaje; $peaje += $v->peaje;?></td>
-         <td><?php echo $v->estacionamiento; $estacionamiento += $v->estacionamiento;?></td>
-         <td><?php echo $v->otros; $otros += $v->otros;?></td>
-         <td><?php echo $v->monto_excedente; $seguro += $v->monto_excedente;?></td>
-         <td><?php echo $v->art_valor; $art += $v->art_valor;?></td>
-         <td><?php echo $v->mudanza; $mudanza +=$v->mudanza; ?></td>
+         <td><?php echo number_format($v->peones,2,".",''); $peones += $v->peones;?></td>
+         <td><?php echo number_format($v->espera,2,".",''); $espera += $v->espera;?></td>
+         <td><?php echo number_format($v->peaje,2,".",''); $peaje += $v->peaje;?></td>
+         <td><?php echo number_format($v->estacionamiento,2,".",''); $estacionamiento += $v->estacionamiento;?></td>
+         <td><?php echo number_format($v->otros,2,".",''); $otros += $v->otros;?></td>
+         <td><?php echo number_format($v->monto_excedente,2,".",''); $seguro += $v->monto_excedente;?></td>
+         <td><?php echo number_format($v->art_valor,2,".",''); $art += $v->art_valor;?></td>
+         <td><?php echo number_format($v->mudanza,2,".",''); $mudanza +=$v->mudanza; ?></td>
         
-         <td><?php echo $v->porcentaje_ctacte; $porcentaje_ctacte +=$v->porcentaje_ctacte; ?></td>
-         <td><?php echo $v->iva; $iva +=$v->iva; ?></td>
+         <td><?php echo number_format($v->porcentaje_ctacte,2,".",''); $porcentaje_ctacte +=$v->porcentaje_ctacte; ?></td>
+         <td><?php echo number_format($v->iva,2,".",''); $iva +=$v->iva; ?></td>
        </tr>
      <?php 
      if ($v->cancelado == 1)
@@ -133,47 +133,47 @@
     </tr>
    
     <tr>
-     <td><?php echo $this->lang->line("title_total_efectivo"); ?>: </td> <td> <?php echo $efvo;?> </td>
+     <td><?php echo $this->lang->line("title_total_efectivo"); ?>: </td> <td> <?php echo "$ ".number_format($efvo,2,".",'');?> </td>
     </tr>
    
     <tr>
-     <td> <?php echo $this->lang->line("title_total_ctacte"); ?>:</td> <td><?php echo $ctacte;?> </td>
+     <td> <?php echo $this->lang->line("title_total_ctacte"); ?>:</td> <td><?php echo "$ ".number_format($ctacte,2,".",'');?> </td>
     </tr>
    
     <tr>
-     <td> <?php echo $this->lang->line("title_total_peones"); ?>:</td> <td><?php echo $peones;?> </td>
+     <td> <?php echo $this->lang->line("title_total_peones"); ?>:</td> <td><?php echo "$ ".number_format($peones,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_tespera"); ?>:</td> <td><?php echo $espera;?> </td>
+     <td> <?php echo $this->lang->line("title_total_tespera"); ?>:</td> <td><?php echo "$ ".number_format($espera,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_peaje"); ?>:</td> <td><?php echo $peaje;?> </td>
+     <td> <?php echo $this->lang->line("title_total_peaje"); ?>:</td> <td><?php echo "$ ".number_format($peaje,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_estacionamiento"); ?>:</td> <td><?php echo $estacionamiento;?> </td>
+     <td> <?php echo $this->lang->line("title_total_estacionamiento"); ?>:</td> <td><?php echo "$ ".number_format($estacionamiento,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_otros"); ?>:</td> <td><?php echo $otros;?> </td>
+     <td> <?php echo $this->lang->line("title_total_otros"); ?>:</td> <td><?php echo "$ ".number_format($otros,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_seguro"); ?>:</td> <td><?php echo $seguro;?> </td>
-    </tr>
-    
-    <tr>
-     <td> <?php echo $this->lang->line("title_total_art"); ?>:</td> <td><?php echo $art;?> </td>
-    </tr>
-    <tr>
-     <td> <?php echo $this->lang->line("title_total_mudanza"); ?>:</td> <td><?php echo $mudanza; ?> </td>
+     <td> <?php echo $this->lang->line("title_total_seguro"); ?>:</td> <td><?php echo "$ ".number_format($seguro,2,".",'');?> </td>
     </tr>
     
     <tr>
-     <td> <?php echo $this->lang->line("title_total_porcentaje_ctacte"); ?>:</td> <td><?php echo $porcentaje_ctacte; ?> </td>
+     <td> <?php echo $this->lang->line("title_total_art"); ?>:</td> <td><?php echo "$ ".number_format($art,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_iva"); ?>:</td> <td><?php echo $iva; ?> </td>
+     <td> <?php echo $this->lang->line("title_total_mudanza"); ?>:</td> <td><?php echo "$ ".number_format($mudanza,2,".",''); ?> </td>
+    </tr>
+    
+    <tr>
+     <td> <?php echo $this->lang->line("title_total_porcentaje_ctacte"); ?>:</td> <td><?php echo "$ ".number_format($porcentaje_ctacte,2,".",''); ?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total"); ?>:</td> <td><?php echo ($efvo + $ctacte + $peones+$espera+$peaje+$estacionamiento+$otros+$seguro+$art+$porcentaje_ctacte+$iva); ?> </td>
+     <td> <?php echo $this->lang->line("title_total_iva"); ?>:</td> <td><?php echo "$ ".number_format($iva,2,".",''); ?> </td>
+    </tr>
+    <tr>
+     <td> <?php echo $this->lang->line("title_total"); ?>:</td> <td><?php echo "$ ".number_format(($efvo + $ctacte + $peones+$espera+$peaje+$estacionamiento+$otros+$seguro+$art+$porcentaje_ctacte+$iva),2,".",''); ?> </td>
     </tr>
     
     </table>

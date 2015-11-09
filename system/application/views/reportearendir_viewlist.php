@@ -111,14 +111,14 @@ $('*').keyup(function(e){
          <td> <?php $parcial_recaudacion=0;
                  if (isset($u["parcial_efvo"])) { $parcial_recaudacion += $u["parcial_efvo"]; }   
                  if (isset($u["parcial_cc"])) {   $parcial_recaudacion += $u["parcial_cc"]; }
-                  echo $parcial_recaudacion;
+                  echo number_format($parcial_recaudacion,2,".",'');
                   $total_recaudacion += $parcial_recaudacion;                                                               
                    ?> </td>
          <td> 
          <?php 
             $parcial_ctacte=0;
             $parcial_ctacte += $u["total_ctacte"] + $u["total_espera_cc"] + $u["total_peon_cc"]+$u["total_peaje_cc"]+$u["total_estac_cc"]+$u["total_seguro_cc"]+$u["total_otro_cc"]; 
-            echo $parcial_ctacte;
+            echo number_format($parcial_ctacte,2,".",'');
             $total_ctacte += $parcial_ctacte;
           
          
@@ -126,9 +126,9 @@ $('*').keyup(function(e){
          
          </td>        
         
-          <td><?php if (isset($u["total_iva"])) {echo $u["total_iva"]; $total_iva += $u["total_iva"];  }?>  </td>
-          <td><?php if (isset($u["total_art"])) {echo $u["total_art"]; $totalart += $u["total_art"]; }?>  </td>
-          <td><?php if (isset($u["total_mudanza"])) {echo $u["total_mudanza"]; $total_mudanza += $u["total_mudanza"]; }?>  </td>
+          <td><?php if (isset($u["total_iva"])) {echo number_format($u["total_iva"],2,".",''); $total_iva += $u["total_iva"];  }?>  </td>
+          <td><?php if (isset($u["total_art"])) {echo number_format($u["total_art"],2,".",''); $totalart += $u["total_art"]; }?>  </td>
+          <td><?php if (isset($u["total_mudanza"])) {echo number_format($u["total_mudanza"],2,".",''); $total_mudanza += $u["total_mudanza"]; }?>  </td>
                             
        </tr>
     <?php } ?>
@@ -146,31 +146,31 @@ $('*').keyup(function(e){
 	
   <div class="rowform">
 	    <div class="rowform-label"><label><?php echo "Total Recaudación"; ?>: </label></div> 
-      <div class="rowform-text">  <?php echo $total_recaudacion; ?> </div>
+      <div class="rowform-text">  <?php echo "$ ".number_format($total_recaudacion,2,".",''); ?> </div>
 	</div>
   
   
   <div class="rowform">
 	    <div class="rowform-label"><label><?php echo "Total Cta. Cte."; ?>: </label></div> 
-      <div class="rowform-text">  <?php echo $total_ctacte; ?> </div>
+      <div class="rowform-text">  <?php echo "$ ".number_format($total_ctacte,2,".",''); ?> </div>
 	</div>
   
   
 	<div class="rowform">
 	    <div class="rowform-label"><label><?php echo $this->lang->line("title_total_iva"); ?>: </label></div> 
-      <div class="rowform-text">  <?php echo $total_iva; ?> </div>
+      <div class="rowform-text">  <?php echo "$ ".number_format($total_iva,2,".",''); ?> </div>
 	</div>  
   
   <div class="rowform">
 	    <div class="rowform-label"><label><?php echo $this->lang->line("title_total_art"); ?>: </label></div> 
-      <div class="rowform-text">  <?php echo $totalart; ?> </div>
+      <div class="rowform-text">  <?php echo "$ ".number_format($totalart,2,".",''); ?> </div>
 	</div>
 	
  
   
   <div class="rowform">
 	    <div class="rowform-label"><label><?php echo $this->lang->line("title_mudanza"); ?>: </label></div> 
-      <div class="rowform-text">  <?php echo $total_mudanza; ?> </div>
+      <div class="rowform-text">  <?php echo "$ ".number_format($total_mudanza,2,".",''); ?> </div>
 	</div>
   
   
@@ -187,6 +187,7 @@ $('*').keyup(function(e){
      ?>
 	    <a href="<?php echo site_url()."reporte/pdfARendir/$opciones";?>"> <img src="<?php echo base_url()."images/img/pdf_icon.png";?>" width="50" height="50" alt="pdf" />
 	    </a>
+      <a href="<?php echo site_url()."pdf/makeExcellRendir/$opciones";?>"><img src="<?php echo base_url()."images/img/excell.jpg";?>" width="50" height="50" alt="excell" /></a>
 	    <?php } ?>
 	</div>
 	

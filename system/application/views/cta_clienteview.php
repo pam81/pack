@@ -142,21 +142,21 @@ $('*').keyup(function(e){
            <td> <?php echo $v->voucher;?> </td>
            <td> <?php if($v->forma_pago == 2) { 
                 $ctacteTotal=$v->valor+$v->porcentaje_ctacte; //suma el precio % de cta cte
-                echo $ctacteTotal; 
+                echo number_format($ctacteTotal,2,".",''); 
                 $ctacte +=$ctacteTotal; }?> </td>
          
-           <td> <?php if($v->forma_pago == 1) { echo $v->valor; $efvo +=$v->valor; }?> </td>
+           <td> <?php if($v->forma_pago == 1) { echo number_format($v->valor,2,".",''); $efvo +=$v->valor; }?> </td>
       
-        <td> <?php echo $v->peones; $peones += $v->peones; ?></td>
-        <td> <?php echo $v->peaje; $peaje += $v->peaje; ?></td>
-        <td> <?php echo $v->estacionamiento; $estacionamiento += $v->estacionamiento;?></td>
-        <td> <?php echo $v->espera; $espera += $v->espera;?></td>
-        <td> <?php echo $v->otros; $otros += $v->otros;?></td>
-        <td> <?php echo $v->seguro; $seguro += $v->seguro;?></td>
-        <td> <?php echo $v->art_valor; $art += $v->art_valor;?></td>
+        <td> <?php echo number_format($v->peones,2,".",''); $peones += $v->peones; ?></td>
+        <td> <?php echo number_format($v->peaje,2,".",''); $peaje += $v->peaje; ?></td>
+        <td> <?php echo number_format($v->estacionamiento,2,".",''); $estacionamiento += $v->estacionamiento;?></td>
+        <td> <?php echo number_format($v->espera,2,".",''); $espera += $v->espera;?></td>
+        <td> <?php echo number_format($v->otros,2,".",''); $otros += $v->otros;?></td>
+        <td> <?php echo number_format($v->seguro,2,".",''); $seguro += $v->seguro;?></td>
+        <td> <?php echo number_format($v->art_valor,2,".",''); $art += $v->art_valor;?></td>
       
       
-        <td> <?php echo $v->iva; $iva += $v->iva;?></td>
+        <td> <?php echo number_format($v->iva,2,".",''); $iva += $v->iva;?></td>
          <td> <?php echo substr($v->desde,0,30);?> </td>
          <td> <?php echo substr($v->destino,0,30);?> </td>
          <td> <?php $subtotal= $v->valor + $v->peones + $v->peaje + $v->estacionamiento+$v->espera + $v->otros
@@ -166,7 +166,7 @@ $('*').keyup(function(e){
                      }else{
                        $subtotal +=$v->iva; //solo en efvo suma el iva 
                      }
-                    echo $subtotal; 
+                    echo number_format($subtotal,2,".",''); 
                     $total_subtotales += $subtotal; 
                        ?></td>
         
@@ -192,48 +192,48 @@ $('*').keyup(function(e){
 	 
      <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_efectivo"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $efvo;?> </div>
+      <div class="rowform-text"> <?php echo "$ ".number_format($efvo,2,".",'');?> </div>
 	    </div>
 	 
 	   <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_ctacte"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $ctacte;?> </div>
+      <div class="rowform-text"> <?php echo "$ ".number_format($ctacte,2,".",'');?> </div>
 	    </div>
 	  
 	   <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_peones"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $peones;?> </div>
+      <div class="rowform-text"> <?php echo "$ ".number_format($peones,2,".",'');?> </div>
 	    </div>
 	    
 	    <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_peaje"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $peaje;?> </div>
+      <div class="rowform-text"> <?php echo "$ ".number_format($peaje,2,".",'');?> </div>
 	    </div>
 	    
 	    <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_estacionamiento"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $estacionamiento;?> </div>
+      <div class="rowform-text"> <?php echo "$ ".number_format($estacionamiento,2,".",'');?> </div>
 	    </div>
 	    
 	     <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_tespera"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $espera;?> </div>
+      <div class="rowform-text"> <?php echo "$ ".number_format($espera,2,".",'');?> </div>
 	    </div>
 	    
 	     <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_otros"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $otros;?> </div>
+      <div class="rowform-text"> <?php echo "$ ".number_format($otros,2,".",'');?> </div>
 	    </div>
 	    
 	    
 	     <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_seguro"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $seguro;?> </div>
+      <div class="rowform-text"> <?php echo "$ ".number_format($seguro,2,".",'');?> </div>
 	    </div>
 	   
 	    <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_art"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $art;?> </div>
+      <div class="rowform-text"> <?php echo "$ ".number_format($art,2,".",'');?> </div>
 	    </div>
       
      
@@ -241,12 +241,12 @@ $('*').keyup(function(e){
       
       <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_iva"); ?>: </label></div> 
-      <div class="rowform-text"> <?php echo $iva;?> </div>
+      <div class="rowform-text"> <?php echo "$ ".number_format($iva,2,".",'');?> </div>
 	    </div>
 	   
 	    <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total"); ?> : </label></div> 
-      <div class="rowform-text"> <?php echo $total_subtotales;?> </div>
+      <div class="rowform-text"> <?php echo "$ ".number_format($total_subtotales,2,".",'');?> </div>
 	    </div>
 	  	<?php  } 
       if ( $this->Current_User->isHabilitado("PRINTCTACLIENTE") ) {

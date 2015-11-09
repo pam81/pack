@@ -165,7 +165,8 @@ function makepdfxday()
   $query=$this->flete->getRankingCliente($fdesde,$fhasta);
  
     $listado=$query->result();
-    $encabezado=array(mb_convert_case($this->lang->line("title_cliente"),MB_CASE_UPPER,"UTF-8"),
+    $encabezado=array(mb_convert_case("ID",MB_CASE_UPPER,"UTF-8"),
+    mb_convert_case($this->lang->line("title_cliente"),MB_CASE_UPPER,"UTF-8"),
     mb_convert_case($this->lang->line("title_telefono"),MB_CASE_UPPER,"UTF-8"),
     mb_convert_case($this->lang->line("cant_viajes"),MB_CASE_UPPER,"UTF-8"),
     mb_convert_case($this->lang->line("title_total"),MB_CASE_UPPER,"UTF-8")
@@ -210,6 +211,27 @@ function makepdfxday()
   
   }
   
+     function makeExcellgral()
+  {
+    
+     
+     $fdesde=$this->db->escape_str($this->uri->segment(3));
+      $data["fdesde"]=$fdesde; 
+     $fhasta=$this->db->escape_str($this->uri->segment(4));
+     $data["fhasta"]=$fhasta;
+     $data["see"]=$this->uri->segment(5);  
+  
+     
+     
+    $data["viajes"]= $this->flete->getRecaudacionGral($fdesde,$fhasta);
+      
+     $filename = "recaudacionGral_".$fdesde."_".$fhasta; 
+      
+       $this->load->plugin('to_excel');
+       to_excel_gral($data,$filename);
+  
+  }
+  
     function makepdfarendir()
   {
     
@@ -229,6 +251,30 @@ function makepdfxday()
   
   
   }
+  
+   function makeExcellRendir()
+  {
+    
+     
+     $fdesde=$this->db->escape_str($this->uri->segment(3));
+      $data["fdesde"]=$fdesde; 
+     $fhasta=$this->db->escape_str($this->uri->segment(4));
+     $data["fhasta"]=$fhasta;
+     $data["see"]=$this->uri->segment(5);  
+  
+     
+     
+    $data["viajes"]= $this->flete->getRecaudacionGral($fdesde,$fhasta);
+      
+     
+     $filename = "recaudacionRendir_".$fdesde."_".$fhasta; 
+      
+       $this->load->plugin('to_excel');
+       to_excel_rendir($data,$filename);
+  
+  
+  }
+  
   
   public function makepdfultimoviaje()
   {

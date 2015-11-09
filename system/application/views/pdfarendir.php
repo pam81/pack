@@ -78,14 +78,14 @@
          <td> <?php $parcial_recaudacion=0;
                  if (isset($u["parcial_efvo"])) { $parcial_recaudacion += $u["parcial_efvo"]; }   
                  if (isset($u["parcial_cc"])) {   $parcial_recaudacion += $u["parcial_cc"]; }
-                  echo $parcial_recaudacion;
+                  echo number_format($parcial_recaudacion,2,".",'');
                   $total_recaudacion += $parcial_recaudacion;                                                               
                    ?> </td>
          <td> 
          <?php 
             $parcial_ctacte=0;
             $parcial_ctacte += $u["total_ctacte"] + $u["total_espera_cc"] + $u["total_peon_cc"]+$u["total_peaje_cc"]+$u["total_estac_cc"]+$u["total_seguro_cc"]+$u["total_otro_cc"]; 
-            echo $parcial_ctacte;
+            echo number_format($parcial_ctacte,2,".",'');
             $total_ctacte += $parcial_ctacte;
           
          
@@ -93,9 +93,9 @@
          
          </td>        
         
-          <td><?php if (isset($u["total_iva"])) {echo $u["total_iva"]; $total_iva += $u["total_iva"];  }?>  </td>
-          <td><?php if (isset($u["total_art"])) {echo $u["total_art"]; $totalart += $u["total_art"]; }?>  </td>
-          <td><?php if (isset($u["total_mudanza"])) {echo $u["total_mudanza"]; $total_mudanza += $u["total_mudanza"]; }?>  </td>
+          <td><?php if (isset($u["total_iva"])) {echo number_format($u["total_iva"],2,".",''); $total_iva += $u["total_iva"];  }?>  </td>
+          <td><?php if (isset($u["total_art"])) {echo number_format($u["total_art"],2,".",''); $totalart += $u["total_art"]; }?>  </td>
+          <td><?php if (isset($u["total_mudanza"])) {echo number_format($u["total_mudanza"],2,".",''); $total_mudanza += $u["total_mudanza"]; }?>  </td>
            
          
                       
@@ -112,24 +112,24 @@
     </tr>
     
     <tr>
-     <td> <?php echo "Total Recaudación"; ?>:</td> <td><?php echo $total_recaudacion; ?></td>
+     <td> <?php echo "Total Recaudación"; ?>:</td> <td><?php echo "$ ".number_format($total_recaudacion,2,".",''); ?></td>
     </tr>
     
     <tr>
-     <td> <?php echo "Total Cta. Cte."; ?>:</td> <td><?php echo $total_ctacte; ?></td>
+     <td> <?php echo "Total Cta. Cte."; ?>:</td> <td><?php echo "$ ".number_format($total_ctacte,2,".",''); ?></td>
     </tr>
     
     <tr>
-     <td> <?php echo $this->lang->line("title_total_iva"); ?>:</td> <td><?php echo $total_iva; ?></td>
+     <td> <?php echo $this->lang->line("title_total_iva"); ?>:</td> <td><?php echo "$ ".number_format($total_iva,2,".",''); ?></td>
     </tr>
     
     <tr>
-     <td> <?php echo $this->lang->line("title_total_art"); ?>:</td> <td><?php echo $totalart;?> </td>
+     <td> <?php echo $this->lang->line("title_total_art"); ?>:</td> <td><?php echo "$ ".number_format($totalart,2,".",'');?> </td>
     </tr>
     
     
     <tr>
-     <td> <?php echo $this->lang->line("title_total_mudanza"); ?>:</td> <td><?php echo $total_mudanza; ?> </td>
+     <td> <?php echo $this->lang->line("title_total_mudanza"); ?>:</td> <td><?php echo "$ ".number_format($total_mudanza,2,".",''); ?> </td>
     </tr>
     
     

@@ -134,7 +134,7 @@ function searching(e)
   </table>
    <?php  if ( $this->Current_User->isHabilitado("PRINTRKCLIENTE") ){
       ?>
-    <a href="<?php echo site_url()."pdf/makepdfrankingcliente/$opciones";?>"> <img src="<?php echo base_url()."images/img/excell.jpg";?>" width="16" height="16" alt="excell" />
+    <a href="<?php echo site_url()."pdf/makepdfrankingcliente/$opciones";?>"> <img src="<?php echo base_url()."images/img/excell.jpg";?>" width="50" height="50" alt="excell" />
 	    </a>
     <?php } ?> 
 </div>

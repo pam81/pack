@@ -124,20 +124,20 @@
           <td> <?php if ($v->forma_pago == 2) { 
           
                $ctacteTotal=$v->valor+$v->porcentaje_ctacte; //suma el precio % de cta cte
-                echo $ctacteTotal; 
+                echo number_format($ctacteTotal,2,".",''); 
                 $ctacte +=$ctacteTotal; }?> </td>
          
-           <td> <?php if ($v->forma_pago == 1) { echo $v->valor; $efvo += $v->valor; }?> </td>
+           <td> <?php if ($v->forma_pago == 1) { echo number_format($v->valor,2,".",''); $efvo += $v->valor; }?> </td>
          
-         <td> <?php echo $v->peones; $peones += $v->peones; ?></td>
-        <td> <?php echo $v->peaje; $peaje += $v->peaje; ?></td>
-        <td> <?php echo $v->estacionamiento; $estacionamiento += $v->estacionamiento;?></td>
-        <td> <?php echo $v->espera; $espera += $v->espera;?></td>
-        <td> <?php echo $v->otros; $otros += $v->otros;?></td>
-        <td> <?php echo $v->seguro; $seguro += $v->seguro;?></td>
-        <td> <?php echo $v->art_valor; $art += $v->art_valor;?></td>
+         <td> <?php echo number_format($v->peones,2,".",''); $peones += $v->peones; ?></td>
+        <td> <?php echo number_format($v->peaje,2,".",''); $peaje += $v->peaje; ?></td>
+        <td> <?php echo number_format($v->estacionamiento,2,".",''); $estacionamiento += $v->estacionamiento;?></td>
+        <td> <?php echo number_format($v->espera,2,".",''); $espera += $v->espera;?></td>
+        <td> <?php echo number_format($v->otros,2,".",''); $otros += $v->otros;?></td>
+        <td> <?php echo number_format($v->seguro,2,".",''); $seguro += $v->seguro;?></td>
+        <td> <?php echo number_format($v->art_valor,2,".",''); $art += $v->art_valor;?></td>
         
-        <td> <?php echo $v->iva; $iva += $v->iva;?></td>
+        <td> <?php echo number_format($v->iva,2,".",''); $iva += $v->iva;?></td>
          <td> <?php echo $v->desde;?> </td>
          <td> <?php echo $v->destino;?> </td>
          <td> <?php $subtotal= $v->valor + $v->peones + $v->peaje + $v->estacionamiento+$v->espera + $v->otros
@@ -147,7 +147,7 @@
                      }else{
                        $subtotal +=$v->iva; //solo en efvo suma el iva 
                      }
-                    echo $subtotal; 
+                    echo number_format($subtotal,2,".",''); 
                     $total_subtotales += $subtotal; 
                        ?></td>
         
@@ -168,43 +168,43 @@
     </tr>
    
     <tr>
-     <td> <?php echo $this->lang->line("title_total_efectivo"); ?>: </td> <td> <?php echo $efvo;?> </td>
+     <td> <?php echo $this->lang->line("title_total_efectivo"); ?>: </td> <td> <?php echo "$ ".number_format($efvo,2,".",'');?> </td>
     </tr>
     
     <tr>
-     <td> <?php echo $this->lang->line("title_total_ctacte"); ?>:</td> <td><?php echo $ctacte;?> </td>
+     <td> <?php echo $this->lang->line("title_total_ctacte"); ?>:</td> <td><?php echo "$ ".number_format($ctacte,2,".",'');?> </td>
     </tr>
   
     <tr>
-     <td> <?php echo $this->lang->line("title_total_peones"); ?>:</td> <td><?php echo $peones;?> </td>
+     <td> <?php echo $this->lang->line("title_total_peones"); ?>:</td> <td><?php echo "$ ".number_format($peones,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_peaje"); ?>:</td> <td><?php echo $peaje;?> </td>
+     <td> <?php echo $this->lang->line("title_total_peaje"); ?>:</td> <td><?php echo "$ ".number_format($peaje,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_estacionamiento"); ?>:</td> <td><?php echo $estacionamiento;?> </td>
+     <td> <?php echo $this->lang->line("title_total_estacionamiento"); ?>:</td> <td><?php echo "$ ".number_format($estacionamiento,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_tespera"); ?>:</td> <td><?php echo $espera;?> </td>
+     <td> <?php echo $this->lang->line("title_total_tespera"); ?>:</td> <td><?php echo "$ ".number_format($espera,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_otros"); ?>:</td> <td><?php echo $otros;?> </td>
+     <td> <?php echo $this->lang->line("title_total_otros"); ?>:</td> <td><?php echo "$ ".number_format($otros,2,".",'');?> </td>
      
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total_seguro"); ?>:</td> <td><?php echo $seguro;?> </td>
+     <td> <?php echo $this->lang->line("title_total_seguro"); ?>:</td> <td><?php echo "$ ".number_format($seguro,2,".",'');?> </td>
      
     </tr>
    <tr>
-     <td> <?php echo $this->lang->line("title_total_art"); ?>:</td> <td><?php echo $art;?> </td>
+     <td> <?php echo $this->lang->line("title_total_art"); ?>:</td> <td><?php echo "$ ".number_format($art,2,".",'');?> </td>
     </tr>
     
     
     <tr>
-     <td> <?php echo $this->lang->line("title_total_iva"); ?>:</td> <td><?php echo $iva;?> </td>
+     <td> <?php echo $this->lang->line("title_total_iva"); ?>:</td> <td><?php echo "$ ".number_format($iva,2,".",'');?> </td>
     </tr>
     <tr>
-     <td> <?php echo $this->lang->line("title_total"); ?>:</td> <td><?php echo $total_subtotales;?> </td>
+     <td> <?php echo $this->lang->line("title_total"); ?>:</td> <td><?php echo "$ ".number_format($total_subtotales,2,".",'');?> </td>
     </tr>
     
     </table>

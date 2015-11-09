@@ -172,23 +172,23 @@ function searching(e)
          <td> <?php echo $u->desde;?> </td>
          <td> <?php echo $u->destino; ?> </td>
         
-         <td> <?php if ($u->forma_pago == 1) { echo $u->valor; $efvo += $u->valor;}?> </td>
+         <td> <?php if ($u->forma_pago == 1) { echo number_format($u->valor,2,".",''); $efvo += $u->valor;}?> </td>
          
           <td> <?php echo $u->voucher;?> </td>
-         <td> <?php if ($u->forma_pago == 2) { echo $u->valor; $ctacte += $u->valor; }?> </td>          
+         <td> <?php if ($u->forma_pago == 2) { echo number_format($u->valor,2,".",''); $ctacte += $u->valor; }?> </td>          
        
-         <td> <?php echo $u->peones; $peones +=$u->peones; ?>  </td>
+         <td> <?php echo number_format($u->peones,2,".",''); $peones +=$u->peones; ?>  </td>
          
-          <td> <?php echo $u->espera; $espera +=$u->espera; ?>  </td>
-          <td> <?php echo $u->peaje; $peaje +=$u->peaje; ?>  </td>
-          <td> <?php echo $u->estacionamiento; $estacionamiento +=$u->estacionamiento; ?>  </td>
-          <td> <?php echo $u->otros; $otros +=$u->otros; ?>  </td>
-          <td> <?php echo $u->monto_excedente; $seguro +=$u->monto_excedente; ?>  </td>
+          <td> <?php echo number_format($u->espera,2,".",''); $espera +=$u->espera; ?>  </td>
+          <td> <?php echo number_format($u->peaje,2,".",''); $peaje +=$u->peaje; ?>  </td>
+          <td> <?php echo number_format($u->estacionamiento,2,".",''); $estacionamiento +=$u->estacionamiento; ?>  </td>
+          <td> <?php echo number_format($u->otros,2,".",''); $otros +=$u->otros; ?>  </td>
+          <td> <?php echo number_format($u->monto_excedente,2,".",''); $seguro +=$u->monto_excedente; ?>  </td>
           <td> <?php echo $u->codigo_excedente; ?>  </td>
-          <td> <?php echo $u->art_valor; ?>  </td>
+          <td> <?php echo number_format($u->art_valor,2,".",''); ?>  </td>
           
-        <td> <?php echo $u->porcentaje_ctacte; $porcentaje_ctacte += $u->porcentaje_ctacte;?></td>
-        <td> <?php echo $u->iva; $iva += $u->iva;?></td>
+        <td> <?php echo number_format($u->porcentaje_ctacte,2,".",''); $porcentaje_ctacte += $u->porcentaje_ctacte;?></td>
+        <td> <?php echo number_format($u->iva,2,".",''); $iva += $u->iva;?></td>
          <td>
          <?php if($u->cancelado == 0 && $u->cerrado == 0){?>
           <a href="<?php echo site_url()."viaje/cancelar/$u->id/".$this->uri->segment(3);?>" onclick=" return confirm('<?php echo $this->lang->line("ask_cancel_viaje");?>') ;" > <img src="<?php echo base_url()."images/img/hr.gif";?>" width="16" height="16" alt="borrar" /> </a> 

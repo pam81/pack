@@ -18,8 +18,8 @@
 
 <link href="<?php echo base_url();?>css/defaultTheme.css" rel="stylesheet" media="screen" />
 
-<!--<script type="text/javascript" src="<?php echo base_url();?>js/jquery.fixedheadertable.min.js"></script>-->
-<!--<script type="text/javascript" src="<?php echo base_url();?>js/demo.js"></script>-->
+<script type="text/javascript" src="<?php echo base_url();?>js/jquery.fixedheadertable.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>js/demo.js"></script>
 
             
 <title><?php echo $this->lang->line('name_empresa');?></title>
