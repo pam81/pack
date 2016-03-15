@@ -253,6 +253,7 @@ $('*').keyup(function(e){
     ?>
 	    <a href="<?php echo site_url()."reporte/pdfctaCliente/$opciones";?>"> <img src="<?php echo base_url()."images/img/pdf_icon.png";?>" width="50" height="50" alt="pdf" />
 	    </a>
+      <a href="<?php echo site_url()."pdf/makeExcellctaCliente/$opciones";?>"><img src="<?php echo base_url()."images/img/excell.jpg";?>" width="50" height="50" alt="excell" /></a>
 	    <?php } ?>
 	</div>
 

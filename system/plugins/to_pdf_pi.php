@@ -16,7 +16,4 @@ function pdf_create($html, $filename, $stream=TRUE)
         write_file("./invoices_temp/invoice_$filename.pdf", $dompdf->output());
     }
 }
-
-
-
 ?>  

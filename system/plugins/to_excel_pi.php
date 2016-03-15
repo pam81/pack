@@ -186,4 +186,92 @@ function to_excel_rendir($datos,$filename){
    
 }
 
+function to_excel_ctacliente($datos,$filename){
+
+  $desde=substr($datos["fdesde"],6,2)."-".substr($datos["fdesde"],4,2)."-".substr($datos["fdesde"],0,4);
+  $hasta= substr($datos["fhasta"],6,2)."-".substr($datos["fhasta"],4,2)."-".substr($datos["fhasta"],0,4);
+  $cliente=$datos["cliente"][0]; 
+  $headers="Cliente:\t".mb_convert_case($cliente->name,MB_CASE_TITLE)."\t\t CUIT:".$cliente->cuit."\n";
+  $headers.="Teléfono\t".$datos["telefono"]."\t\t Observaciones:".$cliente->observaciones."\n";
+  $headers.="Dirección\t".$cliente->address."\n";
+  $headers .="Desde:\t $desde \t\t Hasta:\t $hasta\n\n";
+  $headers .="Fecha \t Hora \t Nro. Viaje \t Movil \t Nro. Voucher\t Cta Cte \t Contado \t Peones \t Peaje \t Estacionamiento\t Tiempo Espera \t ";
+  $headers .="Otros\t Seguro \t ART \t IVA \t Desde \t Destino \t Total\n";
+  $headers=iconv ( "UTF-8", "ISO-8859-1", $headers );
+  $viajes = $datos["viajes"];
+  $data='';
+  $efvo=0;
+  $ctacte=0;
+  $peaje=0;
+  $peones=0;
+  $estacionamiento=0;
+  $espera=0;
+  $otros=0;
+  $seguro=0;
+  $art=0;
+  $iva=0;
+  $total_subtotales=0;
+ 
+ foreach($viajes as $v){
+    
+    $year=substr($v->fecha_despacho,0,4);
+    $year=substr($year,2,2);
+    $mes=substr($v->fecha_despacho,4,2);
+    $day=substr($v->fecha_despacho,6,2);
+    
+    $h=substr($v->habordo,0,2);
+    $m=substr($v->habordo,2,2);
+    
+    $data .= $day."-".$mes."-".$year."\t $h:$m\t".$v->viaje."\t". $v->movil."\t".$v->voucher."\t";
+    $ctacteTotal = 0;
+    if ($v->forma_pago == 2) { 
+        $ctacteTotal=$v->valor+$v->porcentaje_ctacte; //suma el precio % de cta cte
+        $ctacte +=$ctacteTotal; 
+    }
+    
+    $data .=number_format($ctacteTotal,2,".",'')."\t";
+    if ($v->forma_pago == 1) {  $efvo += $v->valor; }
+    $data .=number_format($v->valor,2,".",'')."\t";
+    $data .=number_format($v->peones,2,".",'')."\t"; 
+    $peones += $v->peones;
+    $data .=number_format($v->peaje,2,".",'')."\t"; $peaje += $v->peaje;
+    $data .=number_format($v->estacionamiento,2,".",'')."\t"; $estacionamiento += $v->estacionamiento;
+    $data .=number_format($v->espera,2,".",'')."\t"; $espera += $v->espera;
+    $data .=number_format($v->otros,2,".",'')."\t"; $otros += $v->otros;
+    $data .=number_format($v->seguro,2,".",'')."\t"; $seguro += $v->seguro;
+    $data .=number_format($v->art_valor,2,".",'')."\t"; $art += $v->art_valor;
+    $data .=number_format($v->iva,2,".",'')."\t"; $iva += $v->iva;
+    $data .=$v->desde."\t".$v->destino."\t";
+    $subtotal= $v->valor + $v->peones + $v->peaje + $v->estacionamiento+$v->espera + $v->otros + $v->seguro + $v->art_valor ;   //no suma mudanza ni % mudanza
+     if ($v->forma_pago == 2){  // suma el % cta cte
+       $subtotal += $v->porcentaje_ctacte;
+     }else{
+       $subtotal +=$v->iva; //solo en efvo suma el iva 
+     }
+    $data .=number_format($subtotal,2,".",'')."\n\n"; 
+    $total_subtotales += $subtotal; 
+     
+  }
+  if ($datos["see"] == 1 ) {
+     $data.="Viajes Realizados:\t".count($viajes)."\n";
+     $data.="Total Efectivo:\t"."$ ".number_format($efvo,2,".",'')."\n";
+     $data.="Total Cta Cte:\t"."$ ".number_format($ctacte,2,".",'')."\n";
+     $data.="Total Peones:\t"."$ ".number_format($peones,2,".",'')."\n";
+     $data.="Total Peaje:\t"."$ ".number_format($peaje,2,".",'')."\n";
+     $data.="Total Estacionamiento:\t"."$ ".number_format($estacionamiento,2,".",'')."\n";
+     $data.="Total T. Espera:\t"."$ ".number_format($espera,2,".",'')."\n";
+     $data.="Total Otros:\t"."$ ".number_format($otros,2,".",'')."\n";
+     $data.="Total Seguros:\t"."$ ".number_format($seguro,2,".",'')."\n";
+     $data.="Total ART:\t"."$ ".number_format($art,2,".",'')."\n";
+     $data.="Total IVA:\t"."$ ".number_format($iva,2,".",'')."\n";
+     $data.="Total :\t"."$ ".number_format($total_subtotales,2,".",'')."\n";
+  
+  }
+  $data=iconv ( "UTF-8", "ISO-8859-1", $data ); 
+  header("Content-type: application/x-msdownload");
+  header("Content-Disposition: attachment; filename=$filename.xls");
+  echo "$headers\n$data";
+
+}
+
 ?>

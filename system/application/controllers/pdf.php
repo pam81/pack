@@ -69,7 +69,36 @@ function makepdfxday()
   
   
   
+  } 
+  
+  function makeExcellctaCliente()
+  {
+    
+     $telefono=$this->db->escape_str($this->uri->segment(3));
+      $data["telefono"]=$telefono;
+     $fdesde=$this->db->escape_str($this->uri->segment(4));
+      $data["fdesde"]=$fdesde; 
+     $fhasta=$this->db->escape_str($this->uri->segment(5));
+     $data["fhasta"]=$fhasta;
+     $tipo=$this->db->escape_str($this->uri->segment(6));
+     $data["see"]=1;
+    
+     $data["viajes"]=$this->flete->getCtaCteCliente($fdesde,$fhasta,$tipo,$telefono);
+      $sql="select c.* from clientes c, phones p where p.clienteid=c.id and
+       p.phone = $telefono";
+       $query=$this->db->query($sql);
+      
+      $data["cliente"]=$query->result();
+      
+       
+     $filename = "CtaCliente_".$telefono."_".$fdesde."_".$fhasta; 
+    
+     $this->load->plugin('to_excel');
+     to_excel_ctacliente($data,$filename);
+  
+  
   }
+  
   
   function makereservaListado()
   {
