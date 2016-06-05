@@ -151,6 +151,7 @@ class Costo extends Controller {
   
    $this->form_validation->set_rules('mudanza', $this->lang->line('title_mudanza'),'trim|required');
    $this->form_validation->set_rules('ctacte', $this->lang->line('title_cta_cte'),'trim|required');
+   $this->form_validation->set_rules('radio', "radio",'trim|required');
   
    
    return $this->form_validation->run();
@@ -172,6 +173,7 @@ class Costo extends Controller {
       $record=array();
       $record["mudanza"]=$this->db->escape_str($this->input->post("mudanza"));
       $record["cta_cte"]=$this->db->escape_str($this->input->post("ctacte"));
+      $record["radio"]=$this->db->escape_str($this->input->post("radio"));
       
       $this->db->where("id",$this->uri->segment(3));
       $this->db->update('comision',$record);

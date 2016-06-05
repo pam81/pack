@@ -48,5 +48,8 @@ horario_not_valid:"El horario ingresado no es válido",
 hora_not_valid:"El valor que introdujo en la Hora no corresponde, introduzca un digito entre 00 y 23",
 minuto_not_valid:"El valor que introdujo en los minutos no corresponde, introduzca un digito entre 00 y 59",
 voucher_empty:"Debe ingresar el voucher en un viaje de cuenta corriente para poder cerrarlo.",
-valor_mercaderia_not_empty:"Debe declarar un valor de mercadería a transportar"
+valor_mercaderia_not_empty:"Debe declarar un valor de mercadería a transportar",
+description_empty: "Debe ingresar una descripción",
+monto_empty: "Debe ingresar un monto",
+monto_not_valid: "Monto no valido debe ser en formato XX.dd"
  };

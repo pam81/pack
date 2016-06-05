@@ -34,6 +34,14 @@ $(document).ready(function(){
    <input type="text" tabindex="2"  name="ctacte" id="ctacte" value="<?php if(isset($comision[0]->cta_cte)) echo set_value("cta_cte",$comision[0]->cta_cte); ?>" maxsize="10" />
    </div>
    </div>
+
+   <div class="rowform">
+   <div class="rowform-label"> <label for="ctacte"> Radio </label>
+   </div>
+   <div class="rowform-input">
+   <input type="text" tabindex="2"  name="radio" id="radio" value="<?php if(isset($comision[0]->radio)) echo set_value("radio",$comision[0]->radio); ?>" maxsize="10" />
+   </div>
+   </div>
    
    
     <div class="rowform">

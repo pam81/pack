@@ -368,4 +368,13 @@ $lang["title_total_iva"]="Total IVA";
 $lang["title_parcial"]= "Parcial";
 $lang["title_comisionar"]= "A comision";
 $lang["title_acliente"]= "A cliente";
+$lang["created_by"]="creado por";
+$lang["title_monto"]="monto";
+$lang["ask_del_caja"]="Desea borrar el registro";
+$lang["ask_debloquear_caja"]="Desea desbloquear el registro";
+$lang["title_add_caja"]="Agregar nuevo registro";
+$lang["ask_add_caja"]="Desea agregar el nuevo registro";
+$lang["title_mod_caja"]="Modificar registro";
+$lang["ask_mod_caja"]="Desea modificar el registro";
+$lang["title_type"]="Tipo";
 ?>

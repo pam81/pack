@@ -17,8 +17,9 @@ $('*').keyup(function(e){
 
   <div id="top-bar">
   
-  <h2> <?php echo $this->lang->line("title_list_viaje");?></h2> <div class="link_reporte_rendir"><a href="<?php echo site_url()."reporte/aRendir";?>">Reporte A Rendir</a></div>
-  
+  <h2> <?php echo $this->lang->line("title_list_viaje");?></h2> 
+  <div class="link_reporte_rendir">  <a href="<?php echo site_url()."reporte/aRendir";?>">Reporte A Rendir</a></div>
+  <div class="link_reporte_rendir" style="margin-right: 10px">  <a href="<?php echo site_url()."reporte/mensual";?>">Rendición Mensual</a></div>
   </div>
    <hr class="separador">
     <div class="select-bar">

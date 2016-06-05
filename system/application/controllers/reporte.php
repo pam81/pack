@@ -185,8 +185,131 @@ class Reporte extends Controller {
      else
         redirect("inicio/denied");    
    }
+
+   public function getSaldoMesAnterior($month, $year, $movilid){
+
+            
+
+            $fecha=$year.str_pad($month,2,0,STR_PAD_LEFT).str_pad(1,2,0,STR_PAD_LEFT);
+
+            $sql="select c.* from cajas c where c.borrado=0 and c.created_at='$fecha' and tipo=4 and c.idmovil = ".$movilid;
+           
+            $query=$this->db->query($sql);
+            $caja=$query->result();
+            $saldo=0;
+            if (isset($caja[0])){
+              $saldo=$caja[0]->monto;
+            }
+
+          return $saldo;
+
+   }
    
-   
+   public function mensual(){
+    if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") ){
+      $month=date("m");
+      if ( $this->input->post("month")){
+        $month = $this->input->post("month");
+      }
+      $year=date("Y");
+      if ($this->input->post("year")){
+        $year=$this->input->post("year");
+      }
+      $movil='';
+      if ($this->input->post("movil")){
+        $movil=$this->input->post("movil");
+      }
+      
+      $nroDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+       
+      
+      $listado=array();
+      if ($movil != ''){
+
+        $sql="select c.*,m.id as movilid from choferes c, movil_chofer mc, movil m where m.id = mc.movilid and mc.choferid=c.id and m.movil=$movil";
+
+        $query=$this->db->query($sql);
+        $chofer=$query->result();
+        if (isset($chofer[0])){
+            $comision=$chofer[0]->comision;
+            
+            $sql="select c.* from comision c ";
+            $query=$this->db->query($sql);
+            $valores=$query->result();
+            $radio=$valores[0]->radio; 
+
+            $acuenta=$this->getSaldoMesAnterior($month, $year, $chofer[0]->movilid);
+            
+
+
+            $listado[0]=array("recauda"=>0,"radio"=>0,"porcentaje"=>0,
+                "peon"=>0,"peaje"=>0,"cochera"=>0,"art"=>0,"pmovil"=>0,
+                "pagencia"=>0,"cco"=>0, "saldo"=>$acuenta);
+
+            $anterior=$acuenta;
+             
+            for($i=1; $i<= $nroDays; $i++){
+              $fecha=$year.str_pad($month,2,0,STR_PAD_LEFT).str_pad($i,2,0,STR_PAD_LEFT);
+              $sql="select v.*, r.art_valor from viajes v inner join reservas r on r.id = v.reservaid 
+                    where v.movilid=".$chofer[0]->movilid." and  v.cerrado = 1 and v.fecha_despacho='$fecha' ";
+                
+              $query=$this->db->query($sql);
+              $viajes=$query->result();
+              //itero por cada dia para obtener la recaudación diaria
+              $recauda=0;
+              $porcentaje=0;
+              $peon=0;
+              $cochera=0;
+              $art=0;
+              $pmovil=0;
+              $pagencia=0;
+              $cco=0;
+              $saldo=0;
+              $peaje=0;
+              foreach($viajes as $v){
+                  $recauda +=$v->valor; //sumo todo efectivo y CC
+                  $peaje +=$v->peaje;
+                  $peon +=$v->peones;
+                  $cochera +=$v->estacionamiento;
+                  $art +=$v->art_valor;
+
+              }
+              $porcentaje= round(($recauda * $comision) / 100, 2);
+              $sql="select c.* from cajas c where c.borrado=0 and c.created_at='$fecha' and c.idmovil=".$chofer[0]->movilid;
+
+              $query=$this->db->query($sql);
+              $cajas=$query->result();
+              foreach($cajas as $c){
+                if ($c->tipo == 1){
+                  $pagencia += $c->monto;
+                }
+                if ($c->tipo == 2){
+                  $pmovil += $c->monto;
+                }
+                if ($c->tipo == 3){
+                  $cco += $c->monto;
+                }
+              }
+
+              $saldo=$radio+$porcentaje+$pagencia-$pmovil-$cco-$peon-$peaje-$cochera+$art+$anterior;
+              $anterior=$saldo;
+              $listado[$i]=array("recauda"=>$recauda,"radio"=>$radio,"porcentaje"=>$porcentaje,
+                "peon"=>$peon,"peaje"=>$peaje,"cochera"=>$cochera,"art"=>$art,"pmovil"=>$pmovil,
+                "pagencia"=>$pagencia,"cco"=>$cco, "saldo"=>$saldo);
+            }
+        }
+      }
+      $data["year"]=$year;
+      $data["month"]=$month;
+      $data["movil"]=$movil;
+      $data["content"]="reportemensual_viewlist";
+      $data["listado"]=$listado;
+      $this->load->view("reporteindex",$data);
+
+    }else{
+      redirect("inicio/denied");
+    }
+   }
    
     public function seguro()
    {

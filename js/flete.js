@@ -426,6 +426,49 @@ unlock:function(dir)
     }
     
 },
+validarCaja:function(){
+
+  var movil=document.getElementById("movil");
+  if (movil.value == 0){
+    alert(messages.movil_not_valid);
+    movil.focus();
+    return false;
+  }
+
+  var monto=document.getElementById("monto");
+  if (monto.value == ''){
+    alert(messages.monto_empty);
+    monto.focus();
+    return false;
+  }else{
+    val = parseFloat(monto);
+    valInt = parseInteger(monto);
+    if(isNaN(val) && isNaN(valInt)){
+      alert(messages.monto_not_valid);
+      monto.focus();
+      return false;
+    }
+  }
+
+   var dian=document.getElementById("fecha_day");
+   var mesn=document.getElementById("fecha_month");
+   var yearn=document.getElementById("fecha_year");
+   if (!this.validarFecha( dian.value,mesn.value,yearn.value))
+   {
+       alert(messages.fecha_not_valid);
+       dian.focus();
+       return false;   
+   }
+
+   var descripcion=document.getElementById("descripcion");
+   if (descripcion.value == ''){
+      alert(messages.description_empty);
+      descripcion.focus();
+      return false;
+   }
+
+   return true;
+},
 validarAddChofer:function()
 {
   var name=document.getElementById("name");
@@ -884,6 +927,21 @@ validarRecaudacionGral:function()
        return false;   
    }
 
+  return true;
+},
+
+validarMensual:function(){
+  
+  var year=document.getElementById('year');
+  var movil=document.getElementById('movil');
+  if(year.value == ''){
+    alert("Debe ingresar un año");
+    return false;
+  }
+  if (movil.value == ''){
+    alert("Debe ingresar un número de movil");
+    return false;
+  }
   return true;
 },
 
