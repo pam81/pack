@@ -266,6 +266,10 @@ class Reporte extends Controller {
               $cco=0;
               $saldo=0;
               $peaje=0;
+              //iva sumar si es efectivo el viaje
+              //tiempo de espera sumar al viaje
+              //viaje en cc el porcentaje extra no se agrega para sacarle comision al movil
+              //peon cochera y peaje se tiene en cuenta en CC a favor del movil la agencia se lo da
               foreach($viajes as $v){
                   $recauda +=$v->valor; //sumo todo efectivo y CC
                   $peaje +=$v->peaje;

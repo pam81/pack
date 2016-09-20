@@ -1,9 +1,9 @@
 <div id="header">
   
-  <div id="header_left">
+  <div class="header_left col-md-2">
    <a class="header_link" href="<?php echo site_url();?>">  <?php echo $this->lang->line("name_empresa");?>  </a>
    </div>
-   <div id="header_right"> 
+   <div class="col-md-10"> 
        <div class="info_top">
         <div class="username">
          <?php $username=$this->Current_User->getUsername(); 

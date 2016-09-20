@@ -28,17 +28,14 @@ a:focus{
 	background-color: #D8D8D8;
 	height: 40px;
 	width:100%;
+	line-height: 20px;
 }
-#header_left{
- float:left;
- width: 400px;
- height: 20px;
+.header_left{
+ 
+margin-top: 10px;
 
 }
-#header_right{
- float:left;
- height: 20px;
-}
+
 
 .header_link{
 	color: #FFFFFF !important;
@@ -46,6 +43,7 @@ a:focus{
 	padding-left: 50px;
 	font-size: 16px;
 	font-weight: bold; 
+
 }
 
 .username{
@@ -121,7 +119,6 @@ h1{
 .info_top{
 color: #333;
 font-weight: bold;
-font-size: 12px;
 float:left;
 }
 /*hora*/
@@ -133,7 +130,6 @@ border: 0;
 background-color: #D8D8D8;
 font-weight: bold;
 color:#333333;
-font-size: 12px;
 padding-left:20px; 
 }
 
@@ -285,7 +281,7 @@ dl.curved dd p.last {background:transparent url(../images/c_br.gif) bottom right
 #menu{
 height: 20px;
 width: 100%;
-float:left;
+
 }
 
 #listado{
