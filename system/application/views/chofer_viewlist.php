@@ -27,7 +27,7 @@ function searching(e)
 <div id="content">
 
   <div id="top-bar">
-  <a href="<?php echo site_url()."chofer/add";?>" accesskey="n" class="button"><?php echo $this->lang->line("title_add_new");?> </a>
+  <a href="<?php echo site_url()."chofer/add";?>" accesskey="n" class="button btn btn-primary"><?php echo $this->lang->line("title_add_new");?> </a>
   <h2> <?php echo $this->lang->line("title_list_choferes");?></h2>
   
   </div>
@@ -44,7 +44,7 @@ function searching(e)
 		    <input type="text" tabindex="3" name="patente" id="patente" value="<?php if (isset($patente) && $patente!=0) echo set_value("patente",$patente);?>"  />
 		    </label>
         <label>
-			<input type="submit" tabindex="4" name="search" value="<?php echo $this->lang->line("button_search");?>" />
+			<button type="submit" tabindex="4" name="search" class="btn btn-primary"><?php echo $this->lang->line("button_search");?> </button>
 			</label>
 		</form>	
 		  </div>
@@ -115,7 +115,7 @@ function searching(e)
    </tbody>
   </table>
   
-  <div class="link_pages">
+  <div class="link_pages pagination">
 					<?php echo $this->pagination->create_links(); ?>
 	</div>
 </div>

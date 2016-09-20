@@ -21,7 +21,7 @@ class Reporte extends Controller {
    {
      
         $data["content"]="reporte_viewlist";
-        $this->load->view("reporteindex",$data);
+        $this->load->view("index",$data);
     
    }
    
@@ -33,7 +33,7 @@ class Reporte extends Controller {
         $query=$this->db->get("meses");
         $data["meses"]=$query->result();
         $data["content"]="recaudacion";
-        $this->load->view("reporteindex",$data);
+        $this->load->view("index",$data);
      }
      else
         redirect("inicio/denied");    
@@ -50,7 +50,7 @@ class Reporte extends Controller {
       $data["viajes"]=$this->flete->getRecaudacionxDay($fecha, $movil, $tipo);
       $data["opciones"]=$movil."/".$fecha."/".$tipo;
       $data["content"]="recaudacionxday";
-      $this->load->view("reporteindex",$data);         
+      $this->load->view("index",$data);         
    
    
    }
@@ -85,7 +85,7 @@ class Reporte extends Controller {
     $data["meses"]=$query->result();
     
     $data["content"]="reportegral_viewlist";
-    $this->load->view("reporteindex",$data);
+    $this->load->view("index",$data);
     }
      else
         redirect("inicio/denied");
@@ -153,7 +153,7 @@ class Reporte extends Controller {
     $data["meses"]=$query->result();
     
     $data["content"]="reportearendir_viewlist";
-    $this->load->view("reporteindex",$data);
+    $this->load->view("index",$data);
     }
      else
         redirect("inicio/denied");
@@ -308,7 +308,7 @@ class Reporte extends Controller {
       $data["movil"]=$movil;
       $data["content"]="reportemensual_viewlist";
       $data["listado"]=$listado;
-      $this->load->view("reporteindex",$data);
+      $this->load->view("index",$data);
 
     }else{
       redirect("inicio/denied");
@@ -373,7 +373,7 @@ class Reporte extends Controller {
     $data["meses"]=$query->result();
     
     $data["content"]="seguroviaje_viewlist";
-    $this->load->view("reporteindex",$data);
+    $this->load->view("index",$data);
    }
    else 
     redirect("inicio/denied");
@@ -408,7 +408,7 @@ class Reporte extends Controller {
     $data["viajes"]=$this->flete->getDataMoviles($fdesde,$fhasta,$movil);
     
     $data["content"]="movilviaje_viewlist";
-    $this->load->view("reporteindex",$data);
+    $this->load->view("index",$data);
    }
     else 
     redirect("inicio/denied");
@@ -444,7 +444,7 @@ class Reporte extends Controller {
     $data["sesiones"]=$this->flete->getDataSesiones($fdesde,$fhasta,$user);
     
     $data["content"]="sessiones_viewlist";
-    $this->load->view("reporteindex",$data);
+    $this->load->view("index",$data);
    }
     else 
     redirect("inicio/denied");
@@ -476,7 +476,7 @@ class Reporte extends Controller {
      
     $data["usuarios"]=$this->flete->getRankingUsuario($fdesde,$fhasta);
     $data["content"]="ranking_viewlist";
-    $this->load->view("reporteindex",$data);
+    $this->load->view("index",$data);
           
           
     }
@@ -509,7 +509,7 @@ class Reporte extends Controller {
       $data["listado"]=$query->result();
       $data["opciones"]=$fdesde."/".$fhasta;  
       $data["content"]="rankingcliente_viewlist";
-      $this->load->view("reporteindex",$data); 
+      $this->load->view("index",$data); 
     }
      else 
     redirect("inicio/denied");
@@ -551,7 +551,7 @@ class Reporte extends Controller {
     $data["meses"]=$query->result();
     
     $data["content"]="reporteviaje_viewlist";
-    $this->load->view("reporteindex",$data);
+    $this->load->view("index",$data);
    }
    else 
     redirect("inicio/denied");
@@ -672,7 +672,7 @@ class Reporte extends Controller {
         $query=$this->db->get("meses");
         $data["meses"]=$query->result();
         $data["content"]="cta_cliente";
-        $this->load->view("reporteindex",$data);
+        $this->load->view("index",$data);
      }
      else
         redirect("inicio/denied");
@@ -717,7 +717,7 @@ class Reporte extends Controller {
        
       $data["opciones"]=$telefono."/".$fdesde."/".$fhasta."/".$tipo;
       $data["content"]="cta_clienteview";
-      $this->load->view("reporteindex",$data); 
+      $this->load->view("index",$data); 
    
    
    }
@@ -765,7 +765,7 @@ class Reporte extends Controller {
           
         $data["opciones"]=$tiempo;
           $data["content"]="reporteultimoViaje";
-          $this->load->view("reporteindex",$data);
+          $this->load->view("index",$data);
     }
         else
         redirect("inicio/denied");

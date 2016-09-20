@@ -81,7 +81,7 @@
 	
   <div style="clear:both; text-align:left;">
 			
-			<input type="submit" tabindex="12" name="search" value="<?php echo $this->lang->line("button_search");?>" />
+			<button type="submit" tabindex="12" name="search" class="btn btn-primary" ><?php echo $this->lang->line("button_search");?></button>
 			
 	</div>
 	

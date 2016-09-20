@@ -35,7 +35,7 @@ function searching(e)
 <div id="content">
 
   <div id="top-bar">
-  <a href="<?php echo site_url()."cliente/add";?>" accesskey="n" class="button"><?php echo $this->lang->line("title_add_new");?> </a>
+  <a href="<?php echo site_url()."cliente/add";?>" accesskey="n" class="button btn btn-primary"><?php echo $this->lang->line("title_add_new");?> </a>
   <h2> <?php echo $this->lang->line("title_list_cliente");?></h2>
   
   </div>
@@ -52,7 +52,7 @@ function searching(e)
 		    <input type="text" name="direccion" id="direccion" value="<?php if (isset($dir)) echo set_value("direccion",$dir);?>" maxlength="100"  />
 		    </label>
         <label>
-			<input type="submit" name="search" id="search" value="<?php echo $this->lang->line("button_search");?>" />
+			<button type="submit" class="btn btn-primary" name="search" id="search"> <?php echo $this->lang->line("button_search");?> </button>
 			</label>
 		</form>	
 		  </div>
@@ -124,7 +124,7 @@ function searching(e)
    </tbody>
   </table>
   
-  <div class="link_pages">
+  <div class="link_pages pagination">
 					<?php echo $this->pagination->create_links(); ?>
 	</div>
 </div>

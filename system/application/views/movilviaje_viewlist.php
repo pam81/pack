@@ -93,7 +93,7 @@ function searching(e)
        
 		  
 			<label>
-			<input type="submit" tabindex="4" name="search" value="<?php echo $this->lang->line("button_search");?>" />
+			<button type="submit" tabindex="4" class="btn btn-primary"  name="search"> <?php echo $this->lang->line("button_search");?> </button>
 			</label>
 		</form>	
 		  </div>

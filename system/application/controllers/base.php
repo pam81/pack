@@ -38,7 +38,7 @@ class Base extends Controller {
         $data["enviaje"]=$query->result();
         
         $data["content"]="base_viewlist";
-        $this->load->view("baseindex",$data);
+        $this->load->view("index",$data);
     
    }
    
@@ -55,7 +55,7 @@ class Base extends Controller {
         $data["moviles"]=$query->result();
        
        $data["content"]="base_egresa";
-       $this->load->view("baseindex",$data);
+       $this->load->view("index",$data);
      }
      else
         redirect("inicio/denied");   
@@ -145,7 +145,7 @@ class Base extends Controller {
        
        
        $data["content"]="base_ingresa";
-       $this->load->view("baseindex",$data);
+       $this->load->view("index",$data);
    }
    else
       redirect("inicio/denied"); 
@@ -255,7 +255,7 @@ class Base extends Controller {
         $data["moviles"]=$query->result();
        
        $data["content"]="base_ordenar";
-       $this->load->view("baseindex",$data);
+       $this->load->view("index",$data);
      }
      else
          redirect("inicio/denied"); 
@@ -478,7 +478,7 @@ class Base extends Controller {
         $data["moviles"]=$query->result();
        
        $data["content"]="base_cambiar";
-       $this->load->view("baseindex",$data);
+       $this->load->view("index",$data);
      }
      else
          redirect("inicio/denied");
@@ -677,7 +677,7 @@ class Base extends Controller {
     {   
        
        $data["content"]="base_nueva";
-       $this->load->view("baseindex",$data);
+       $this->load->view("index",$data);
      }
      else
        redirect("inicio/denied");
@@ -722,7 +722,7 @@ class Base extends Controller {
        $data["bases"]=$query->result();
    
        $data["content"]="base_mod";
-       $this->load->view("baseindex",$data);
+       $this->load->view("index",$data);
      }
      else
          redirect("inicio/denied"); 
@@ -758,7 +758,7 @@ class Base extends Controller {
        $data["base"]=$query->result();
    
        $data["content"]="base_modview";
-       $this->load->view("baseindex",$data);
+       $this->load->view("index",$data);
     }
     else
     redirect('base/index/'.$this->uri->segment(4));   

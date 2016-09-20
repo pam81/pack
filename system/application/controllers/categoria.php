@@ -31,7 +31,7 @@ class Categoria extends Controller {
     $data["categorias"]= $categorias;
     
     $data["content"]="categoria_viewlist";
-    $this->load->view("costoindex",$data);
+    $this->load->view("index",$data);
     
    
    
@@ -41,7 +41,7 @@ class Categoria extends Controller {
    {
    
     $data["content"]="categoria_nueva";
-    $this->load->view("costoindex",$data);
+    $this->load->view("index",$data);
    }
   
    public function addnew()
@@ -111,7 +111,7 @@ class Categoria extends Controller {
           $query=$this->db->get_where("categorias",array("id"=>$id));
           $data["categoria"]=$query->result();
           $data["content"]="categoria_viewmod";
-          $this->load->view("costoindex",$data);
+          $this->load->view("index",$data);
         
         }
         else

@@ -35,16 +35,16 @@ function searching(e)
 <div id="content">
 
   <div id="top-bar">
-  <a href="<?php echo site_url()."localidad/add";?>" accesskey="n" class="button"><?php echo $this->lang->line("title_add_new");?> </a>
+  <a href="<?php echo site_url()."localidad/add";?>" accesskey="n" class="button btn btn-primary"><?php echo $this->lang->line("title_add_new");?> </a>
   <h2> <?php echo $this->lang->line("title_list_localidades");?></h2>
   
   </div>
    <hr class="separador">
     <div class="select-bar">
-		 <form name="formsearch" id="formsearch" method="post" action="<?php echo site_url()."localidad/index";?>" >  
+		 <form name="formsearch" class="form-inline" id="formsearch" method="post" action="<?php echo site_url()."localidad/index";?>" >  
          <label> <?php echo mb_convert_case($this->lang->line("title_provincia"),MB_CASE_TITLE,"utf-8");?>
 		    
-        <select name="provincia">
+        <select name="provincia" class="form-control">
          <?php foreach($provincias as $p){
             $select=false;
             if ($p->id == $provincia)
@@ -57,12 +57,12 @@ function searching(e)
 		    </label>
         <label> <?php echo mb_convert_case($this->lang->line("title_localidad"),MB_CASE_TITLE,"utf-8");?>
 		    
-        <input type="text" name="searchfield" id="searchfield" value="<?php  echo set_value("searchfield",$search);?>" maxsize="8" onkeypress="searching(event); " />
+        <input type="text" class="form-control" name="searchfield" id="searchfield" value="<?php  echo set_value("searchfield",$search);?>" maxsize="8" onkeypress="searching(event); " />
 		    
 		    </label>
 		    <label>
 		    
-			<input type="submit" name="search" id="search" value="<?php echo $this->lang->line("button_search");?>" />
+			<button type="submit" class="btn btn-primary" name="search" id="search" class="btn btn-primary"><?php echo $this->lang->line("button_search");?></button>
 			</label>
 		</form>	
 		  </div>
@@ -98,7 +98,7 @@ function searching(e)
    </tbody>
   </table>
   
-  <div class="link_pages">
+  <div class="link_pages pagination">
 					<?php echo $this->pagination->create_links(); ?>
 	</div>
 </div>

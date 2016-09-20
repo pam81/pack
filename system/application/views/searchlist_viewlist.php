@@ -76,7 +76,7 @@
    </tbody>
   </table>
   
-  <div class="link_pages">
+  <div class="link_pages pagination">
 					<?php echo $this->pagination->create_links(); ?>
 	</div>
 </div>

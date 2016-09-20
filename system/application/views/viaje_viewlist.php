@@ -103,7 +103,7 @@ function searching(e)
 			</label>
 		  
 			<label>
-			<input type="submit" tabindex="9" name="search" value="<?php echo $this->lang->line("button_search");?>" />
+			<button type="submit" tabindex="9" name="search" class="btn btn-primary"><?php echo $this->lang->line("button_search");?> </button>
 			</label>
 		</form>	
 		  </div>
@@ -172,7 +172,7 @@ function searching(e)
    </tbody>
   </table>
   
-  <div class="link_pages">
+  <div class="link_pages pagination">
 					<?php echo $this->pagination->create_links(); ?>
 	</div>
 </div>

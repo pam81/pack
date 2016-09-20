@@ -21,7 +21,7 @@ $('*').keyup(function(e){
 <div id="content">
 
   <div id="top-bar">
-  <a href="<?php echo site_url()."categoria/add";?>" accesskey="n" class="button"><?php echo $this->lang->line("title_add_new");?> </a>
+  <a href="<?php echo site_url()."categoria/add";?>" accesskey="n" class="button btn btn-primary"><?php echo $this->lang->line("title_add_new");?> </a>
   <h2> <?php echo $this->lang->line("title_categorias");?></h2>
   
   </div>
@@ -30,7 +30,7 @@ $('*').keyup(function(e){
    <script type="text/javascript">
 	jQuery.tableNavigation();
 </script>
-  <table  class="tablelist navigateable myTable02"  >
+  <table  class="tablelist navigateable myTable02 "  >
    <thead>
     <tr>
         <th > <?php echo mb_convert_case($this->lang->line("title_categorias"),MB_CASE_UPPER,"UTF-8");?> </th>
@@ -60,7 +60,5 @@ $('*').keyup(function(e){
    </tbody>
   </table>
   
-  <div class="link_pages">
-					
-	</div>
+  
 </div>

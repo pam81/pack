@@ -21,13 +21,16 @@
     <script type="text/javascript" src="<?php echo base_url();?>js/flete.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/language/es/messages.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/json.js"></script>
-    <script type="text/javascript" src="<?php echo base_url();?>js/jquery.min.js"></script>
+   <!-- <script type="text/javascript" src="<?php echo base_url();?>js/jquery.min.js"></script>-->
+   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+ <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery.table_navigation.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/apprise-1.5.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/shadowbox/shadowbox.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery.fixedheadertable.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/demo.js"></script>
-   <!-- <script type="text/javascript" src="<?php echo base_url();?>vendors/bootstrap/js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="<?php echo base_url();?>vendors/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" >
 
       Shadowbox.init();
@@ -103,7 +106,7 @@
 <?php $this->load->view($content);?>
 
 <?php $this->load->view("footer");?>
-
+  
 </div>
   </body>
 </html>

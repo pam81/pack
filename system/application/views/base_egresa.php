@@ -16,20 +16,20 @@ $(document).ready(function(){
   
   </div>
    <hr class="separador">
-  <form name="formbase" id="formbase" method="post" action="<?php echo site_url()."base/egresa";?>">
+  <form class="form-inline" name="formbase" id="formbase" method="post" action="<?php echo site_url()."base/egresa";?>">
    <?php echo validation_errors('<p class="error">','</p>'); ?>
      <div class="rowform">
    <div class="rowform-label"> 
    <label for="movil"> <?php echo $this->lang->line("title_movil"); ?>  </label>
    </div>
-   <div class="rowform-input">
-   <input type="text" tabindex="1" id="movil" name="movil" value="<?php echo set_value("movil");?>" />
-   </div>
+  
+   <input type="text" class="form-control" tabindex="1" id="movil" name="movil" value="<?php echo set_value("movil");?>" />
+   
    </div> 
 
   <div class="rowform">
-   <input type="submit" tabindex="2" id="send" accesskey="e" name="send" value="<?php echo $this->lang->line("button_send");?>" onclick="return confirm('<?php echo $this->lang->line("ask_egresa_movil_base");?>'); "/>
-    <input type="reset" tabindex="3" id="clean" accesskey="l" name="clean" value="<?php echo $this->lang->line("button_clean");?>" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " />
+   <button type="submit" class="btn btn-primary" tabindex="2" id="send" accesskey="e" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_egresa_movil_base");?>');"><?php echo $this->lang->line("button_send");?></button>
+    <button type="reset" class="btn btn-warning" tabindex="3" id="clean" accesskey="l" name="clean"  onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " ><?php echo $this->lang->line("button_clean");?></button>
    </div>
    </form>
   

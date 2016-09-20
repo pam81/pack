@@ -16,20 +16,20 @@ $(document).ready(function(){
   
   </div>
    <hr class="separador">
-     <form name="formbase" id="formbase" method="post" action="<?php echo site_url()."base/cambiar";?>">
+     <form name="formbase" class="form-inline" id="formbase" method="post" action="<?php echo site_url()."base/cambiar";?>">
    <?php echo validation_errors('<p class="error">','</p>'); ?>
      <div class="rowform">
    <div class="rowform-label"> 
    <label for="movil"> <?php echo $this->lang->line("title_movil"); ?>  </label>
    </div>
-   <input type="text" tabindex="1" id="movil" name="movil" value="<?php echo set_value("movil");?>" />
+   <input type="text" class="form-control" tabindex="1" id="movil" name="movil" value="<?php echo set_value("movil");?>" />
    
    </div> 
   <div class="rowform">
    <div class="rowform-label"> 
    <label for="base"> <?php echo $this->lang->line("title_base"); ?>  </label>
    </div>
-   <select name="base" tabindex="2">
+   <select name="base" tabindex="2" class="form-control">
           <option value="0"><?php echo $this->lang->line("select_option");?> </option>
          <?php 
              foreach($bases as $b)
@@ -47,13 +47,13 @@ $(document).ready(function(){
    <div class="rowform-label"> 
    <label for="movil"> <?php echo $this->lang->line("title_movil_position"); ?>  </label>
    </div>
-   <input type="text" tabindex="3" id="position" name="position" value="<?php echo set_value("position",0);?>" />
+   <input type="text" class="form-control" tabindex="3" id="position" name="position" value="<?php echo set_value("position",0);?>" />
    
    </div>
    
   <div class="rowform">
-   <input type="submit" tabindex="4" id="send" accesskey="a" name="send" value="<?php echo $this->lang->line("button_send");?>" onclick="return confirm('<?php echo $this->lang->line("ask_change_movil_base");?>'); "/>
-    <input type="reset" tabindex="5" id="clean" accesskey="l" name="clean" value="<?php echo $this->lang->line("button_clean");?>" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " />
+   <button type="submit" class="btn btn-primary" tabindex="4" id="send" accesskey="a" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_change_movil_base");?>'); "><?php echo $this->lang->line("button_send");?></button>
+    <button type="reset"  class="btn btn-warning" tabindex="5" id="clean" accesskey="l" name="clean" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); "><?php echo $this->lang->line("button_clean");?></button>
    </div>
    </form>
   

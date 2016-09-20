@@ -35,7 +35,7 @@ class Costo extends Controller {
     $query=$this->db->get("categorias");
     $data["categorias"]=$query->result();
     $data["content"]="costo_viewlist";
-    $this->load->view("costoindex",$data);
+    $this->load->view("index",$data);
    
    
    }
@@ -107,7 +107,7 @@ class Costo extends Controller {
     $query=$this->db->get("seguro");
     $data["seguro"]=$query->result();
     $data["content"]="seguro_viewlist";
-    $this->load->view("costoindex",$data);
+    $this->load->view("index",$data);
    
    
    }
@@ -137,7 +137,7 @@ class Costo extends Controller {
     $query=$this->db->get("comision");
     $data["comision"]=$query->result();
     $data["content"]="comision_viewlist";
-    $this->load->view("costoindex",$data);
+    $this->load->view("index",$data);
    
    }
     else
