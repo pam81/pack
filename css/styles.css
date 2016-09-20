@@ -33,11 +33,13 @@ a:focus{
  float:left;
  width: 400px;
  height: 20px;
+ line-height: 40px;
 
 }
 #header_right{
  float:left;
  height: 20px;
+ line-height: 20px;
 }
 
 .header_link{

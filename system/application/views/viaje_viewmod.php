@@ -465,7 +465,11 @@ $(document).ready(function(){
    </div>
     <div class="rowform-input">
     <input type="text" readonly="true" id="porcentaje_ctacte" name="porcentaje_ctacte" value="<?php echo set_value("porcentaje_ctacte",$viaje[0]->porcentaje_ctacte);?>" tabindex="16"/>
-    <input type="hidden" name="comision_ctacte" id="comision_ctacte" value="<?php echo $comision->cta_cte; ?>">
+    <input type="hidden" name="comision_ctacte" id="comision_ctacte" value="<?php if (!$viaje[0]->client_comision) {
+                                                                                    echo $comision->cta_cte; 
+                                                                                    }else{
+                                                                                      echo $viaje[0]->client_comision;
+                                                                                      } ?>">
     </div>
    </div>
    <div class="rowform">

@@ -172,6 +172,11 @@ $(document).ready(function(){
    <textarea name="observacion" tabindex="17" rows="8" cols="35"><?php echo set_value("observacion");?></textarea>
    </div>
    </div>
+   <div class="rowform">
+   <div class="rowform-label"> <label for="comision"> <?php echo $this->lang->line("title_comision"); ?>  </label>
+   </div>
+   <input type="text" tabindex="17"  id="comision"  name="comision" value="<?php echo set_value("comision");?>" maxsize="10" />
+   </div>
    <div class="subtitle"> <?php echo $this->lang->line("title_phone_adicionales");?> </div>
    <div class="rowform">
    <div class="rowform-label"> <label for="phone1"> <?php echo $this->lang->line("title_telefono"); ?>  </label>

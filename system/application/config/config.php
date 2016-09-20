@@ -11,7 +11,7 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://localhost/fletes/pack/";
+$config['base_url']	= "http://localhost/personal/fletpack/pack/";
 
 /*
 |--------------------------------------------------------------------------

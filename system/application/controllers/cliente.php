@@ -424,7 +424,8 @@ class Cliente extends Controller {
           'active'=>1,
           'mensaje'=>$this->input->post("mensaje"),
           'banner'=>$this->input->post("banner"),
-          'show_banner'=>$show
+          'show_banner'=>$show,
+          'comision'=>$this->input->post("comision")
          );
          $record["address"]=$record["calle"]." ".$record["numero"]." ".$record["piso"]." ".$record["dpto"];
          $record["entrecalles"]=$record["entrecalle1"]." y ".$record["entrecalle2"];
@@ -699,6 +700,7 @@ class Cliente extends Controller {
         $record["address"]=$record["calle"]." ".$record["numero"]." ".$record["piso"]." ".$record["dpto"];
         $record["entrecalles"]=$record["entrecalle1"]." y ".$record["entrecalle2"];
         $record["banner"]=$this->input->post("banner");
+        $record["comision"]=$this->input->post("comision");
         $show=0;
         if ($this->input->post("showbanner"))
           $show=1;

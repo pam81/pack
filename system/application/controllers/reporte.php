@@ -266,12 +266,20 @@ class Reporte extends Controller {
               $cco=0;
               $saldo=0;
               $peaje=0;
+              $iva=0;
               foreach($viajes as $v){
-                  $recauda +=$v->valor; //sumo todo efectivo y CC
-                  $peaje +=$v->peaje;
-                  $peon +=$v->peones;
-                  $cochera +=$v->estacionamiento;
+
+                  $recauda +=$v->valor + $v->espera; //el valor es el subtotal + sumer el tiempo de espera
+                  if ($v->forma_pago == 1){
+                    $recauda += $v->iva; //sumar el iva solo si el viaje es en efectivo
+                  }  
+                  if ($v->forma_pago == 2){ //si es en cta cte el viaje hay que retornarle peon peaje cochera al movil
+                    $peaje +=$v->peaje;
+                    $peon +=$v->peones;
+                    $cochera +=$v->estacionamiento;
+                  }
                   $art +=$v->art_valor;
+                  
 
               }
               $porcentaje= round(($recauda * $comision) / 100, 2);

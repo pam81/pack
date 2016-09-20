@@ -514,7 +514,7 @@ class Viaje extends Controller {
      {
       if ( $this->lock($id) )
       {
-      $sql="select v.*,c.name as cliente,c.show_banner,c.banner,p.phone,r.fecha as fecha,
+      $sql="select v.*,c.name as cliente,c.comision as client_comision,c.show_banner,c.banner,p.phone,r.fecha as fecha,
            r.id as nro_reserva,r.presupuesto_aprox, r.hasMudanza, 
            r.reservo,r.fecha_reserva,r.hora_reserva, r.desde, r.destino,r.valor_mercaderia,r.art, r.art_valor,
            r.mercaderia_excedente,r.monto_excedente,r.codigo_excedente,m.marca,

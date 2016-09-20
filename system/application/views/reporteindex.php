@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()."css/styles.css";?>" />
 <meta name="author" content="www.mizusoft.com.ar" />
-<link rel="shortcut icon" href="<?php echo base_url()."images/icono.jpg";?>">
+<link rel="shortcut icon" href="<?php echo base_url()."images/favicon.ico";?>">
 
 <script type="text/javascript" src="<?php echo base_url();?>js/yahoo/yahoo/yahoo-min.js"></script>  
 <script type="text/javascript" src="<?php echo base_url();?>js/yahoo/event/event-min.js"></script>
