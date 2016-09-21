@@ -567,6 +567,11 @@ border-right:1px solid #fff;
 border-bottom:1px solid #fff;
 }
 
+.tablelist tbody td.view_viajes{
+	cursor: pointer;
+	color: #000;
+}
+
 .tablelistpanel{
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size:11px;
@@ -1002,6 +1007,13 @@ font-size: 26px;
  color: #43729F;
  background-color: #D8D8D8;
  padding: 10px;
+
+}
+
+.formMensual{
+	margin-bottom: 10px;
+	font-size: 14px;
+
 }
 
 

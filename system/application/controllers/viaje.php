@@ -1157,7 +1157,43 @@ class Viaje extends Controller {
        redirect("viaje/cancelar/".$this->uri->segment(3));
    }
   
+   public function getViajes(){
+      $day=date("d");
+      if ( $this->input->post("day")){
+        $day = $this->input->post("day");
+      }
+      $month=date("m");
+      if ( $this->input->post("month")){
+        $month = $this->input->post("month");
+      }
+      $year=date("Y");
+      if ($this->input->post("year")){
+        $year=$this->input->post("year");
+      }
+      
+      $movil=$this->input->post("movil");
+      $fecha=$year.str_pad($month,2,0,STR_PAD_LEFT).str_pad($day,2,0,STR_PAD_LEFT);
+
+      $sql="select v.*,r.desde, r.destino,r.art_valor, m.movil from viajes v, reservas r, movil m where 
+            v.reservaid = r.id and v.movilid=m.id ";
+            
+    
+      $sql .=" and m.movil=$movil ";
+
+
+      $sql .=" and v.cerrado = 1 and v.fecha_despacho='$fecha' ";
+
+          
+      $sql .=" order by r.fecha desc, r.hsalida asc  ";      
+
+          
+     
    
+     $query=$this->db->query($sql);
+     $viajes=$query->result(); 
+     echo json_encode($viajes);
+    
+   }
    
  }  
 ?>

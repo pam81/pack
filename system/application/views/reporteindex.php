@@ -13,15 +13,18 @@
 <script type="text/javascript" src="<?php echo base_url();?>js/flete.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/language/es/messages.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/json.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>vendors/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.table_navigation.js"></script>
 
 <link href="<?php echo base_url();?>css/defaultTheme.css" rel="stylesheet" media="screen" />
 
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.fixedheadertable.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>js/demo.js"></script>
-
-            
+<script type="text/javascript" src="<?php echo base_url();?>js/demo.js"></script> 
+<?php if ( $content == 'reportemensual_viewlist') { ?>
+<link href="<?php echo base_url();?>vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet"  />
+<script type="text/javascript" src="<?php echo base_url();?>vendors/bootstrap/js/bootstrap.min.js"></script>  
+<script type="text/javascript" src="<?php echo base_url();?>js/reportemensual.js"></script>          
+<?php  }?>
 <title><?php echo $this->lang->line('name_empresa');?></title>
 
 <script type="text/javascript" >
