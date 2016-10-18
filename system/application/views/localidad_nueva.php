@@ -42,7 +42,7 @@ $(document).ready(function(){
    </div> 
 
   <div class="form-group">
-   <button type="submit" class="btn btn-primary" tabindex="2" id="send" accesskey="e" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_add_localidad");?>'); "><?php echo $this->lang->line("button_send");?></button>
+   <button type="submit" class="btn btn-primary col-md-offset-5" tabindex="2" id="send" accesskey="e" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_add_localidad");?>'); "><?php echo $this->lang->line("button_send");?></button>
     <button type="reset" class="btn btn-warning" tabindex="3" id="clean" accesskey="l" name="clean" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " ><?php echo $this->lang->line("button_clean");?></button>
    </div>
    </form>

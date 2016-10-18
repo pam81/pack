@@ -5,35 +5,32 @@ $(document).ready(function(){
  });
 
 </script>
-<div id="left">
-</div>
 
 
-<div id="right">
-</div>
+<div id="container" >
 
-<div id="content" style="width:300px;">
+  <form method="post" id="formlogin" class="form-horizontal col-md-6" name="formlogin" action="<?php echo site_url()."home/logear";?>">
+    <div >
+      <?php echo validation_errors('<p class="error">','</p>'); ?>
+    </div>
+    <div class="form-group">
+      <label for="user" class="col-md-4 control-label"> <?php echo mb_convert_case($this->lang->line("user"),MB_CASE_TITLE); ?>  </label>
+  
+      <div class="col-md-8">
+        <input type="text" tabindex="1" class="form-control" name="user" id="user" value="" maxsize="100" />
+      </div>
+    </div>
 
-  <form method="post" id="formlogin" name="formlogin" action="<?php echo site_url()."home/logear";?>">
-  <div >
-<?php echo validation_errors('<p class="error">','</p>'); ?>
-</div>
-  <div class="rowform">
-   <div class="rowform-label"> <label> <?php echo $this->lang->line("user"); ?>  </label>
+   <div class="form-group">
+      <label for="password" class="col-md-4 control-label"> <?php echo mb_convert_case($this->lang->line("password"),MB_CASE_TITLE); ?>  </label> 
+      <div class="col-md-8">
+        <input type="password" class="form-control" tabindex="2" name="password" value="" maxsize="100" />
+      </div>
    </div>
-   <div class="rowform-input">
-   <input type="text" tabindex="1" name="user" id="user" value="" maxsize="100" />
-   </div>
-   </div>
-   <div class="rowform">
-    <div class="rowform-label"><label> <?php echo $this->lang->line("password"); ?>  </label> </div>
-    <div class="rowform-input">
-   <input type="password"  tabindex="2" name="password" value="" maxsize="100" />
-   </div>
-   </div>
-   <div class="rowform">
-   <input type="submit" tabindex="3" name="send" value="<?php echo $this->lang->line("button_send");?>" />
-    <input type="reset" tabindex="4" name="clean" value="<?php echo $this->lang->line("button_clean");?>" />
+
+   <div class="form-group">
+    <button type="submit" class="btn btn-primary col-md-offset-5" tabindex="3" name="send"><?php echo $this->lang->line("button_send");?></button>
+    <button type="reset" class="btn btn-warning" tabindex="4" name="clean"><?php echo $this->lang->line("button_clean");?></button>
    </div>
   </form>
   

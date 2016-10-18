@@ -18,25 +18,25 @@ $(document).ready(function(){
   
   </div>
    <hr class="separador">
-  <form  class="form-inline" name="formbase" id="formbase" method="post" action="<?php echo site_url()."base/ordenar";?>">
+  <form  class="form-horizontal col-md-8" name="formbase" id="formbase" method="post" action="<?php echo site_url()."base/ordenar";?>">
    <?php echo validation_errors('<p class="error">','</p>'); ?>
-     <div class="rowform">
-   <div class="rowform-label"> 
-   <label for="movil"> <?php echo $this->lang->line("title_movil"); ?>  </label>
-   </div>
+     <div class="form-group">
+ 
+   <label for="movil" class="col-md-4 control-label"> <?php echo $this->lang->line("title_movil"); ?>  </label>
+   <div class="col-md-8">
    <input type="text" class="form-control" tabindex="1" id="movil" name="movil" value="<?php echo set_value("movil");?>" />
-   
-   </div> 
-    <div class="rowform">
-   <div class="rowform-label"> 
-   <label for="movil"> <?php echo $this->lang->line("title_movil_position"); ?>  </label>
    </div>
+   </div> 
+    <div class="form-group">
+   <label for="position" class="col-md-4 control-label"> <?php echo $this->lang->line("title_movil_position"); ?>  </label>
+  <div class="col-md-8">
    <input type="text" class="form-control" tabindex="2" id="position" name="position" value="<?php echo set_value("position"); ?>" />
+   </div>
    
    </div>
 
-  <div class="rowform">
-   <button type="submit" class="btn btn-primary" tabindex="3" id="send" accesskey="e" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_ordenar_movil_base");?>'); "><?php echo $this->lang->line("button_send");?></button>
+  <div class="form-group">
+   <button type="submit" class="btn btn-primary col-md-offset-4" tabindex="3" id="send" accesskey="e" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_ordenar_movil_base");?>'); "><?php echo $this->lang->line("button_send");?></button>
     <button type="reset" class="btn btn-warning" tabindex="4" id="clean" accesskey="l" name="clean" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " ><?php echo $this->lang->line("button_clean");?></button>
    </div>
    </form>

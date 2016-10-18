@@ -86,7 +86,7 @@ $(document).ready(function(){
   
    
     <div class="form-group">
-   <button type="submit" class="btn btn-primary" tabindex="7" accesskey="e" id="send" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_mod_costo");?>'); "><?php echo $this->lang->line("button_send");?></button>
+   <button type="submit" class="btn btn-primary col-md-offset-4" tabindex="7" accesskey="e" id="send" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_mod_costo");?>'); "><?php echo $this->lang->line("button_send");?></button>
     <button type="reset" class="btn btn-warning" tabindex="8" accesskey="l" id="clear" name="clean" ><?php echo $this->lang->line("button_clean");?></button>
    </div>
   </form>

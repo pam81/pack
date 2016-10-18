@@ -16,19 +16,19 @@ $(document).ready(function(){
   
   </div>
    <hr class="separador">
-     <form name="formbase" class="form-inline" id="formbase" method="post" action="<?php echo site_url()."base/cambiar";?>">
+     <form name="formbase" class="form-horizontal col-md-8" id="formbase" method="post" action="<?php echo site_url()."base/cambiar";?>">
    <?php echo validation_errors('<p class="error">','</p>'); ?>
-     <div class="rowform">
-   <div class="rowform-label"> 
-   <label for="movil"> <?php echo $this->lang->line("title_movil"); ?>  </label>
-   </div>
-   <input type="text" class="form-control" tabindex="1" id="movil" name="movil" value="<?php echo set_value("movil");?>" />
+     <div class="form-group">
    
-   </div> 
-  <div class="rowform">
-   <div class="rowform-label"> 
-   <label for="base"> <?php echo $this->lang->line("title_base"); ?>  </label>
+   <label for="movil" class="col-md-4 control-label"> <?php echo $this->lang->line("title_movil"); ?>  </label>
+   <div class="col-md-8">
+   <input type="text" class="form-control" tabindex="1" id="movil" name="movil" value="<?php echo set_value("movil");?>" />
    </div>
+   </div> 
+  <div class="form-group">
+   
+   <label for="base" class="col-md-4 control-label"> <?php echo $this->lang->line("title_base"); ?>  </label>
+  <div class="col-md-8">
    <select name="base" tabindex="2" class="form-control">
           <option value="0"><?php echo $this->lang->line("select_option");?> </option>
          <?php 
@@ -40,19 +40,19 @@ $(document).ready(function(){
          
          ?> 
     </select>
-   
+   </div>
    </div>
    
-     <div class="rowform">
-   <div class="rowform-label"> 
-   <label for="movil"> <?php echo $this->lang->line("title_movil_position"); ?>  </label>
-   </div>
+     <div class="form-group">
+  
+   <label for="position" class="col-md-4 control-label"> <?php echo $this->lang->line("title_movil_position"); ?>  </label>
+  <div class="col-md-8">
    <input type="text" class="form-control" tabindex="3" id="position" name="position" value="<?php echo set_value("position",0);?>" />
    
    </div>
-   
-  <div class="rowform">
-   <button type="submit" class="btn btn-primary" tabindex="4" id="send" accesskey="a" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_change_movil_base");?>'); "><?php echo $this->lang->line("button_send");?></button>
+   </div>
+  <div class="form-group">
+   <button type="submit" class="btn btn-primary col-md-offset-4" tabindex="4" id="send" accesskey="a" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_change_movil_base");?>'); "><?php echo $this->lang->line("button_send");?></button>
     <button type="reset"  class="btn btn-warning" tabindex="5" id="clean" accesskey="l" name="clean" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); "><?php echo $this->lang->line("button_clean");?></button>
    </div>
    </form>

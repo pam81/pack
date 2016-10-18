@@ -99,11 +99,13 @@ color: #333;
 #footer {
 	background-image: url(../images/footer_bg.jpg);
 	background-repeat: repeat-x;
-	height: 23px;
+	height: 40px;
 	text-align: center;
-	font-size: .9em;
-	padding-top: 60px;
-	clear:both;
+	line-height: 20px;
+
+}
+#footer a{
+	line-height: 40px;
 }
 
 p{  margin-top: 8px;

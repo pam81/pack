@@ -36,8 +36,8 @@ $(document).ready(function(){
    </div>
    
    
-    <div class="rowform">
-   <button type="submit" class="btn btn-primary" tabindex="3" accesskey="e" id="send" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_mod_seguro");?>'); "><?php echo $this->lang->line("button_send");?></button>
+    <div class="form-group">
+   <button type="submit" class="btn btn-primary col-md-offset-4" tabindex="3" accesskey="e" id="send" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_mod_seguro");?>'); "><?php echo $this->lang->line("button_send");?></button>
     <button type="reset" class="btn btn-warning" tabindex="4" accesskey="l" id="clear" name="clean" ><?php echo $this->lang->line("button_clean");?></button>
    </div>
   </form>

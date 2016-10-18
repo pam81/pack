@@ -19,8 +19,8 @@
    </div>
    </div> 
 
-  <div class="rowform">
-   <button type="submit" class="btn btn-primary" tabindex="2" id="send" accesskey="e" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_mod_categoria");?>'); "><?php echo $this->lang->line("button_send");?></button>
+  <div class="form-group">
+   <button type="submit" class="btn btn-primary col-md-offset-4" tabindex="2" id="send" accesskey="e" name="send" onclick="return confirm('<?php echo $this->lang->line("ask_mod_categoria");?>'); "><?php echo $this->lang->line("button_send");?></button>
     <button type="reset" class="btn btn-warning" tabindex="3" id="clean" accesskey="l" name="clean" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " ><?php echo $this->lang->line("button_clean");?></button>
    </div>
    </form>
