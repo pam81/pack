@@ -50,7 +50,7 @@
           <li><a accesskey="5" href="<?php echo site_url()."base";?>"><?php echo "5 - ".$this->lang->line("bases");?></a> | </li>
           <li><a accesskey="6" href="<?php echo site_url()."viaje";?>"><?php echo "6 - ".$this->lang->line("viajes");?></a> | </li>
           <li><a accesskey="7" href="<?php echo site_url()."usuario";?>"><?php echo "7 - ".$this->lang->line("usuarios");?></a> | </li>
-          <li><a accesskey="8" href="<?php echo site_url()."costo";?>"><?php echo "8 - ".$this->lang->line("title_costos");?></a> | </li>
+          <li><a accesskey="8" href="<?php echo site_url()."costo";?>"><?php echo "8 - ".$this->lang->line("title_seteos");?></a> | </li>
           <li><a accesskey="9" href="<?php echo site_url()."reporte";?>"><?php echo "9 - ".$this->lang->line("reportes");?></a> | </li>
           <li><a href="<?php echo site_url()."localidad";?>"><?php echo "L - ".$this->lang->line("localidades");?></a> | </li>
           <li><a href="<?php echo site_url()."search";?>"><?php echo $this->lang->line("button_search");?></a> | </li>

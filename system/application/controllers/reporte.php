@@ -236,7 +236,7 @@ class Reporte extends Controller {
             $sql="select c.* from comision c ";
             $query=$this->db->query($sql);
             $valores=$query->result();
-            $radio=$valores[0]->radio; 
+            
 
             $acuenta=$this->getSaldoMesAnterior($month, $year, $chofer[0]->movilid);
             
@@ -250,57 +250,75 @@ class Reporte extends Controller {
              
             for($i=1; $i<= $nroDays; $i++){
               $fecha=$year.str_pad($month,2,0,STR_PAD_LEFT).str_pad($i,2,0,STR_PAD_LEFT);
-              $sql="select v.*, r.art_valor from viajes v inner join reservas r on r.id = v.reservaid 
-                    where v.movilid=".$chofer[0]->movilid." and  v.cerrado = 1 and v.fecha_despacho='$fecha' ";
-                
-              $query=$this->db->query($sql);
-              $viajes=$query->result();
-              //itero por cada dia para obtener la recaudación diaria
-              $recauda=0;
-              $porcentaje=0;
-              $peon=0;
-              $cochera=0;
-              $art=0;
-              $pmovil=0;
-              $pagencia=0;
-              $cco=0;
-              $saldo=0;
-              $peaje=0;
-              $iva=0;
-              foreach($viajes as $v){
 
-                  $recauda +=$v->valor + $v->espera; //el valor es el subtotal + sumer el tiempo de espera
-                  if ($v->forma_pago == 1){
-                    $recauda += $v->iva; //sumar el iva solo si el viaje es en efectivo
-                  }  
-                  if ($v->forma_pago == 2){ //si es en cta cte el viaje hay que retornarle peon peaje cochera al movil
-                    $peaje +=$v->peaje;
-                    $peon +=$v->peones;
-                    $cochera +=$v->estacionamiento;
-                  }
-                  $art +=$v->art_valor;
-                  
+              if ($this->diaNoLaborable($fecha)){
+                    $recauda=0;
+                    $porcentaje=0;
+                    $peon=0;
+                    $cochera=0;
+                    $art=0;
+                    $pmovil=0;
+                    $pagencia=0;
+                    $cco=0;
+                    $saldo=$anterior;
+                    $peaje=0;
+                    $iva=0;
+                    $radio=0;
+              }else{
 
+                    $sql="select v.*, r.art_valor from viajes v inner join reservas r on r.id = v.reservaid 
+                          where v.movilid=".$chofer[0]->movilid." and  v.cerrado = 1 and v.fecha_despacho='$fecha' ";
+                      
+                    $query=$this->db->query($sql);
+                    $viajes=$query->result();
+                    //itero por cada dia para obtener la recaudación diaria
+                    $recauda=0;
+                    $porcentaje=0;
+                    $peon=0;
+                    $cochera=0;
+                    $art=0;
+                    $pmovil=0;
+                    $pagencia=0;
+                    $cco=0;
+                    $saldo=0;
+                    $peaje=0;
+                    $iva=0;
+                    $radio=$valores[0]->radio; 
+                    foreach($viajes as $v){
+
+                        $recauda +=$v->valor + $v->espera; //el valor es el subtotal + sumer el tiempo de espera
+                        if ($v->forma_pago == 1){
+                          $recauda += $v->iva; //sumar el iva solo si el viaje es en efectivo
+                        }  
+                        if ($v->forma_pago == 2){ //si es en cta cte el viaje hay que retornarle peon peaje cochera al movil
+                          $peaje +=$v->peaje;
+                          $peon +=$v->peones;
+                          $cochera +=$v->estacionamiento;
+                        }
+                        $art +=$v->art_valor;
+                        
+
+                    }
+                    $porcentaje= round(($recauda * $comision) / 100, 2);
+                    $sql="select c.* from cajas c where c.borrado=0 and c.created_at='$fecha' and c.idmovil=".$chofer[0]->movilid;
+
+                    $query=$this->db->query($sql);
+                    $cajas=$query->result();
+                    foreach($cajas as $c){
+                      if ($c->tipo == 1){
+                        $pagencia += $c->monto;
+                      }
+                      if ($c->tipo == 2){
+                        $pmovil += $c->monto;
+                      }
+                      if ($c->tipo == 3){
+                        $cco += $c->monto;
+                      }
+                    }
+
+                    $saldo=$radio+$porcentaje+$pagencia-$pmovil-$cco-$peon-$peaje-$cochera+$art+$anterior;
+                    $anterior=$saldo;
               }
-              $porcentaje= round(($recauda * $comision) / 100, 2);
-              $sql="select c.* from cajas c where c.borrado=0 and c.created_at='$fecha' and c.idmovil=".$chofer[0]->movilid;
-
-              $query=$this->db->query($sql);
-              $cajas=$query->result();
-              foreach($cajas as $c){
-                if ($c->tipo == 1){
-                  $pagencia += $c->monto;
-                }
-                if ($c->tipo == 2){
-                  $pmovil += $c->monto;
-                }
-                if ($c->tipo == 3){
-                  $cco += $c->monto;
-                }
-              }
-
-              $saldo=$radio+$porcentaje+$pagencia-$pmovil-$cco-$peon-$peaje-$cochera+$art+$anterior;
-              $anterior=$saldo;
               $listado[$i]=array("recauda"=>$recauda,"radio"=>$radio,"porcentaje"=>$porcentaje,
                 "peon"=>$peon,"peaje"=>$peaje,"cochera"=>$cochera,"art"=>$art,"pmovil"=>$pmovil,
                 "pagencia"=>$pagencia,"cco"=>$cco, "saldo"=>$saldo);
@@ -317,6 +335,21 @@ class Reporte extends Controller {
     }else{
       redirect("inicio/denied");
     }
+   }
+
+   public function diaNoLaborable($fecha){
+     
+     $query=$this->db->get_where("dias",array("dia"=>$fecha));
+     $resultado=$query->result();
+     if ( isset($resultado[0]) && count($resultado) > 0 )
+     {
+        
+            return true; //existe la fecha
+            
+     }else{
+     
+         return false; //no existe
+      }
    }
    
     public function seguro()
