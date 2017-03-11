@@ -41,8 +41,8 @@
 */
 
 $route['default_controller'] = "home";
+$route['api/(:any)'] = 'api/$1';
 $route['scaffolding_trigger'] = "";
-
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */
