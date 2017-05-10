@@ -1,0 +1,1 @@
+ALTER TABLE `clientes` ADD `password` VARCHAR(200) NULL AFTER `comision`;

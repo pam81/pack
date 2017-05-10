@@ -143,6 +143,13 @@ $(document).ready(function(){
    <input type="text" tabindex="14" id="email"   name="email" value="<?php if(isset($cliente[0]) ) echo set_value("email",$cliente[0]->email); ?>" maxsize="250" />
    </div>
    </div>
+   <div class="rowform">
+   <div class="rowform-label"> <label for="password"> <?php echo $this->lang->line("password"); ?>  </label>
+   </div>
+    <div class="rowform-input">
+   <input type="password" tabindex="14" id="password"   name="password" value="" maxsize="100" />
+   </div>
+   </div>
     <div class="rowform">
    <div class="rowform-label"> <label for="cuit"> <?php echo $this->lang->line("title_cuit"); ?>  </label>
    </div>

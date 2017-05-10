@@ -150,6 +150,12 @@ $('*').keyup(function(e){
    </div>
    <input type="text" tabindex="13" id="email"   name="email" value="<?php echo set_value("email");?>" maxsize="250" />
    </div>
+   <div class="rowform">
+   <div class="rowform-label"> <label for="password"> <?php echo $this->lang->line("password"); ?>  </label>
+   </div>
+   <input type="password" tabindex="13" id="password"   name="password" value="" maxsize="100" />
+   </div>
+
     <div class="rowform">
    <div class="rowform-label"> <label for="cuit"> <?php echo $this->lang->line("title_cuit"); ?>  </label>
    </div>

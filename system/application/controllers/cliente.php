@@ -427,6 +427,9 @@ class Cliente extends Controller {
           'show_banner'=>$show,
           'comision'=>$this->input->post("comision")
          );
+         if ($this->input->post("password")){
+            $record["password"]=md5($this->input->post("password"));
+          }
          $record["address"]=$record["calle"]." ".$record["numero"]." ".$record["piso"]." ".$record["dpto"];
          $record["entrecalles"]=$record["entrecalle1"]." y ".$record["entrecalle2"];
          $this->db->insert("clientes",$record);
@@ -701,6 +704,9 @@ class Cliente extends Controller {
         $record["entrecalles"]=$record["entrecalle1"]." y ".$record["entrecalle2"];
         $record["banner"]=$this->input->post("banner");
         $record["comision"]=$this->input->post("comision");
+        if ($this->input->post("password")){
+            $record["password"]=md5($this->input->post("password"));
+        }
         $show=0;
         if ($this->input->post("showbanner"))
           $show=1;
