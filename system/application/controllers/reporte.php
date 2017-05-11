@@ -242,7 +242,7 @@ class Reporte extends Controller {
             
 
 
-            $listado[0]=array("recauda"=>0,"radio"=>0,"porcentaje"=>0,
+            $listado[0]=array("recauda"=>0,"iva"=>0,"radio"=>0,"porcentaje"=>0,
                 "peon"=>0,"peaje"=>0,"cochera"=>0,"art"=>0,"pmovil"=>0,
                 "pagencia"=>0,"cco"=>0, "saldo"=>$acuenta);
 
@@ -286,9 +286,9 @@ class Reporte extends Controller {
                     $radio=$valores[0]->radio; 
                     foreach($viajes as $v){
 
-                        $recauda +=$v->valor + $v->espera; //el valor es el subtotal + sumer el tiempo de espera
+                        $recauda +=$v->valor + $v->espera; //el valor es el subtotal + sumar el tiempo de espera
                         if ($v->forma_pago == 1){
-                          $recauda += $v->iva; //sumar el iva solo si el viaje es en efectivo
+                          $iva += $v->iva; //sumar el iva solo si el viaje es en efectivo
                         }  
                         if ($v->forma_pago == 2){ //si es en cta cte el viaje hay que retornarle peon peaje cochera al movil
                           $peaje +=$v->peaje;
@@ -299,7 +299,7 @@ class Reporte extends Controller {
                         
 
                     }
-                    $porcentaje= round(($recauda * $comision) / 100, 2);
+                    $porcentaje= round(( ($recauda + $iva) * $comision) / 100, 2);
                     $sql="select c.* from cajas c where c.borrado=0 and c.created_at='$fecha' and c.idmovil=".$chofer[0]->movilid;
 
                     $query=$this->db->query($sql);
@@ -311,15 +311,15 @@ class Reporte extends Controller {
                       if ($c->tipo == 2){
                         $pmovil += $c->monto;
                       }
-                      if ($c->tipo == 3){
+                      /*if ($c->tipo == 3){
                         $cco += $c->monto;
-                      }
+                      }*/
                     }
 
                     $saldo=$radio+$porcentaje+$pagencia-$pmovil-$cco-$peon-$peaje-$cochera+$art+$anterior;
                     $anterior=$saldo;
               }
-              $listado[$i]=array("recauda"=>$recauda,"radio"=>$radio,"porcentaje"=>$porcentaje,
+              $listado[$i]=array("recauda"=>$recauda,"iva"=>$iva,"radio"=>$radio,"porcentaje"=>$porcentaje,
                 "peon"=>$peon,"peaje"=>$peaje,"cochera"=>$cochera,"art"=>$art,"pmovil"=>$pmovil,
                 "pagencia"=>$pagencia,"cco"=>$cco, "saldo"=>$saldo);
             }

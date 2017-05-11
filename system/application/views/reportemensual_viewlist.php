@@ -57,14 +57,15 @@
     <tr>
         <th>Día</th>
         <th>Recaudación</th>
+        <th>IVA</th>
         <th>Porcentaje</th>
         <th>Radio</th>
         <th>P Movil</th>
         <th>P Agencia</th>
-        <th>C/ CO</th>
+       <!-- <th>C/ CO</th>-->
         <th>Peón</th>
         <th>Peaje</th>
-        <th>Cochera</th>
+        <th>Estacionam.</th>
         <th>ART</th>
         <th>Saldo</th>
         
@@ -80,11 +81,12 @@
           <tr class="modotr">
             <td class="view_viajes" data-dia="<?php echo $k?>" ><?php echo $k; ?></td>
             <td><?php echo $v["recauda"]; ?></td>
+             <td><?php echo $v["iva"]; ?></td>
             <td><?php echo $v["porcentaje"]; ?></td>
             <td><?php echo $v["radio"]; ?></td>
             <td><?php echo $v["pmovil"]; ?></td>
             <td><?php echo $v["pagencia"]; ?></td>
-            <td><?php echo $v["cco"]; ?></td>
+            <!--<td><?php echo $v["cco"]; ?></td>-->
             <td><?php echo $v["peon"]; ?></td>
             <td><?php echo $v["peaje"]; ?></td>
             <td><?php echo $v["cochera"]; ?></td>
