@@ -62,7 +62,7 @@
         <th>Radio</th>
         <th>P Movil</th>
         <th>P Agencia</th>
-       <!-- <th>C/ CO</th>-->
+        <th>C/ CO</th>
         <th>Peón</th>
         <th>Peaje</th>
         <th>Estacionam.</th>
@@ -86,7 +86,7 @@
             <td><?php echo $v["radio"]; ?></td>
             <td><?php echo $v["pmovil"]; ?></td>
             <td><?php echo $v["pagencia"]; ?></td>
-            <!--<td><?php echo $v["cco"]; ?></td>-->
+            <td><?php echo $v["cco"]; ?></td>
             <td><?php echo $v["peon"]; ?></td>
             <td><?php echo $v["peaje"]; ?></td>
             <td><?php echo $v["cochera"]; ?></td>

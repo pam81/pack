@@ -294,6 +294,7 @@ class Reporte extends Controller {
                           $peaje +=$v->peaje;
                           $peon +=$v->peones;
                           $cochera +=$v->estacionamiento;
+                          $cco += $recauda; // resto tiempo espera + subtotal cuando es cuenta corriente
                         }
                         $art +=$v->art_valor;
                         
