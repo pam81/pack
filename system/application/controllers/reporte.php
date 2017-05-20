@@ -300,7 +300,7 @@ class Reporte extends Controller {
                         
 
                     }
-                    $porcentaje= round(( ($recauda + $iva) * $comision) / 100, 2);
+                    $porcentaje= round( ($recauda  * $comision) / 100, 2);
                     $sql="select c.* from cajas c where c.borrado=0 and c.created_at='$fecha' and c.idmovil=".$chofer[0]->movilid;
 
                     $query=$this->db->query($sql);
@@ -317,7 +317,7 @@ class Reporte extends Controller {
                       }*/
                     }
 
-                    $saldo=$radio+$porcentaje+$pagencia-$pmovil-$cco-$peon-$peaje-$cochera+$art+$anterior;
+                    $saldo=$radio+$porcentaje+$pagencia-$pmovil-$cco-$peon-$peaje-$cochera+$iva+$art+$anterior;
                     $anterior=$saldo;
               }
               $listado[$i]=array("recauda"=>$recauda,"iva"=>$iva,"radio"=>$radio,"porcentaje"=>$porcentaje,
