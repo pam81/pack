@@ -65,6 +65,7 @@
         <th>Peón</th>
         <th>Peaje</th>
         <th>Estacionam.</th>
+        <th>Mudanza</th>
         <th>IVA</th>
         <th>ART</th>
         <th>Saldo</th>
@@ -89,6 +90,7 @@
             <td><?php echo $v["peon"]; ?></td>
             <td><?php echo $v["peaje"]; ?></td>
             <td><?php echo $v["cochera"]; ?></td>
+            <td><?php echo $v["mudanza"]; ?></td>
             <td><?php echo $v["iva"]; ?></td>
             <td><?php echo $v["art"]; ?></td>
             <td><?php echo $v["saldo"]; ?></td>

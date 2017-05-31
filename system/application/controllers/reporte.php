@@ -243,7 +243,7 @@ class Reporte extends Controller {
 
 
             $listado[0]=array("recauda"=>0,"iva"=>0,"radio"=>0,"porcentaje"=>0,
-                "peon"=>0,"peaje"=>0,"cochera"=>0,"art"=>0,"pmovil"=>0,
+                "peon"=>0,"peaje"=>0,"cochera"=>0,"mudanza"=>0,"art"=>0,"pmovil"=>0,
                 "pagencia"=>0,"cco"=>0, "saldo"=>$acuenta);
 
             $anterior=$acuenta;
@@ -262,6 +262,7 @@ class Reporte extends Controller {
                     $cco=0;
                     $saldo=$anterior;
                     $peaje=0;
+                    $mudanza=0;
                     $iva=0;
                     $radio=0;
               }else{
@@ -276,6 +277,7 @@ class Reporte extends Controller {
                     $porcentaje=0;
                     $peon=0;
                     $cochera=0;
+                    $mudanza=0;
                     $art=0;
                     $pmovil=0;
                     $pagencia=0;
@@ -297,7 +299,7 @@ class Reporte extends Controller {
                           $cco += $recauda; // resto tiempo espera + subtotal cuando es cuenta corriente
                         }
                         $art +=$v->art_valor;
-                        
+                        $mudanza += $v->mudanza;
 
                     }
                     $porcentaje= round( ($recauda  * $comision) / 100, 2);
@@ -317,11 +319,11 @@ class Reporte extends Controller {
                       }*/
                     }
 
-                    $saldo=$radio+$porcentaje+$pagencia-$pmovil-$cco-$peon-$peaje-$cochera+$iva+$art+$anterior;
+                    $saldo=$radio+$porcentaje+$pagencia+$mudanza-$pmovil-$cco-$peon-$peaje-$cochera+$iva+$art+$anterior;
                     $anterior=$saldo;
               }
               $listado[$i]=array("recauda"=>$recauda,"iva"=>$iva,"radio"=>$radio,"porcentaje"=>$porcentaje,
-                "peon"=>$peon,"peaje"=>$peaje,"cochera"=>$cochera,"art"=>$art,"pmovil"=>$pmovil,
+                "peon"=>$peon,"peaje"=>$peaje,"cochera"=>$cochera,"mudanza"=>$mudanza,"art"=>$art,"pmovil"=>$pmovil,
                 "pagencia"=>$pagencia,"cco"=>$cco, "saldo"=>$saldo);
             }
         }
