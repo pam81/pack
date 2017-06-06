@@ -267,7 +267,7 @@ class Reporte extends Controller {
                     $radio=0;
               }else{
 
-                    $sql="select v.*, r.art_valor from viajes v inner join reservas r on r.id = v.reservaid 
+                    $sql="select v.*, r.art_valor, r.hasMudanza from viajes v inner join reservas r on r.id = v.reservaid 
                           where v.movilid=".$chofer[0]->movilid." and  v.cerrado = 1 and v.fecha_despacho='$fecha' ";
                       
                     $query=$this->db->query($sql);
@@ -288,7 +288,10 @@ class Reporte extends Controller {
                     $radio=$valores[0]->radio; 
                     foreach($viajes as $v){
 
-                        $recauda +=$v->valor + $v->espera; //el valor es el subtotal + sumar el tiempo de espera
+                        if ($v->hasMudanza == 0){ //solo lo sumo en el caso que no sea mudanza
+                          //porque la mudanza se quita ya el 30% de comisión
+                          $recauda +=$v->valor + $v->espera; //el valor es el subtotal + sumar el tiempo de espera
+                        }
                         if ($v->forma_pago == 1){
                           $iva += $v->iva; //sumar el iva solo si el viaje es en efectivo
                         }  
