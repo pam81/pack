@@ -1102,107 +1102,98 @@ getCliente:function(dir,ventana,title)
 showClienteReserva:function(o)
 {
     
- 
- if (o.responseText == "no_exist")
-  {
-    document.getElementById("name").value='';
-    document.getElementById("desde").value='';
-    document.getElementById("observaciones").innerHTML='';
-    document.getElementById("mensaje").innerHTML='';
-    document.getElementById("info_ctacte").innerHTML='';
-   
+    switch(o.responseText){
+      case "no_exist":
+                      document.getElementById("name").value='';
+                      document.getElementById("desde").value='';
+                      document.getElementById("observaciones").innerHTML='';
+                      document.getElementById("mensaje").innerHTML='';
+                      document.getElementById("info_ctacte").innerHTML='';
+                      params="height=500,width=850,menubar=no,status=no,resizable=yes,scrollbars=yes,toolbar=no";
+                      var addcliente=window.open(o.argument[1],"addcliente",params);   
+                      document.getElementById("telefono").focus();  
+                      break;
+      case "client_no_active":
 
-   
-	 
-   params="height=500,width=850,menubar=no,status=no,resizable=yes,scrollbars=yes,toolbar=no";
-    var addcliente=window.open(o.argument[1],"addcliente",params);   
-    document.getElementById("telefono").focus();   
-	       
-  }
-  else{
- 
-    if ( o.responseText == "client_no_active")  {
-       
-       $("#banner_meg").html("No puede asignarle una reserva. El cliente esta suspendido");
-       $("#banner_red").show();
-       $("#send").attr('disabled','disabled');
-       setTimeout( function(){ window.location.href="../inicio"; },4000);
-       
-       
-    }
-    else{
-    
-        if (o.responseText == "client_borrado"){
-          
-          $("#banner_meg").html("No puede asignarle una reserva. El cliente esta borrado");
-          $("#banner_red").show();
-          $("#send").attr('disabled','disabled');
-          setTimeout( function(){ window.location.href="../inicio"; },4000);
-          }
-        else{
-        
-        var show_banner=0;
-       var banner = '';
-        
-        myData = JSON.parse(o.responseText,function(key,value){
-    
-   
-    if (key == "show_banner")
-    {
+                              $("#banner_msg").html("No puede asignarle una reserva. El cliente esta suspendido.");
+                              $("#banner_red").show();
+                              $("#send").attr('disabled','disabled');
+                              setTimeout( function(){ window.location.href="../inicio"; },4000);
+                              break;
+      case "client_borrado":
+                              $("#banner_msg").html("No puede asignarle una reserva. El cliente esta borrado.");
+                              $("#banner_red").show();
+                              $("#send").attr('disabled','disabled');
+                              setTimeout( function(){ window.location.href="../inicio"; },4000);
+                            break;
+
+      case "client_deudor":
+                              $("#banner_msg").html("No puede asignarle una reserva. El cliente tiene deuda.");
+                              $("#banner_red").show();
+                              $("#send").attr('disabled','disabled');
+                              setTimeout( function(){ window.location.href="../inicio"; },4000);
+                            break; 
+
+      default:
      
-         show_banner = value;
-    
-    }
-    
-    if ( key == "banner" )
-    { 
-        banner = value;
-    }
-    
-    if (key == "name")
-    {
-      document.getElementById("name").value=value;
-     }
-    if (key == "id")
-    {
-      document.getElementById("clienteid").value=value;
-      getPreviusReservas(value);
-     } 
-    if(key == "address")
-    {
-      document.getElementById("desde").value=value;
-    } 
-    if (key == "observaciones")
-    {
-      document.getElementById("observaciones").innerHTML=value;
-    }
-    if (key == "mensaje")
-    {
-      document.getElementById("mensaje").innerHTML=value;
-    }
-    if (key == "ctacte" )
-    {
-        if (value =="s")
-        {
-        document.getElementById("info_ctacte").innerHTML=messages.ctacte_habilitada;
-        document.getElementById("ctacte").checked = true;
-        }
-        else
-       { document.getElementById("info_ctacte").innerHTML=messages.solo_efectivo;
-          document.getElementById("contado").checked = true;
-       }
-    }
-   } );
-       
-        if (show_banner == 1 )
-          alert(banner);
         
-        }  
-    
-    }
+                var show_banner=0;
+                var banner = '';
+        
+                myData = JSON.parse(o.responseText,function(key,value){
+                    if (key == "show_banner")
+                    {
+                         show_banner = value;
+                    }
+        
+                    if ( key == "banner" )
+                    { 
+                        banner = value;
+                    }
+        
+                    if (key == "name")
+                    {
+                      document.getElementById("name").value=value;
+                    }
+                    if (key == "id")
+                    {
+                      document.getElementById("clienteid").value=value;
+                      getPreviusReservas(value);
+                    } 
+                    if(key == "address")
+                    {
+                      document.getElementById("desde").value=value;
+                    } 
+                    if (key == "observaciones")
+                    {
+                      document.getElementById("observaciones").innerHTML=value;
+                    }
+                    if (key == "mensaje")
+                    {
+                      document.getElementById("mensaje").innerHTML=value;
+                    }
+                    if (key == "ctacte" )
+                    {
+                        if (value =="s"){
+                          document.getElementById("info_ctacte").innerHTML=messages.ctacte_habilitada;
+                          document.getElementById("ctacte").checked = true;
+                        } else { 
+                          document.getElementById("info_ctacte").innerHTML=messages.solo_efectivo;
+                          document.getElementById("contado").checked = true;
+                       }
+                    }
+                });
+       
+                if (show_banner == 1 ){
+                  alert(banner);
+                }
+        
+                            
+
+    };
+ 
+ 
   
-  
-  }
 },
 
 
@@ -1230,98 +1221,91 @@ getCliente2:function(dir,ventana,title)
 showClienteReserva2:function(o)
 {
     
- 
- if (o.responseText == "no_exist")
-  {
-    document.getElementById("name").value='';
-    document.getElementById("desde").value='';
-    document.getElementById("observaciones").innerHTML='';
-    document.getElementById("mensaje").innerHTML='';
-    document.getElementById("info_ctacte").innerHTML='';
-   
+    switch(o.responseText){
+      case "no_exist":    
+                        document.getElementById("name").value='';
+                        document.getElementById("desde").value='';
+                        document.getElementById("observaciones").innerHTML='';
+                        document.getElementById("mensaje").innerHTML='';
+                        document.getElementById("info_ctacte").innerHTML='';
+                        params="height=500,width=850,menubar=no,status=no,resizable=yes,scrollbars=yes,toolbar=no";
+                        var addcliente=window.open(o.argument[1],"addcliente",params);   
+                        document.getElementById("telefono").focus();  
+                        break;
+      case "client_no_active" : 
+                        $("#banner_msg").html("No puede asignarle una reserva. El cliente esta suspendido");
+                        $("#banner_red").show();
+                        $("#send").attr('disabled','disabled');
+                        setTimeout( function(){ window.location.href="../inicio"; },4000);
+                        break;
+      case "client_borrado":
+                        $("#banner_msg").html("No puede asignarle una reserva. El cliente esta borrado");
+                        $("#banner_red").show();
+                        $("#send").attr('disabled','disabled');
+                        setTimeout( function(){ window.location.href="../inicio"; },4000);
+                        break;
+      case "client_deudor":
+                              $("#banner_msg").html("No puede asignarle una reserva. El cliente tiene deuda.");
+                              $("#banner_red").show();
+                              $("#send").attr('disabled','disabled');
+                              setTimeout( function(){ window.location.href="../inicio"; },4000);
+                            break;
 
+      default:
+
+                        var show_banner=0;
+                        var banner = '';
+        
+                        myData = JSON.parse(o.responseText,function(key,value){
+    
    
-	 
-   params="height=500,width=850,menubar=no,status=no,resizable=yes,scrollbars=yes,toolbar=no";
-    var addcliente=window.open(o.argument[1],"addcliente",params);   
-    document.getElementById("telefono").focus();   
-	       
-  }
-  else{
+                            if (key == "show_banner")
+                            {
+                             
+                                 show_banner = value;
+                            
+                            }
+                            
+                            if ( key == "banner" )
+                            { 
+                                banner = value;
+                            }
+                            
+                            
+                            if (key == "id")
+                            {
+                            
+                              getPreviusReservas(value);
+                             } 
+                            
+                            
+                            if (key == "mensaje")
+                            {
+                              document.getElementById("mensaje").innerHTML=value;
+                            }
+                            if (key == "ctacte" )
+                            {
+                                if (value =="s")
+                                {
+                                document.getElementById("info_ctacte").innerHTML=messages.ctacte_habilitada;
+                                document.getElementById("ctacte").checked = true;
+                                }
+                                else
+                               { document.getElementById("info_ctacte").innerHTML=messages.solo_efectivo;
+                                  document.getElementById("contado").checked = true;
+                               }
+                            }
+                        } );
+       
+                        if (show_banner == 1 ){
+                          alert(banner);
+                        }
+        
+        
+
+    };
  
-    if ( o.responseText == "client_no_active")  {
-       
-       $("#banner_meg").html("No puede asignarle una reserva. El cliente esta suspendido");
-       $("#banner_red").show();
-       $("#send").attr('disabled','disabled');
-       setTimeout( function(){ window.location.href="../inicio"; },4000);
-       
-       
-    }
-    else{
-    
-        if (o.responseText == "client_borrado"){
-          
-          $("#banner_meg").html("No puede asignarle una reserva. El cliente esta borrado");
-          $("#banner_red").show();
-          $("#send").attr('disabled','disabled');
-          setTimeout( function(){ window.location.href="../inicio"; },4000);
-          }
-        else{
-        
-        var show_banner=0;
-       var banner = '';
-        
-        myData = JSON.parse(o.responseText,function(key,value){
-    
-   
-    if (key == "show_banner")
-    {
-     
-         show_banner = value;
-    
-    }
-    
-    if ( key == "banner" )
-    { 
-        banner = value;
-    }
-    
-    
-    if (key == "id")
-    {
-    
-      getPreviusReservas(value);
-     } 
-    
-    
-    if (key == "mensaje")
-    {
-      document.getElementById("mensaje").innerHTML=value;
-    }
-    if (key == "ctacte" )
-    {
-        if (value =="s")
-        {
-        document.getElementById("info_ctacte").innerHTML=messages.ctacte_habilitada;
-        document.getElementById("ctacte").checked = true;
-        }
-        else
-       { document.getElementById("info_ctacte").innerHTML=messages.solo_efectivo;
-          document.getElementById("contado").checked = true;
-       }
-    }
-   } );
-       
-        if (show_banner == 1 )
-          alert(banner);
-        
-        }  
-    
-    }
   
-  
-  }
 },
 
 
@@ -1534,6 +1518,26 @@ validarReserva:function()
     return true;
 
 },
+
+validarModCliente: function(){
+  //si se modifica el dato de cliente deudor debo verificar la password antes de cambiarlo
+  var original = document.getElementById("deudor_value");
+  var change = document.getElementById("deudor");
+  if ((original.value == "0" && change.checked) || (original.value == "1" && !change.checked)){
+    
+    var pass = document.getElementById("pass");
+    if (pass.value == ''){
+      alert("Debe ingresar su password");
+      return false;
+    }else{
+      return true;
+    }
+    
+  }
+  return true;
+},
+
+
 
 validarViaje:function()
 {

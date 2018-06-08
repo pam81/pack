@@ -539,6 +539,17 @@ class Cliente extends Controller {
    
    
    }
+
+   public function validPassword(){
+   		$deudor = $this->input->post("deudor");
+   		$original = $this->input->post("deudor_value");
+   		$pass = $this->input->post("pass");
+   		if ($deudor != $original){
+			return Current_User::login( $this->Current_User->getUsername(),$pass);
+   		}else{
+   			return true;
+   		}
+   }
    
    public function _submit_validateModCliente()
    {
@@ -562,8 +573,10 @@ class Cliente extends Controller {
      $this->form_validation->set_rules('phone3', $this->lang->line('title_telefono'),'trim|max_lenght[8]');
      $this->form_validation->set_rules('phone4', $this->lang->line('title_telefono'),'trim|max_lenght[8]');
      $this->form_validation->set_rules('phone5', $this->lang->line('title_telefono'),'trim|max_lenght[8]');
+     $this->form_validation->set_rules('deudor', $this->lang->line('title_bannerdeudor'),'trim|callback_validPassword');
       
       $this->form_validation->set_message('notExistClientPhone',$this->lang->line("error_exist_phone"));
+      $this->form_validation->set_message('validPassword',"El password no es válido");
       return $this->form_validation->run();
    
    }
@@ -700,12 +713,12 @@ class Cliente extends Controller {
         $record["address"]=$record["calle"]." ".$record["numero"]." ".$record["piso"]." ".$record["dpto"];
         $record["entrecalles"]=$record["entrecalle1"]." y ".$record["entrecalle2"];
         $record["banner"]=$this->input->post("banner");
-        $record["comision"]=$this->input->post("comision");
+        $record["comision"]=$this->input->post("comision") ? $this->input->post("comision") : 0;
         $show=0;
         if ($this->input->post("showbanner"))
           $show=1;
         $record["show_banner"]=$show;
-        
+        $record["deudor"]=$this->input->post("deudor");
         $record["bloqueado"]=0;
         $record["bloqueado_by"]='';   
        
@@ -810,14 +823,18 @@ class Cliente extends Controller {
       echo "no_exist"; 
      else
       {
-        if ($cliente[0]->active == 0)
+        if ($cliente[0]->active == 0){
           echo "client_no_active";
-        else{    
-         if ($cliente[0]->borrado == 1)
+        }
+        elseif ($cliente[0]->borrado == 1){
             echo "client_borrado";
-         else
+        }
+        elseif ($cliente[0]->deudor == 1){
+        	echo "client_deudor";
+        }
+     	else{
              echo json_encode($cliente);
-         }
+     	}
       }
    
    }

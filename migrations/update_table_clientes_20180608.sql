@@ -1,0 +1,1 @@
+ALTER TABLE `clientes` ADD `deudor` TINYINT NOT NULL DEFAULT '0';

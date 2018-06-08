@@ -386,4 +386,5 @@ $lang["ask_add_caja"]="Desea agregar el nuevo registro";
 $lang["title_mod_caja"]="Modificar registro";
 $lang["ask_mod_caja"]="Desea modificar el registro";
 $lang["title_type"]="Tipo";
+$lang["title_bannerdeudor"]="Banner Deudor";
 ?>

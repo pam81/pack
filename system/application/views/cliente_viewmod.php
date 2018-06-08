@@ -15,7 +15,8 @@ $(document).ready(function(){
     <h2> <?php echo $this->lang->line("title_mod_cliente");?></h2>
     </div>
    <hr class="separador">
-  <form name="formusuario" method="post" action="<?php echo site_url()."cliente/update/".$cliente[0]->id;?>">
+  <form name="formusuario" method="post" action="<?php echo site_url()."cliente/update/".$cliente[0]->id;?>"
+      onsubmit="return flete.validarModCliente(); " autocomplete="off"   >
    <?php echo validation_errors('<p class="error">','</p>'); ?>
    <div id="form_left">
     <div class="rowform">
@@ -129,6 +130,17 @@ $(document).ready(function(){
    </div>
    <input type="checkbox" tabindex="13" id="showbanner" <?php if (isset($cliente[0]) && ($cliente[0]->show_banner == 1) ) echo "checked";?>   name="showbanner" value="1"  />
    </div>
+
+   <div class="rowform">
+      <div class="rowform-label"> 
+        <label for="deudor"> <?php echo $this->lang->line("title_bannerdeudor"); ?>  </label>
+   </div>
+        <input type="checkbox" tabindex="27" id="deudor" 
+              <?php if (isset($cliente[0]) && ($cliente[0]->deudor == 1) ) echo "checked";?>   
+              name="deudor" value="1"  />
+        <input type="hidden" name="deudor_value" id="deudor_value" value="<?php echo $cliente[0]->deudor?>">
+        <input type="password" name="pass" id="pass" value="" placeholder="Ingrese su password"  >
+   </div>
   
   
    </div>
@@ -186,48 +198,48 @@ $(document).ready(function(){
    <div class="rowform">
    <div class="rowform-label"> <label for="comision"> <?php echo $this->lang->line("title_comision"); ?>  </label>
    </div>
-   <input type="text" tabindex="18"  id="comision"  name="comision" value="<?php echo set_value("comision");?>" maxsize="10" />
+   <input type="text" tabindex="19"  id="comision"  name="comision" value="<?php echo set_value("comision");?>" maxsize="10" />
    </div>
    <div class="subtitle"> <?php echo $this->lang->line("title_phone_adicionales");?> </div>
    <div class="rowform">
    <div class="rowform-label"> <label for="phone1"> <?php echo $this->lang->line("title_telefono"); ?>  </label>
    </div>
     <div class="rowform-input">
-   <input type="text" tabindex="19"  id="phone1"  name="phone1" value="<?php if (isset($phones[0])) echo set_value("phone1",$phones[0]->phone); ?>" maxsize="250" />
+   <input type="text" tabindex="20"  id="phone1"  name="phone1" value="<?php if (isset($phones[0])) echo set_value("phone1",$phones[0]->phone); ?>" maxsize="250" />
    </div>
    </div>
     <div class="rowform">
    <div class="rowform-label"> <label for="phone2"> <?php echo $this->lang->line("title_telefono"); ?>  </label>
    </div>
     <div class="rowform-input">
-   <input type="text" tabindex="20"  id="phone2"  name="phone2" value="<?php if (isset($phones[1])) echo set_value("phone2",$phones[1]->phone); ?>" maxsize="250" />
+   <input type="text" tabindex="21"  id="phone2"  name="phone2" value="<?php if (isset($phones[1])) echo set_value("phone2",$phones[1]->phone); ?>" maxsize="250" />
    </div>
    </div>
     <div class="rowform">
    <div class="rowform-label"> <label for="phone3"> <?php echo $this->lang->line("title_telefono"); ?>  </label>
    </div>
     <div class="rowform-input">
-   <input type="text" tabindex="21"  id="phone3"  name="phone3" value="<?php if (isset($phones[2])) echo set_value("phone3",$phones[2]->phone); ?>" maxsize="250" />
+   <input type="text" tabindex="22"  id="phone3"  name="phone3" value="<?php if (isset($phones[2])) echo set_value("phone3",$phones[2]->phone); ?>" maxsize="250" />
    </div>
    </div>
     <div class="rowform">
    <div class="rowform-label"> <label for="phone4"> <?php echo $this->lang->line("title_telefono"); ?>  </label>
    </div>
     <div class="rowform-input">
-   <input type="text" tabindex="22"  id="phone4"  name="phone4" value="<?php if (isset($phones[3])) echo set_value("phone4",$phones[3]->phone); ?>" maxsize="250" />
+   <input type="text" tabindex="23"  id="phone4"  name="phone4" value="<?php if (isset($phones[3])) echo set_value("phone4",$phones[3]->phone); ?>" maxsize="250" />
    </div>
    </div>
     <div class="rowform">
    <div class="rowform-label"> <label for="phone5"> <?php echo $this->lang->line("title_telefono"); ?>  </label>
    </div>
     <div class="rowform-input">
-   <input type="text" tabindex="23"  id="phone5"  name="phone5" value="<?php if (isset($phones[4])) echo set_value("phone5",$phones[4]->phone); ?>" maxsize="250" />
+   <input type="text" tabindex="24"  id="phone5"  name="phone5" value="<?php if (isset($phones[4])) echo set_value("phone5",$phones[4]->phone); ?>" maxsize="250" />
    </div>
    </div>
    </div>
    <div class="rowform-button">
-   <input type="submit" tabindex="24" id="send" accesskey="e" name="send" value="<?php echo $this->lang->line("button_mod");?>" onclick="return confirm('<?php echo $this->lang->line("ask_mod_cliente");?>'); "/>
-    <input type="reset" tabindex="25" id="clean" accesskey="l" name="clean" value="<?php echo $this->lang->line("button_clean");?>" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " />
+   <input type="submit" tabindex="25" id="send" accesskey="e" name="send" value="<?php echo $this->lang->line("button_mod");?>" onclick="return confirm('<?php echo $this->lang->line("ask_mod_cliente");?>'); "/>
+    <input type="reset" tabindex="26" id="clean" accesskey="l" name="clean" value="<?php echo $this->lang->line("button_clean");?>" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " />
    </div>
   </form>
   
