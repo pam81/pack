@@ -184,7 +184,7 @@ class Reserva extends Controller {
        }
        else
        {
-        
+          $art_valor = $this->input->post("art_valor") ? $this->input->post("art_valor"): 0;
           $record=array(
           'fecha'=>$this->db->escape_str($this->input->post("reserva_year")).str_pad($this->db->escape_str($this->input->post("reserva_month")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("reserva_day")),2,"0",STR_PAD_LEFT),
           'clienteid'=>$this->db->escape_str($this->input->post("clienteid")),
@@ -205,7 +205,7 @@ class Reserva extends Controller {
           'mercaderia_excedente'=>$this->input->post("excedente_mercaderia"),
           'monto_excedente'=>$this->input->post("excedente_monto"),
           'art'=>$this->input->post("art"),
-          'art_valor'=>$this->input->post("art_valor"),
+          'art_valor'=>$art_valor,
           'hasMudanza'=>$this->input->post("hasMudanza")
           );
          $codigo=0;

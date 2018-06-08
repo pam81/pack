@@ -58,9 +58,9 @@ class Reporte extends Controller {
    public function recaudaciongral()
    {
   if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") )
-    {
-   $fdesde=date("Ymd");
-   $fhasta=date("Ymd");
+  {
+    $fdesde=date("Ymd");
+    $fhasta=date("Ymd");
    
     
     
@@ -243,7 +243,7 @@ class Reporte extends Controller {
 
 
             $listado[0]=array("recauda"=>0,"iva"=>0,"radio"=>0,"porcentaje"=>0,
-                "peon"=>0,"peaje"=>0,"cochera"=>0,"mudanza"=>0,"art"=>0,"pmovil"=>0,
+                "peon"=>0,"km"=>0,"peaje"=>0,"cochera"=>0,"mudanza"=>0,"art"=>0,"pmovil"=>0,
                 "pagencia"=>0,"cco"=>0, "saldo"=>$acuenta);
 
             $anterior=$acuenta;
@@ -255,6 +255,7 @@ class Reporte extends Controller {
                     $recauda=0;
                     $porcentaje=0;
                     $peon=0;
+                    $km=0;
                     $cochera=0;
                     $art=0;
                     $pmovil=0;
@@ -276,6 +277,7 @@ class Reporte extends Controller {
                     $recauda=0;
                     $porcentaje=0;
                     $peon=0;
+                    $km=0;
                     $cochera=0;
                     $mudanza=0;
                     $art=0;
@@ -560,44 +562,44 @@ class Reporte extends Controller {
    
    public function recaudacion()
    {
-   if ( $this->Current_User->isHabilitado("RECAUDACIONMOVIL")) {
-  
-   $movil=0;
-   $fdesde=date("Ymd");
-   $fhasta=date("Ymd");
-   
-    if ($this->input->post("movil"))
-       $movil=$this->db->escape_str($this->input->post("movil"));
-       
-     $data["movil"]=$movil;
+     if ( $this->Current_User->isHabilitado("RECAUDACIONMOVIL")) {
     
-     if ($this->input->post("desde_day") && $this->input->post("desde_month") && $this->input->post("desde_year"))
-       $fdesde=$this->db->escape_str($this->input->post("desde_year")).str_pad($this->db->escape_str($this->input->post("desde_month")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("desde_day")),2,"0",STR_PAD_LEFT);
-    
-     $data["fdesde"]=$fdesde;
-    
-    if ($this->input->post("hasta_day") && $this->input->post("hasta_month") && $this->input->post("hasta_year"))
-       $fhasta=$this->db->escape_str($this->input->post("hasta_year")).str_pad($this->db->escape_str($this->input->post("hasta_month")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("hasta_day")),2,"0",STR_PAD_LEFT);
-    
-   $data["fhasta"]=$fhasta;
-    
-       
-    
+     $movil=0;
+     $fdesde=date("Ymd");
+     $fhasta=date("Ymd");
      
-    $data["viajes"]= $this->flete->getRecaudacionMovil($fdesde,$fhasta,$movil);
-    
-    $data["opciones"]=$movil."/".$fdesde."/".$fhasta;
-    
-    
-    
-    $query=$this->db->get("meses");
-    $data["meses"]=$query->result();
-    
-    $data["content"]="reporteviaje_viewlist";
-    $this->load->view("reporteindex",$data);
-   }
-   else 
-    redirect("inicio/denied");
+      if ($this->input->post("movil"))
+         $movil=$this->db->escape_str($this->input->post("movil"));
+         
+       $data["movil"]=$movil;
+      
+       if ($this->input->post("desde_day") && $this->input->post("desde_month") && $this->input->post("desde_year"))
+         $fdesde=$this->db->escape_str($this->input->post("desde_year")).str_pad($this->db->escape_str($this->input->post("desde_month")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("desde_day")),2,"0",STR_PAD_LEFT);
+      
+       $data["fdesde"]=$fdesde;
+      
+      if ($this->input->post("hasta_day") && $this->input->post("hasta_month") && $this->input->post("hasta_year"))
+         $fhasta=$this->db->escape_str($this->input->post("hasta_year")).str_pad($this->db->escape_str($this->input->post("hasta_month")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("hasta_day")),2,"0",STR_PAD_LEFT);
+      
+     $data["fhasta"]=$fhasta;
+      
+         
+      
+       
+      $data["viajes"]= $this->flete->getRecaudacionMovil($fdesde,$fhasta,$movil);
+      
+      $data["opciones"]=$movil."/".$fdesde."/".$fhasta;
+      
+      
+      
+      $query=$this->db->get("meses");
+      $data["meses"]=$query->result();
+      
+      $data["content"]="reporteviaje_viewlist";
+      $this->load->view("reporteindex",$data);
+     }
+     else 
+      redirect("inicio/denied");
    }
    
    

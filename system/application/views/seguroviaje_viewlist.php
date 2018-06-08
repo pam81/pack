@@ -117,6 +117,7 @@ function searching(e)
          <th> <?php echo $this->lang->line("title_ctacte");?> </th>
          
           <th> <?php echo $this->lang->line("title_peones");?> </th>
+          <th> <?php echo $this->lang->line("title_km");?> </th>
           <th> <?php echo $this->lang->line("title_espera");?> </th>
           <th> <?php echo $this->lang->line("title_peaje");?> </th>
           <th> <?php echo $this->lang->line("estacionamiento_short");?> </th>
@@ -145,6 +146,7 @@ function searching(e)
       $otros=0;
       $seguro=0;
       $art=0;
+      $km=0;
       
      $porcentaje_ctacte=0;
      $iva=0;
@@ -178,6 +180,7 @@ function searching(e)
          <td> <?php if ($u->forma_pago == 2) { echo number_format($u->valor,2,".",''); $ctacte += $u->valor; }?> </td>          
        
          <td> <?php echo number_format($u->peones,2,".",''); $peones +=$u->peones; ?>  </td>
+          <td> <?php echo number_format($u->km,2,".",''); $km +=$u->km; ?>  </td>
          
           <td> <?php echo number_format($u->espera,2,".",''); $espera +=$u->espera; ?>  </td>
           <td> <?php echo number_format($u->peaje,2,".",''); $peaje +=$u->peaje; ?>  </td>

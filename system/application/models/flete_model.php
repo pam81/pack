@@ -220,9 +220,9 @@ class Flete_model extends Model{
     
     public function getRecaudacionGral($fdesde,$fhasta)
     {
-    
+    //obtengo cantidad de viajes - total de lo que se pone en subtotal y datos del chofer y movil
     $sql= "SELECT count(v.id) as cant_viajes,sum(v.valor) as total,
-            m.movil as movil, c.name, c.lastname
+            m.movil as movil, c.name as name, c.lastname as lastname
             FROM `viajes` v,reservas r,movil m,choferes c, movil_chofer mc
             where v.cerrado=1  and v.movilid=m.id 
             and v.fecha_despacho between $fdesde and $fhasta
@@ -239,9 +239,10 @@ class Flete_model extends Model{
     
     
     
-    
+    //obtener los viajes del periodo que se pagan en efectivo
      $sql= "SELECT sum(v.valor) as total_efvo,
             sum(v.peones) as total_peon,
+            sum(v.km) as total_km,
             sum(v.peaje) as total_peaje,
             sum(v.estacionamiento) as total_estac,
             sum(v.otros) as total_otros,
@@ -262,9 +263,10 @@ class Flete_model extends Model{
     $query=$this->db->query($sql);
     $viajes_efvo=$query->result(); 
    
-    
+     //obtener los viajes del periodo que se pagan en cc
      $sql= "SELECT sum(v.valor) as total_ctacte,
             sum(v.peones) as total_peon,
+            sum(v.km) as total_km,
             sum(v.peaje) as total_peaje,
             sum(v.estacionamiento) as total_estac,
             sum(v.otros) as total_otros,
@@ -295,6 +297,8 @@ class Flete_model extends Model{
            $listado[$v->movil]["chofer"]=$v->name." ".$v->lastname;
            $listado[$v->movil]["total_peon_efvo"]=0;
            $listado[$v->movil]["total_peon_cc"]=0;
+           $listado[$v->movil]["total_km_efvo"]=0;
+           $listado[$v->movil]["total_km_cc"]=0;
            $listado[$v->movil]["total_espera_efvo"]=0;
            $listado[$v->movil]["total_espera_cc"]=0;
            $listado[$v->movil]["total_estac_efvo"]=0;
@@ -325,6 +329,7 @@ class Flete_model extends Model{
                 if ($e->movil == $v->movil)
                  { $listado[$v->movil]["total_efvo"]=$e->total_efvo;
                    $listado[$v->movil]["total_peon_efvo"]=$e->total_peon;
+                   $listado[$v->movil]["total_km_efvo"]=$e->total_km;
                    $listado[$v->movil]["total_espera_efvo"]=$e->total_espera;
                    $listado[$v->movil]["total_estac_efvo"]=$e->total_estac;
                    $listado[$v->movil]["total_otro_efvo"]=$e->total_otros;
@@ -340,6 +345,7 @@ class Flete_model extends Model{
                 if ($c->movil == $v->movil)
                 {  $listado[$v->movil]["total_ctacte"]=$c->total_ctacte;
                    $listado[$v->movil]["total_peon_cc"]=$c->total_peon;
+                   $listado[$v->movil]["total_km_cc"]=$c->total_km;
                    $listado[$v->movil]["total_espera_cc"]=$c->total_espera;
                    $listado[$v->movil]["total_estac_cc"]=$c->total_estac;
                    $listado[$v->movil]["total_otro_cc"]=$c->total_otros;
@@ -353,6 +359,7 @@ class Flete_model extends Model{
             }
          
          $listado[$v->movil]["total_peon"]=$listado[$v->movil]["total_peon_cc"]+ $listado[$v->movil]["total_peon_efvo"];
+         $listado[$v->movil]["total_km"]=$listado[$v->movil]["total_km_cc"]+ $listado[$v->movil]["total_km_efvo"];
          $listado[$v->movil]["total_espera"]=$listado[$v->movil]["total_espera_cc"]+$listado[$v->movil]["total_espera_efvo"];
          $listado[$v->movil]["total_estac"]=$listado[$v->movil]["total_estac_cc"]+$listado[$v->movil]["total_estac_efvo"];
          $listado[$v->movil]["total_otro"]=$listado[$v->movil]["total_otro_cc"]+$listado[$v->movil]["total_otro_efvo"];
@@ -362,13 +369,15 @@ class Flete_model extends Model{
         
          $listado[$v->movil]["total_porcentajecc"]=$listado[$v->movil]["total_porcentajecc_cc"];
          $listado[$v->movil]["total_iva"]=$listado[$v->movil]["total_iva_cc"]+$listado[$v->movil]["total_iva_efvo"];
-          //REVISAR    
-         $listado[$v->movil]["totalcc"]=$listado[$v->movil]["total_ctacte"]+$listado[$v->movil]["total_peon_cc"]+$listado[$v->movil]["total_espera_cc"]+
+          //REVISAR  
+          //total de cc suma todo  
+         $listado[$v->movil]["totalcc"]=$listado[$v->movil]["total_ctacte"]+$listado[$v->movil]["total_peon_cc"]+$listado[$v->movil]["total_espera_cc"] + $listado[$v->movil]["total_km_cc"]+
                                  $listado[$v->movil]["total_estac_cc"]+$listado[$v->movil]["total_otro_cc"]+$listado[$v->movil]["total_peaje_cc"]+
                                  $listado[$v->movil]["total_seguro_cc"]+$listado[$v->movil]["total_art_cc"]+$listado[$v->movil]["total_porcentajecc_cc"]
                                  ;
-          //REVISAR                       
-         $listado[$v->movil]["total_contado"]=$listado[$v->movil]["total_efvo"]+$listado[$v->movil]["total_espera_efvo"]+$listado[$v->movil]["total_peon_efvo"]+
+          //REVISAR        
+          //total de contado suma todo               
+         $listado[$v->movil]["total_contado"]=$listado[$v->movil]["total_efvo"]+$listado[$v->movil]["total_espera_efvo"]+$listado[$v->movil]["total_peon_efvo"]+$listado[$v->movil]["total_km_efvo"]+
                                               $listado[$v->movil]["total_estac_efvo"]+$listado[$v->movil]["total_otro_efvo"]+$listado[$v->movil]["total_peaje_efvo"]+
                                               $listado[$v->movil]["total_seguro_efvo"]+$listado[$v->movil]["total_art_efvo"]+
                                               $listado[$v->movil]["total_iva_efvo"];
@@ -393,10 +402,10 @@ class Flete_model extends Model{
     }
     
     public function getComisionar($fdesde,$fhasta){
-        // NO DEBERIA SUMAR PEONES ??
+        // NO DEBERIA SUMAR PEONES Y KM ??
     
          $sql= "SELECT count(v.id) as cant_viajes,sum(v.valor) as total,
-            m.movil as movil, c.name, c.lastname
+            m.movil as movil, c.name as name, c.lastname as lastname
             FROM `viajes` v,reservas r,movil m,choferes c, movil_chofer mc
             where v.cerrado=1  and v.movilid=m.id 
             and v.fecha_despacho between $fdesde and $fhasta
@@ -416,6 +425,7 @@ class Flete_model extends Model{
     
      $sql= "SELECT sum(v.valor) as total_efvo,
             sum(v.peones) as total_peon,
+            sum(v.km) as total_km,
             sum(v.peaje) as total_peaje,
             sum(v.estacionamiento) as total_estac,
             sum(v.otros) as total_otros,
@@ -439,6 +449,7 @@ class Flete_model extends Model{
     
      $sql= "SELECT sum(v.valor) as total_ctacte,
             sum(v.peones) as total_peon,
+            sum(v.km) as total_km,
             sum(v.peaje) as total_peaje,
             sum(v.estacionamiento) as total_estac,
             sum(v.otros) as total_otros,
@@ -466,6 +477,8 @@ class Flete_model extends Model{
           
            $listado[$v->movil]["total_peon_efvo"]=0;
            $listado[$v->movil]["total_peon_cc"]=0;
+           $listado[$v->movil]["total_km_efvo"]=0;
+           $listado[$v->movil]["total_km_cc"]=0;
            $listado[$v->movil]["total_espera_efvo"]=0;
            $listado[$v->movil]["total_espera_cc"]=0;
            $listado[$v->movil]["total_otro_efvo"]=0;
@@ -483,6 +496,7 @@ class Flete_model extends Model{
                 if ($e->movil == $v->movil)
                  { $listado[$v->movil]["total_efvo"]=$e->total_efvo;
                    $listado[$v->movil]["total_peon_efvo"]=$e->total_peon;
+                   $listado[$v->movil]["total_km_efvo"]=$e->total_km;
                    $listado[$v->movil]["total_espera_efvo"]=$e->total_espera;
                    $listado[$v->movil]["total_otro_efvo"]=$e->total_otros;
                  }
@@ -493,6 +507,7 @@ class Flete_model extends Model{
                 if ($c->movil == $v->movil)
                 {  $listado[$v->movil]["total_ctacte"]=$c->total_ctacte;
                    $listado[$v->movil]["total_peon_cc"]=$c->total_peon;
+                   $listado[$v->movil]["total_km_cc"]=$c->total_km;
                    $listado[$v->movil]["total_espera_cc"]=$c->total_espera;
                    $listado[$v->movil]["total_otro_cc"]=$c->total_otros;
                    $listado[$v->movil]["total_porcentajecc_cc"]=$c->total_porcentajecc;
@@ -501,8 +516,12 @@ class Flete_model extends Model{
               
             } 
        
-         $listado[$v->movil]["parcial_cc"]= $listado[$v->movil]["total_ctacte"] + $listado[$v->movil]["total_espera_cc"] + $listado[$v->movil]["total_otro_cc"];
-         $listado[$v->movil]["parcial_efvo"]= $listado[$v->movil]["total_efvo"] + $listado[$v->movil]["total_espera_efvo"] + $listado[$v->movil]["total_otro_efvo"] ;
+         $listado[$v->movil]["parcial_cc"]= $listado[$v->movil]["total_ctacte"] + $listado[$v->movil]["total_espera_cc"] + 
+                                            $listado[$v->movil]["total_otro_cc"] + $listado[$v->movil]["total_peon_cc"] +
+                                            $listado[$v->movil]["total_km_cc"] ;
+         $listado[$v->movil]["parcial_efvo"]= $listado[$v->movil]["total_efvo"] + $listado[$v->movil]["total_espera_efvo"] 
+                                            + $listado[$v->movil]["total_otro_efvo"] + $listado[$v->movil]["total_peon_efvo"] +
+                                            $listado[$v->movil]["total_km_efvo"]  ;
       }
       
       return $listado;
@@ -557,7 +576,7 @@ class Flete_model extends Model{
     {
     
     $sql="select distinct v.id as viaje, c.name as cliente,r.desde, r.destino, r.monto_excedente as seguro,
-            r.art_valor, v.valor,v.voucher,v.fecha_despacho,v.fecha_abordo,v.habordo,
+            r.art_valor, v.valor,v.voucher,v.fecha_despacho,v.fecha_abordo,v.habordo, v.km,
             m.movil , v.forma_pago, v.peones, v.otros, v.espera, v.estacionamiento, v.peaje,
             v.mudanza, v.porcentaje_mudanza, v.porcentaje_ctacte, v.iva
             from viajes v,reservas r, clientes c,phones p,movil m where v.clienteid=c.id
@@ -631,6 +650,7 @@ class Flete_model extends Model{
       $viaje["idmovil"]=$m->idmovil;
       $sql= "SELECT count(v.id) as cant_viajes,sum(v.valor) as total,
             sum(v.peones) as total_peon,
+            sum(v.km) as total_km,
             sum(v.peaje) as total_peaje,
             sum(v.estacionamiento) as total_estac,
             sum(v.otros) as total_otros,
@@ -659,6 +679,7 @@ class Flete_model extends Model{
      if (isset($v[0])){
      $viaje["cant_viajes"]=$v[0]->cant_viajes;
      $viaje["peones"]=$v[0]->total_peon;
+     $viaje["km"]=$v[0]->total_km;
      $viaje["peaje"]=$v[0]->total_peaje;
      $viaje["estac"]=$v[0]->total_estac;
      $viaje["otros"]=$v[0]->total_otros;
@@ -668,7 +689,7 @@ class Flete_model extends Model{
      $viaje["mudanza"]=$v[0]->total_mudanza;
      $viaje["porcentaje_ctacte"]=$v[0]->total_porcentajectacte;
      $viaje["iva"]=$v[0]->total_iva;
-     $t=$v[0]->total+$v[0]->total_peon+$v[0]->total_peaje+$v[0]->total_estac+$v[0]->total_otros+$v[0]->total_espera+$v[0]->total_seguro+$v[0]->total_art+$v[0]->total_porcentajectacte+$v[0]->total_iva;
+     $t=$v[0]->total+$v[0]->total_peon+$v[0]->total_km+$v[0]->total_peaje+$v[0]->total_estac+$v[0]->total_otros+$v[0]->total_espera+$v[0]->total_seguro+$v[0]->total_art+$v[0]->total_porcentajectacte+$v[0]->total_iva;
      $viaje["total"]=$t;
        $sql= "SELECT sum(v.valor) as total_efvo,
             m.movil as movil
@@ -736,6 +757,7 @@ class Flete_model extends Model{
      else{
      $viaje["cant_viajes"]=0;
      $viaje["peones"]=0;
+     $viaje["km"]=0;
      $viaje["peaje"]=0;
      $viaje["estac"]=0;
      $viaje["otros"]=0;

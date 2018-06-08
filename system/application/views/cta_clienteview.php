@@ -85,6 +85,7 @@ $('*').keyup(function(e){
         <th > <?php echo substr(mb_convert_case($this->lang->line("title_contado"),MB_CASE_UPPER,"UTF-8"),0,4);?> </th>
       
         <th > <?php echo mb_convert_case($this->lang->line("title_peones"),MB_CASE_UPPER,"UTF-8");?> </th>
+        <th > <?php echo mb_convert_case($this->lang->line("title_km"),MB_CASE_UPPER,"UTF-8");?> </th>
         <th > <?php echo mb_convert_case($this->lang->line("title_peaje"),MB_CASE_UPPER,"UTF-8");?> </th>
         <th > <?php echo substr(mb_convert_case($this->lang->line("title_estacionamiento"),MB_CASE_UPPER,"UTF-8"),0,6).".";?> </th>
         <th > <?php echo mb_convert_case($this->lang->line("title_espera"),MB_CASE_UPPER,"UTF-8");?> </th>
@@ -115,7 +116,7 @@ $('*').keyup(function(e){
      $otros=0;
      $seguro=0;
      $art=0;
-    
+     $km=0;
    
      $iva=0;
      $total_subtotales=0;
@@ -148,6 +149,7 @@ $('*').keyup(function(e){
            <td> <?php if($v->forma_pago == 1) { echo number_format($v->valor,2,".",''); $efvo +=$v->valor; }?> </td>
       
         <td> <?php echo number_format($v->peones,2,".",''); $peones += $v->peones; ?></td>
+        <td> <?php echo number_format($v->km,2,".",''); $km += $v->km; ?></td>
         <td> <?php echo number_format($v->peaje,2,".",''); $peaje += $v->peaje; ?></td>
         <td> <?php echo number_format($v->estacionamiento,2,".",''); $estacionamiento += $v->estacionamiento;?></td>
         <td> <?php echo number_format($v->espera,2,".",''); $espera += $v->espera;?></td>
@@ -159,7 +161,7 @@ $('*').keyup(function(e){
         <td> <?php echo number_format($v->iva,2,".",''); $iva += $v->iva;?></td>
          <td> <?php echo substr($v->desde,0,30);?> </td>
          <td> <?php echo substr($v->destino,0,30);?> </td>
-         <td> <?php $subtotal= $v->valor + $v->peones + $v->peaje + $v->estacionamiento+$v->espera + $v->otros
+         <td> <?php $subtotal= $v->valor + $v->peones + $v->km + $v->peaje + $v->estacionamiento+$v->espera + $v->otros
                      + $v->seguro + $v->art_valor ;   //no suma mudanza ni % mudanza
                      if ($v->forma_pago == 2){  // suma el % cta cte
                        $subtotal += $v->porcentaje_ctacte;
@@ -204,6 +206,11 @@ $('*').keyup(function(e){
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_peones"); ?>: </label></div> 
       <div class="rowform-text"> <?php echo "$ ".number_format($peones,2,".",'');?> </div>
 	    </div>
+
+      <div class="rowform">
+        <div class="rowform-label"> <label> <?php echo "Total KM"; ?>: </label></div> 
+        <div class="rowform-text"> <?php echo "$ ".number_format($km,2,".",'');?> </div>
+      </div>
 	    
 	    <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_peaje"); ?>: </label></div> 

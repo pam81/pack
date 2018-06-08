@@ -116,6 +116,7 @@ function searching(e)
          <th> <?php echo $this->lang->line("title_ctacte");?> </th>
         
           <th> <?php echo $this->lang->line("title_peones");?> </th>
+           <th> <?php echo $this->lang->line("title_km");?> </th>
           <th> <?php echo $this->lang->line("title_espera");?> </th>
           <th> <?php echo $this->lang->line("title_peaje");?> </th>
           <th> <?php echo $this->lang->line("estacionamiento_short");?> </th>
@@ -144,6 +145,7 @@ function searching(e)
       $seguro=0;
       $art=0;
       $mudanza=0;
+      $km=0;
     
      $porcentaje_ctacte=0;
      $iva=0;
@@ -186,6 +188,7 @@ function searching(e)
          <td> <?php  echo number_format($u["ctacte"],2,".",''); $ctacte += $u["ctacte"]; ?> </td>          
         
          <td> <?php echo number_format($u["peones"],2,".",''); $peones +=$u["peones"]; ?>  </td>
+         <td> <?php echo number_format($u["km"],2,".",''); $km +=$u["km"]; ?>  </td>
          
           <td> <?php echo number_format($u["espera"],2,".",''); $espera +=$u["espera"]; ?>  </td>
           <td> <?php echo number_format($u["peaje"],2,".",''); $peaje +=$u["peaje"]; ?>  </td>
@@ -224,6 +227,12 @@ function searching(e)
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_peones"); ?>: </label></div> 
       <div class="rowform-text"> <?php echo "$ ".number_format($peones,2,".",'');?> </div>
 	    </div>
+
+      <div class="rowform">
+      <div class="rowform-label"> <label> <?php echo "Total KM"; ?>: </label></div> 
+      <div class="rowform-text"> <?php echo "$ ".number_format($km,2,".",'');?> </div>
+      </div>
+
 	     <div class="rowform">
 	    <div class="rowform-label"> <label> <?php echo $this->lang->line("title_total_tespera"); ?>: </label></div> 
       <div class="rowform-text"> <?php echo "$ ".number_format($espera,2,".",'');?> </div>
@@ -263,7 +272,7 @@ function searching(e)
 	    </div>
      <div class="rowform">
 	    <div class="rowform-label"><label><?php echo $this->lang->line("title_total"); ?>: </label></div> 
-      <div class="rowform-text">  <?php echo "$ ".number_format(($efvo + $ctacte+$peones+$espera+$peaje+$estacionamiento+$otros+$seguro+$art+$porcentaje_ctacte+$iva),2,".",''); ?> </div>
+      <div class="rowform-text">  <?php echo "$ ".number_format(($efvo + $ctacte + $peones + $km +$espera+$peaje+$estacionamiento+$otros+$seguro+$art+$porcentaje_ctacte+$iva),2,".",''); ?> </div>
 	    </div>
 	    	<?php } 
    if ( $this->Current_User->isHabilitado("PRINTMOVIL") )

@@ -55,7 +55,7 @@ function to_excel_gral($datos,$filename){
  $desde=substr($datos["fdesde"],6,2)."-".substr($datos["fdesde"],4,2)."-".substr($datos["fdesde"],0,4);
  $hasta= substr($datos["fhasta"],6,2)."-".substr($datos["fhasta"],4,2)."-".substr($datos["fhasta"],0,4); 
  $headers="Desde\t $desde \n Hasta\t $hasta\n";
- $headers.="Cant. Viajes \t Chofer \t Movil \t Contado \t Cta Cte \t Peones \t ";
+ $headers.="Cant. Viajes \t Chofer \t Movil \t Contado \t Cta Cte \t Peones \t Km \t";
  $headers .=" Tiempo Espera \t Peaje \t Estacionamiento \t Otros \t Seguro \t ";
  $headers .=" Mudanza \t I.V.A \t %Cta Cte \t ART \t A comisión \t A cliente \t";
  $headers=iconv ( "UTF-8", "ISO-8859-1", $headers );
@@ -64,6 +64,7 @@ function to_excel_gral($datos,$filename){
   $efvo=0;
   $ctacte=0;
   $peones=0;
+  $km=0;
   $espera=0;
   $peaje=0;
   $estacionamiento=0;
@@ -80,6 +81,9 @@ function to_excel_gral($datos,$filename){
     
     $data .=$u["cant_viajes"]."\t".$u["chofer"]."\t".$u["movil"]."\t".number_format($u["total_efvo"],2,".",'');
     $data .="\t".number_format($u["total_ctacte"],2,".",'')."\t"."Efvo: ".number_format($u["total_peon_efvo"],2,".",'')." CC: ".number_format($u["total_peon_cc"],2,".",'');
+    
+    $data .="\t"."Efvo: ".number_format($u["total_km_efvo"],2,".",'')." CC: ".number_format($u["total_km_cc"],2,".",'')."\t";
+
     $data .="\t"."Efvo: ".number_format($u["total_espera_efvo"],2,".",'')." CC: ".number_format($u["total_espera_cc"],2,".",'')."\t"."Efvo: ".number_format($u["total_peaje_efvo"],2,".",'')." CC: ".number_format($u["total_peaje_cc"],2,".",'');
     $data .="\t"."Efvo: ".number_format($u["total_estac_efvo"],2,".",'')." CC: ".number_format($u["total_estac_cc"],2,".",'')."\t"."Efvo: ".number_format($u["total_otro_efvo"],2,".",'')." CC: ".number_format($u["total_otro_cc"],2,".",'');
     $data .="\t"."Efvo: ".number_format($u["total_seguro_efvo"],2,".",'')." CC: ".number_format($u["total_seguro_cc"],2,".",'')."\t".number_format($u["total_mudanza"],2,".",'');
@@ -92,6 +96,7 @@ function to_excel_gral($datos,$filename){
     $efvo += $u["total_efvo"];
     $ctacte += $u["total_ctacte"];
     $peones += $u["total_peon"];
+    $km += $u["total_km"];
     $espera += $u["total_espera"];
     $peaje += $u["total_peaje"];
     $estacionamiento += $u["total_estac"];
@@ -109,6 +114,7 @@ function to_excel_gral($datos,$filename){
   $data .="Total Efectivo: \t $ ".number_format($efvo,2,".",'')."\n";
   $data .="Total Cta. Cte: \t $ ".number_format($ctacte,2,".",'')."\n";
   $data .="Total Peones: \t $ ".number_format($peones,2,".",'')."\n";
+  $data .="Total Km: \t $ ".number_format($km,2,".",'')."\n";
   $data .="Total T. Espera: \t $ ".number_format($espera,2,".",'')."\n";
   $data .="Total Peaje: \t $ ".number_format($peaje,2,".",'')."\n";
   $data .="Total Estac: \t $ ".number_format($estacionamiento,2,".",'')."\n";
@@ -145,7 +151,7 @@ function to_excel_rendir($datos,$filename){
  foreach($datos["viajes"] as $k=>$u){
  
     $parcial_ctacte=0;
-    $parcial_ctacte += $u["total_ctacte"] + $u["total_espera_cc"] + $u["total_peon_cc"]+$u["total_peaje_cc"]+$u["total_estac_cc"]+$u["total_seguro_cc"]+$u["total_otro_cc"]; 
+    $parcial_ctacte += $u["total_ctacte"] + $u["total_espera_cc"] + $u["total_peon_cc"]+$u["total_km_cc"]+$u["total_peaje_cc"]+$u["total_estac_cc"]+$u["total_seguro_cc"]+$u["total_otro_cc"]; 
     $total_ctacte += $parcial_ctacte; 
     
     $parcial_recaudacion=0;
@@ -195,7 +201,7 @@ function to_excel_ctacliente($datos,$filename){
   $headers.="Teléfono\t".$datos["telefono"]."\t\t Observaciones:".$cliente->observaciones."\n";
   $headers.="Dirección\t".$cliente->address."\n";
   $headers .="Desde:\t $desde \t\t Hasta:\t $hasta\n\n";
-  $headers .="Fecha \t Hora \t Nro. Viaje \t Movil \t Nro. Voucher\t Cta Cte \t Contado \t Peones \t Peaje \t Estacionamiento\t Tiempo Espera \t ";
+  $headers .="Fecha \t Hora \t Nro. Viaje \t Movil \t Nro. Voucher\t Cta Cte \t Contado \t Peones \t KM \t Peaje \t Estacionamiento\t Tiempo Espera \t ";
   $headers .="Otros\t Seguro \t ART \t IVA \t Desde \t Destino \t Total\n";
   $headers=iconv ( "UTF-8", "ISO-8859-1", $headers );
   $viajes = $datos["viajes"];
@@ -210,6 +216,7 @@ function to_excel_ctacliente($datos,$filename){
   $seguro=0;
   $art=0;
   $iva=0;
+  $km=0;
   $total_subtotales=0;
  
  foreach($viajes as $v){
@@ -234,6 +241,8 @@ function to_excel_ctacliente($datos,$filename){
     $data .=number_format($v->valor,2,".",'')."\t";
     $data .=number_format($v->peones,2,".",'')."\t"; 
     $peones += $v->peones;
+    $data .=number_format($v->km,2,".",'')."\t";
+    $km += $v->km;
     $data .=number_format($v->peaje,2,".",'')."\t"; $peaje += $v->peaje;
     $data .=number_format($v->estacionamiento,2,".",'')."\t"; $estacionamiento += $v->estacionamiento;
     $data .=number_format($v->espera,2,".",'')."\t"; $espera += $v->espera;
@@ -242,7 +251,8 @@ function to_excel_ctacliente($datos,$filename){
     $data .=number_format($v->art_valor,2,".",'')."\t"; $art += $v->art_valor;
     $data .=number_format($v->iva,2,".",'')."\t"; $iva += $v->iva;
     $data .=$v->desde."\t".$v->destino."\t";
-    $subtotal= $v->valor + $v->peones + $v->peaje + $v->estacionamiento+$v->espera + $v->otros + $v->seguro + $v->art_valor ;   //no suma mudanza ni % mudanza
+    $subtotal= $v->valor + $v->peones + $v->peaje + $v->estacionamiento+$v->espera + $v->otros 
+                + $v->seguro + $v->art_valor + $v->km;   //no suma mudanza ni % mudanza
      if ($v->forma_pago == 2){  // suma el % cta cte
        $subtotal += $v->porcentaje_ctacte;
      }else{
@@ -257,6 +267,7 @@ function to_excel_ctacliente($datos,$filename){
      $data.="Total Efectivo:\t"."$ ".number_format($efvo,2,".",'')."\n";
      $data.="Total Cta Cte:\t"."$ ".number_format($ctacte,2,".",'')."\n";
      $data.="Total Peones:\t"."$ ".number_format($peones,2,".",'')."\n";
+     $data.="Total KM:\t"."$ ".number_format($km,2,".",'')."\n";
      $data.="Total Peaje:\t"."$ ".number_format($peaje,2,".",'')."\n";
      $data.="Total Estacionamiento:\t"."$ ".number_format($estacionamiento,2,".",'')."\n";
      $data.="Total T. Espera:\t"."$ ".number_format($espera,2,".",'')."\n";

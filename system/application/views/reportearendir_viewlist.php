@@ -117,7 +117,7 @@ $('*').keyup(function(e){
          <td> 
          <?php 
             $parcial_ctacte=0;
-            $parcial_ctacte += $u["total_ctacte"] + $u["total_espera_cc"] + $u["total_peon_cc"]+$u["total_peaje_cc"]+$u["total_estac_cc"]+$u["total_seguro_cc"]+$u["total_otro_cc"]; 
+            $parcial_ctacte += $u["total_ctacte"] + $u["total_espera_cc"] + $u["total_peon_cc"]+ $u["total_km_cc"] + $u["total_peaje_cc"]+$u["total_estac_cc"]+$u["total_seguro_cc"]+$u["total_otro_cc"]; 
             echo number_format($parcial_ctacte,2,".",'');
             $total_ctacte += $parcial_ctacte;
           

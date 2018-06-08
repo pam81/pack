@@ -625,6 +625,16 @@ class Viaje extends Controller {
          $record["valor"]=$this->input->post("subtotal");
         else
          $record["valor"]=0;
+
+       if($this->input->post("km"))
+         $record["km"]=$this->input->post("km");
+        else
+         $record["km"]=0;
+
+       if($this->input->post("cantkm"))
+         $record["cant_km"]=$this->input->post("cantkm");
+        else
+         $record["cant_km"]=0;
         
           if ($this->input->post("peaje"))
            $record["peaje"]=$this->input->post("peaje");
@@ -920,10 +930,20 @@ class Viaje extends Controller {
         $record["observaciones"]=$this->input->post("observacion"); 
                   
        
-              if($this->input->post("subtotal"))
-         $record["valor"]=$this->input->post("subtotal");
+        if($this->input->post("subtotal"))
+          $record["valor"]=$this->input->post("subtotal");
         else
-         $record["valor"]=0;
+          $record["valor"]=0;
+
+        if($this->input->post("km"))
+          $record["km"]=$this->input->post("km");
+        else
+          $record["km"]=0;
+
+        if($this->input->post("cantkm"))
+          $record["cant_km"]=$this->input->post("cantkm");
+        else
+          $record["cant_km"]=0;
         
           if ($this->input->post("peaje"))
            $record["peaje"]=$this->input->post("peaje");

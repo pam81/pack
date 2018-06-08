@@ -1803,7 +1803,7 @@ function getTotal(){
  var art = ($("#art").val() != '') ? parseFloat($("#art").val()).toFixed(2) : 0;
  var iva = ($("#iva").val() != '') ? parseFloat($("#iva").val()).toFixed(2) : 0;
  var otro = ($("#otro").val() != '') ? parseFloat($("#otro").val()).toFixed(2) : 0;
- 
+ var km = ($("#km").val() != '') ? parseFloat($("#km").val()).toFixed(2) : 0;
  
  
  var porcentaje_mudanza = 0;
@@ -1816,7 +1816,7 @@ function getTotal(){
  }
  
  var porcentaje_ctacte = 0; 
- var total1 = parseFloat(subtotal) + parseFloat(espera) + parseFloat(peones)  + parseFloat(estacionamiento) + parseFloat(peaje) + parseFloat(art) + parseFloat(otro) +  parseFloat(iva);
+ var total1 = parseFloat(subtotal) + parseFloat(espera) + parseFloat(km) + parseFloat(peones)  + parseFloat(estacionamiento) + parseFloat(peaje) + parseFloat(art) + parseFloat(otro) +  parseFloat(iva);
  var suma_ctacte = parseFloat(subtotal) + parseFloat(espera) + parseFloat(peones)  +  parseFloat(otro)  ; 
  if ($("#comision_ctacte").val()){
     var comision_ctacte = ($("#comision_ctacte").val() != '') ? parseFloat($("#comision_ctacte").val()).toFixed(2)  : 0;

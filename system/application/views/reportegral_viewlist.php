@@ -88,6 +88,7 @@ $('*').keyup(function(e){
         <th> <?php echo $this->lang->line("title_ctacte");?> </th>
         
         <th> <?php echo $this->lang->line("title_peones");?> </th>
+        <th> <?php echo $this->lang->line("title_km");?> </th>
         <th> <?php echo $this->lang->line("title_espera");?> </th>
         <th> <?php echo $this->lang->line("title_peaje");?> </th>
         <th> <?php echo $this->lang->line("estacionamiento_short");?> </th>
@@ -133,6 +134,9 @@ $('*').keyup(function(e){
       $artefvo=0;
       $mudanzacc=0;
       $mudanzaefvo=0;
+      $km=0;
+      $kmcc=0;
+      $kmefvo=0;
       
       $porcentaje_ctactecc=0;
       $porcentaje_ctacteefvo=0;
@@ -165,6 +169,9 @@ $('*').keyup(function(e){
          <td> <?php if (isset($u["total_ctacte"])) {echo number_format($u["total_ctacte"],2,".",''); $ctacte += $u["total_ctacte"]; }?> </td>          
         
          <td><?php if (isset($u["total_peon"])) {echo  "Efvo: ".number_format($u["total_peon_efvo"],2,".",'')." <br> CC: ".number_format($u["total_peon_cc"],2,".",''); $peones += $u["total_peon"]; $peonescc += $u["total_peon_cc"]; $peonesefvo += $u["total_peon_efvo"]; }?>  </td>
+
+         <td><?php if (isset($u["total_km"])) {echo  "Efvo: ".number_format($u["total_km_efvo"],2,".",'')." <br> CC: ".number_format($u["total_km_cc"],2,".",''); $km += $u["total_km"]; $kmcc += $u["total_km_cc"]; $kmefvo += $u["total_km_efvo"]; }?>  </td>
+
          <td><?php if (isset($u["total_espera"])) {echo "Efvo: ".number_format($u["total_espera_efvo"],2,".",'')." <br> CC: ".number_format($u["total_espera_cc"],2,".",''); $espera += $u["total_espera"]; $esperacc += $u["total_espera_cc"]; $esperaefvo += $u["total_espera_efvo"]; }?>  </td>
          <td><?php if (isset($u["total_peaje"])) {echo  "Efvo: ".number_format($u["total_peaje_efvo"],2,".",'')." <br> CC: ".number_format($u["total_peaje_cc"],2,".",'');$peaje += $u["total_peaje"]; $peajecc += $u["total_peaje_cc"]; $peajeefvo += $u["total_peaje_efvo"]; }?>  </td>
          <td><?php if (isset($u["total_estac"])) {echo "Efvo: ".number_format($u["total_estac_efvo"],2,".",'')." <br> CC: ".number_format($u["total_estac_cc"],2,".",''); $estacionamiento += $u["total_estac"]; $estaccc+=$u["total_estac_cc"]; $estacefvo += $u["total_estac_efvo"];  }?>  </td>
@@ -228,6 +235,12 @@ $('*').keyup(function(e){
       <div class="rowform-text">  <?php echo "$ ".number_format($peones,2,".",'')." <br> [Efvo: $ ".number_format($peonesefvo,2,".",'') ." + Cta Cte: $ ".number_format($peonescc,2,".",'')."  ]"; ?> </div>
       
 	</div>
+
+  <div class="rowform">
+      <div class="rowform-label"><label><?php echo "Total KM "; ?>: </label></div> 
+      <div class="rowform-text">  <?php echo "$ ".number_format($km,2,".",'')." <br> [Efvo: $ ".number_format($kmefvo,2,".",'') ." + Cta Cte: $ ".number_format($kmcc,2,".",'')."  ]"; ?> </div>
+      
+  </div>
 	<div class="rowform">
 	    <div class="rowform-label"><label><?php echo $this->lang->line("title_total_tespera"); ?>: </label></div> 
       <div class="rowform-text">  <?php echo "$ ".number_format($espera,2,".",'')."<br> [Efvo:  $ ".number_format($esperaefvo,2,".",'') ." + Cta Cte: $ ".number_format($esperacc,2,".",'')." ]"; ?> </div>

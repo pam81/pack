@@ -68,6 +68,7 @@
         <th> <?php echo $this->lang->line("title_contado");?> </th>
        
         <th > <?php echo $this->lang->line("title_peones");?> </th>
+        <th > <?php echo $this->lang->line("title_km");?> </th>
         <th > <?php echo $this->lang->line("title_peaje");?> </th>
         <th > <?php echo substr($this->lang->line("title_estacionamiento"),0,4).".";?> </th>
         <th > <?php echo $this->lang->line("title_espera");?> </th>
@@ -97,7 +98,7 @@
      $otros=0;
      $seguro=0;
      $art=0;
-    
+     $km=0;
      $iva=0;
      $total_subtotales=0;
       foreach($viajes as $v) {
@@ -131,6 +132,7 @@
          
          <td> <?php echo number_format($v->peones,2,".",''); $peones += $v->peones; ?></td>
         <td> <?php echo number_format($v->peaje,2,".",''); $peaje += $v->peaje; ?></td>
+        <td> <?php echo number_format($v->km,2,".",''); $km += $v->km; ?></td>
         <td> <?php echo number_format($v->estacionamiento,2,".",''); $estacionamiento += $v->estacionamiento;?></td>
         <td> <?php echo number_format($v->espera,2,".",''); $espera += $v->espera;?></td>
         <td> <?php echo number_format($v->otros,2,".",''); $otros += $v->otros;?></td>
@@ -140,7 +142,7 @@
         <td> <?php echo number_format($v->iva,2,".",''); $iva += $v->iva;?></td>
          <td> <?php echo $v->desde;?> </td>
          <td> <?php echo $v->destino;?> </td>
-         <td> <?php $subtotal= $v->valor + $v->peones + $v->peaje + $v->estacionamiento+$v->espera + $v->otros
+         <td> <?php $subtotal= $v->valor + $v->peones + $v->km + $v->peaje + $v->estacionamiento+$v->espera + $v->otros
                      + $v->seguro + $v->art_valor ;   //no suma mudanza ni % mudanza
                      if ($v->forma_pago == 2){  // suma el % cta cte
                        $subtotal += $v->porcentaje_ctacte;
@@ -177,6 +179,9 @@
   
     <tr>
      <td> <?php echo $this->lang->line("title_total_peones"); ?>:</td> <td><?php echo "$ ".number_format($peones,2,".",'');?> </td>
+    </tr>
+    <tr>
+     <td> <?php echo "Total KM"; ?>:</td> <td><?php echo "$ ".number_format($km,2,".",'');?> </td>
     </tr>
     <tr>
      <td> <?php echo $this->lang->line("title_total_peaje"); ?>:</td> <td><?php echo "$ ".number_format($peaje,2,".",'');?> </td>

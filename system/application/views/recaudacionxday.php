@@ -42,6 +42,7 @@ $('*').keyup(function(e){
         <th> <?php echo $this->lang->line("title_ctacte");?> </th>
        
         <th> <?php echo $this->lang->line("title_peones");?> </th>
+        <th> <?php echo $this->lang->line("title_km");?> </th>
         <th> <?php echo $this->lang->line("title_espera");?> </th>
         <th> <?php echo $this->lang->line("title_peaje");?> </th>
         <th> <?php echo $this->lang->line("estacionamiento_short");?> </th>
@@ -69,6 +70,7 @@ $('*').keyup(function(e){
       $seguro=0;
       $art=0;
       $mudanza=0;
+      $km=0;
       
       $porcentaje_ctacte=0;
       $iva=0;
@@ -98,7 +100,8 @@ $('*').keyup(function(e){
          <td> <?php echo $v->voucher;?> </td>
          <td> <?php if ($v->forma_pago == 2) { echo number_format($v->valor,2,".",''); $ctacte += $v->valor; }?> </td>
     
-      <td> <?php echo number_format($v->peones,2,".",''); $peones += $v->peones; ?>  </td> 
+      <td> <?php echo number_format($v->peones,2,".",''); $peones += $v->peones; ?>  </td>
+      <td> <?php echo number_format($v->km,2,".",''); $km += $v->km; ?>  </td> 
       <td> <?php echo number_format($v->espera,2,".",''); $espera += $v->espera; ?>  </td>
       <td> <?php echo number_format($v->peaje,2,".",''); $peaje += $v->peaje; ?>  </td>
       <td> <?php echo number_format($v->estacionamiento,2,".",''); $estacionamiento += $v->estacionamiento; ?>  </td>
@@ -151,6 +154,12 @@ $('*').keyup(function(e){
 	    <div class="rowform-label"><label><?php echo $this->lang->line("title_total_peones"); ?>: </label></div> 
       <div class="rowform-text">  <?php echo  "$ ".number_format($peones,2,".",''); ?> </div>
 	    </div>
+
+      <div class="rowform">
+      <div class="rowform-label"><label><?php echo "Total KM: "; ?> </label></div> 
+      <div class="rowform-text">  <?php echo  "$ ".number_format($km,2,".",''); ?> </div>
+      </div>
+
 	    <div class="rowform">
 	    <div class="rowform-label"><label><?php echo $this->lang->line("title_total_tespera"); ?>: </label></div> 
       <div class="rowform-text">  <?php echo  "$ ".number_format($espera,2,".",''); ?> </div>
@@ -190,7 +199,7 @@ $('*').keyup(function(e){
 	    </div>
      <div class="rowform">
 	    <div class="rowform-label"><label><?php echo $this->lang->line("title_total"); ?>: </label></div> 
-      <div class="rowform-text">  <?php echo "$ ".number_format(($efvo + $ctacte + $peones+$espera+$peaje+$estacionamiento+$otros + $art + $seguro+$porcentaje_ctacte+$iva),2,".",''); ?> </div>
+      <div class="rowform-text">  <?php echo "$ ".number_format(($efvo + $ctacte + $peones + $km +$espera+$peaje+$estacionamiento+$otros + $art + $seguro+$porcentaje_ctacte+$iva),2,".",''); ?> </div>
 	    </div>
 	 	<?php } if ( $this->Current_User->isHabilitado("PRINTRECDAY") ) { ?>
 	    <a href="<?php echo site_url()."reporte/pdfxday/$opciones";?>"> <img src="<?php echo base_url()."images/img/pdf_icon.png";?>" width="50" height="50" alt="pdf" />

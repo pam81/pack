@@ -279,10 +279,10 @@ $(document).ready(function(){
     <?php } }?>
   
     <?php if($viaje[0]->cerrado == 0){ ?>
-    <input type="submit" tabindex="19" id="send" accesskey="e" name="send" value="<?php echo $this->lang->line("title_close");?>" onclick="if ( flete.validarCloseViaje('<?php echo $this->lang->line("ask_close_viaje");?>','<?php echo $viaje[0]->forma_pago;?>') ) { form.action='<?php echo site_url()."viaje/update/".$viaje[0]->id;?>'; form.submit();}  " />
+    <input type="submit" tabindex="24" id="send" accesskey="e" name="send" value="<?php echo $this->lang->line("title_close");?>" onclick="if ( flete.validarCloseViaje('<?php echo $this->lang->line("ask_close_viaje");?>','<?php echo $viaje[0]->forma_pago;?>') ) { form.action='<?php echo site_url()."viaje/update/".$viaje[0]->id;?>'; form.submit();}  " />
     <?php } ?>
-    <input type="submit" tabindex="17" id="mod" accesskey="e" name="mod" value="<?php echo $this->lang->line("title_mod");?>" onclick="return confirm('<?php echo $this->lang->line("ask_mod_viaje");?>'); " />
-    <input type="reset" tabindex="18" id="clean" accesskey="l" name="clean" value="<?php echo $this->lang->line("button_clean");?>" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " />
+    <input type="submit" tabindex="22" id="mod" accesskey="e" name="mod" value="<?php echo $this->lang->line("title_mod");?>" onclick="return confirm('<?php echo $this->lang->line("ask_mod_viaje");?>'); " />
+    <input type="reset" tabindex="23" id="clean" accesskey="l" name="clean" value="<?php echo $this->lang->line("button_clean");?>" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " />
    <input type="button" name="ruta" id="ruta" value="Calcular ruta" onclick="flete.showRuta('<?php echo base_url()."ruta.php";?>')" />
    </div>
    <?php } ?>
@@ -297,7 +297,7 @@ $(document).ready(function(){
     <span class="span_total_viaje">TOTAL $</span> 
       <span class="span_total_viaje"  id="total_viaje"> 
       <?php
-        $total= $viaje[0]->valor + $viaje[0]->espera + $viaje[0]->peones + 
+        $total= $viaje[0]->valor + $viaje[0]->espera + $viaje[0]->peones + $viaje[0]->km +
             $viaje[0]->estacionamiento + $viaje[0]->peaje +   $viaje[0]->art_valor + $viaje[0]->otros +
             $viaje[0]->iva;
             
@@ -338,13 +338,30 @@ $(document).ready(function(){
     </div>
    </div>
    
+    <div class="rowform">
+      <div class="rowform-label"> 
+        <label for="km"> <?php echo $this->lang->line("title_km")." $"; ?>  </label>
+      </div>
+      <div class="rowform-input">
+        <input type="text" id="km" name="km" value="<?php echo set_value("km",$viaje[0]->km);?>" tabindex="12" onKeyUp="getTotal()"  />
+      </div>
+    </div>
+    <div class="rowform">
+      <div class="rowform-label"> 
+        <label for="cantkm"> <?php echo $this->lang->line("title_cantkm"); ?>  </label>
+      </div>
+      <div class="rowform-input">
+        <input type="text" id="cantkm" name="cantkm" value="<?php echo set_value("cantkm",$viaje[0]->cant_km);?>" tabindex="13" />
+      </div>
+    </div>
+    
   
      
     <div class="rowform">
    <div class="rowform-label"> <label for="iva"> <?php echo $this->lang->line("title_iva")." $"; ?>  </label>
    </div>
     <div class="rowform-input">
-    <input type="text" id="iva" name="iva" value="<?php echo set_value("iva",$viaje[0]->iva);?>" tabindex="11" onKeyUp="getTotal()"/>
+    <input type="text" id="iva" name="iva" value="<?php echo set_value("iva",$viaje[0]->iva);?>" tabindex="14" onKeyUp="getTotal()"/>
     </div>
    </div>
    
@@ -392,14 +409,14 @@ $(document).ready(function(){
    <div class="rowform-label"> <label for="peones"> <?php echo $this->lang->line("title_peones")." $"; ?>  </label>
    </div>
     <div class="rowform-input">
-    <input type="text" name="peones" id="peones" value="<?php echo set_value("peones",$viaje[0]->peones);?>" tabindex="12" onKeyUp="getTotal()"/>
+    <input type="text" name="peones" id="peones" value="<?php echo set_value("peones",$viaje[0]->peones);?>" tabindex="16" onKeyUp="getTotal()"/>
     </div>
    </div>
      <div class="rowform">
    <div class="rowform-label"> <label for="estacionamiento"> <?php echo $this->lang->line("title_estacionamiento")." $"; ?>  </label>
    </div>
     <div class="rowform-input">
-    <input type="text" id="estacionamiento" name="estacionamiento" value="<?php echo set_value("estacionamiento",$viaje[0]->estacionamiento);?>" tabindex="13" onKeyUp="getTotal()"/>
+    <input type="text" id="estacionamiento" name="estacionamiento" value="<?php echo set_value("estacionamiento",$viaje[0]->estacionamiento);?>" tabindex="17" onKeyUp="getTotal()"/>
     </div>
    </div>
   
@@ -407,7 +424,7 @@ $(document).ready(function(){
    <div class="rowform-label"> <label for="peaje"> <?php echo $this->lang->line("title_peaje")." $"; ?>  </label>
    </div>
     <div class="rowform-input">
-    <input type="text" id="peaje" name="peaje" value="<?php echo set_value("peaje",$viaje[0]->peaje);?>" tabindex="14" onKeyUp="getTotal()"/>
+    <input type="text" id="peaje" name="peaje" value="<?php echo set_value("peaje",$viaje[0]->peaje);?>" tabindex="18" onKeyUp="getTotal()"/>
     </div>
    </div>
    
@@ -428,7 +445,7 @@ $(document).ready(function(){
    <div class="rowform-label"> <label for="otro"> <?php echo $this->lang->line("title_otros")." $"; ?>  </label>
    </div>
     <div class="rowform-input">
-    <input type="text" id="otro" name="otro" value="<?php echo set_value("otro",$viaje[0]->otros);?>" tabindex="15" onKeyUp="getTotal()"/>
+    <input type="text" id="otro" name="otro" value="<?php echo set_value("otro",$viaje[0]->otros);?>" tabindex="19" onKeyUp="getTotal()"/>
     </div>
    </div>
    
@@ -437,7 +454,7 @@ $(document).ready(function(){
    <div class="rowform-label"> <label for="porcentaje_ctacte"> %<?php echo $this->lang->line("title_cta_cte"); ?> $ </label>
    </div>
     <div class="rowform-input">
-    <input type="text" readonly="true" id="porcentaje_ctacte" name="porcentaje_ctacte" value="<?php echo set_value("porcentaje_ctacte",$viaje[0]->porcentaje_ctacte);?>" tabindex="16"/>
+    <input type="text" readonly="true" id="porcentaje_ctacte" name="porcentaje_ctacte" value="<?php echo set_value("porcentaje_ctacte",$viaje[0]->porcentaje_ctacte);?>" tabindex="20"/>
     <input type="hidden" name="comision_ctacte" id="comision_ctacte" value="<?php echo $comision->cta_cte; ?>">
     </div>
    </div>
@@ -445,7 +462,7 @@ $(document).ready(function(){
    <div class="rowform-label"> <label for="voucher"> <?php echo $this->lang->line("title_voucher"); ?>  </label>
    </div>
     <div class="rowform-input">
-    <input type="text" name="voucher" value="<?php echo set_value("voucher",$viaje[0]->voucher);?>" tabindex="16"/>
+    <input type="text" name="voucher" value="<?php echo set_value("voucher",$viaje[0]->voucher);?>" tabindex="21"/>
     </div>
    </div>
    <?php }?>
