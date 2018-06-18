@@ -307,7 +307,8 @@ $(document).ready(function(){
        <?php if ($viaje[0]->forma_pago == 2){
             $total_ctacte = $total + $viaje[0]->porcentaje_ctacte;
          
-            echo "<br><span class=\"span_total_viaje\">TOTAL Cta. Cte. = $</span><span class=\"span_total_viaje\" id=\"total_viaje_ctacte\"> $total_ctacte</span>";
+            echo "<br><span class=\"span_total_viaje\">TOTAL Cta. Cte. = $</span><span class=\"span_total_viaje\" 
+            id=\"total_viaje_ctacte\"> $total_ctacte</span>";
        
        
         }?>

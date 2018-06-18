@@ -91,7 +91,7 @@ class Viaje extends Controller {
     
        
     
-    $sql="select v.*,r.desde, r.destino,m.movil from viajes v, reservas r, movil m where 
+    $sql="select v.*,r.desde, r.destino,m.movil, r.art_valor from viajes v, reservas r, movil m where 
             v.reservaid = r.id";
             
     if ($movil)

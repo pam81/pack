@@ -142,12 +142,15 @@ function searching(e)
          
          <td> <?php echo $u->movil;?></td>
          
-         
+         <?php $total= $u->valor + $u->espera + $u->peones + $u->km +
+            $u->estacionamiento + $u->peaje + $u->art_valor + $u->otros + $u->iva;
+            $total_ctacte = $total + $u->porcentaje_ctacte;
+             ?>
          <td> <?php echo mb_substr($u->desde,0,30);?> </td>
          <td> <?php echo mb_substr($u->destino,0,30); ?> </td>
          <td> <?php echo mb_substr($u->observaciones,0,30);?> </td>
-         <td> <?php if ($u->forma_pago == 1) { echo $u->valor; }?> </td>
-         <td> <?php if ($u->forma_pago == 2) { echo $u->valor;  }?> </td>          
+         <td> <?php if ($u->forma_pago == 1) { echo $total; }?> </td>
+         <td> <?php if ($u->forma_pago == 2) { echo $total_ctacte;  }?> </td>          
          <td> 
          
          <a href="<?php echo site_url()."viaje/visualiza/$u->id/".$this->uri->segment(3);?>"  class="activation"> <img src="<?php echo base_url()."images/img/edit-icon.gif";?>" width="16" height="16" alt="modificar" title="modificar" /> </a> 
