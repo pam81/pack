@@ -545,10 +545,21 @@ class Cliente extends Controller {
    		$original = $this->input->post("deudor_value");
    		$pass = $this->input->post("pass");
    		if ($deudor != $original){
-			return Current_User::login( $this->Current_User->getUsername(),$pass);
+			return $this->comparePass($pass);
    		}else{
    			return true;
    		}
+   }
+
+   private function comparePass($pass){
+    $pass = sha1($pass);
+    $query=$this->db->get("passwords");
+    $password = $query->row(0);
+    if ($pass == $password->cliente_inhabilitar){
+      return true;
+    }else{
+      return false;
+    }
    }
    
    public function _submit_validateModCliente()
@@ -663,6 +674,7 @@ class Cliente extends Controller {
           $data["localidades"]=$query->result();
           
           $data["dir_desbloquea"]=site_url()."cliente/unlock/".$id;
+          $data["inhabilitar_permiso"] = $this->Current_User->isHabilitado("INHABILITAR_CLIENTE");
           $data["content"]="cliente_viewmod";
           $this->load->view("index",$data);
       }

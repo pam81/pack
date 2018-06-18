@@ -131,8 +131,8 @@
            <td> <?php if ($v->forma_pago == 1) { echo number_format($v->valor,2,".",''); $efvo += $v->valor; }?> </td>
          
          <td> <?php echo number_format($v->peones,2,".",''); $peones += $v->peones; ?></td>
+         <td> <?php echo number_format($v->km,2,".",''); $km += $v->km; ?></td>
         <td> <?php echo number_format($v->peaje,2,".",''); $peaje += $v->peaje; ?></td>
-        <td> <?php echo number_format($v->km,2,".",''); $km += $v->km; ?></td>
         <td> <?php echo number_format($v->estacionamiento,2,".",''); $estacionamiento += $v->estacionamiento;?></td>
         <td> <?php echo number_format($v->espera,2,".",''); $espera += $v->espera;?></td>
         <td> <?php echo number_format($v->otros,2,".",''); $otros += $v->otros;?></td>

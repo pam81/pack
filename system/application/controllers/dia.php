@@ -45,7 +45,7 @@ class Dia extends Controller {
     $data["dias"]=$dias;
     
     $data["content"]="dia/dia_viewlist";
-    $this->load->view("index",$data);
+    $this->load->view("costoindex",$data);
    
    
    

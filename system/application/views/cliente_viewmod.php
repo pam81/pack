@@ -130,7 +130,7 @@ $(document).ready(function(){
    </div>
    <input type="checkbox" tabindex="13" id="showbanner" <?php if (isset($cliente[0]) && ($cliente[0]->show_banner == 1) ) echo "checked";?>   name="showbanner" value="1"  />
    </div>
-
+   <?php if ($inhabilitar_permiso){ ?>
    <div class="rowform">
       <div class="rowform-label"> 
         <label for="deudor"> <?php echo $this->lang->line("title_bannerdeudor"); ?>  </label>
@@ -141,7 +141,7 @@ $(document).ready(function(){
         <input type="hidden" name="deudor_value" id="deudor_value" value="<?php echo $cliente[0]->deudor?>">
         <input type="password" name="pass" id="pass" value="" placeholder="Ingrese su password"  >
    </div>
-  
+  <?php } ?>
   
    </div>
    <div id="form_rigth">

@@ -38,6 +38,7 @@
           <li><a accesskey="4" href="<?php echo site_url()."categoria";?>"><?php echo "4 - ".$this->lang->line("title_categorias");?></a></li>
           <li><a accesskey="5" href="<?php echo site_url()."costo/comision";?>"><?php echo "5 - ".$this->lang->line("title_comision");?></a></li>
           <li><a accesskey="6" href="<?php echo site_url()."dia";?>"><?php echo "6 - ".$this->lang->line("title_dias_nowork");?></a></li>
+          <li><a accesskey="7" href="<?php echo site_url()."pass";?>"><?php echo "7 - Contraseñas";?></a></li>
           
         </ul>
    </div>
