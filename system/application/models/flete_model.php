@@ -21,6 +21,34 @@ class Flete_model extends Model{
          return true;  
   
   }
+
+  function fecha24XVencer($fecha){
+    $year=substr($fecha,0,4);
+    $day=substr($fecha,6,2);
+    $month=substr($fecha,4,2);
+    $timestamp1= mktime(0,0,0,$month,$day,$year);
+    $timestamp2=strtotime("+1 day");
+    
+      if ($timestamp1 <= $timestamp2)
+        return false;
+      else
+        return true;  
+ 
+ }
+
+ function fecha48XVencer($fecha){
+  $year=substr($fecha,0,4);
+  $day=substr($fecha,6,2);
+  $month=substr($fecha,4,2);
+  $timestamp1= mktime(0,0,0,$month,$day,$year);
+  $timestamp2=strtotime("+2 day");
+  
+    if ($timestamp1 <= $timestamp2)
+      return false;
+    else
+      return true;  
+
+}
   
   
   public function reservalock($id)
@@ -47,35 +75,104 @@ class Flete_model extends Model{
    }
    
    function verificaDocMovil($nromovil){
-   
-        
         $query=$this->db->get_where("movil",array("active"=>1,"movil"=>$nromovil));
         $movil=$query->result();
         if (isset($movil[0]))
         {
-        if ($movil[0]->noverifica_documentacion == 1)
-           return true;
-        else{
-           
+          if ($movil[0]->noverifica_documentacion == 1)
+            return true;
+          else{
+            
+              $vence_seguro = $this->flete->fechaVencida($movil[0]->vence_seguro);
+              $vence_ruta = $this->flete->fechaVencida($movil[0]->vence_ruta);
+              $vence_vtv = $this->flete->fechaVencida($movil[0]->vence_vtv);
+              $vence_moyano = $this->flete->fechaVencida($movil[0]->vence_moyano);
+              $vence_sacta = $this->flete->fechaVencida($movil[0]->vence_sacta);
+              $sql="select c.* from choferes c, movil_chofer m where m.movilid=".$movil[0]->id." and m.choferid=c.id";
+              $query=$this->db->query($sql);
+              $chofer=$query->result();
+              $vence_registro = $this->flete->fechaVencida($chofer[0]->vence_registro);
+              return ($vence_seguro && $vence_ruta && $vence_vtv && $vence_moyano && $vence_sacta && $vence_registro);
+          
+          }
+       } else{
+          return false;
+       }
+ 
+   }
+
+   function DocMovilVencida($nromovil){
+      $query=$this->db->get_where("movil",array("active"=>1,"movil"=>$nromovil));
+      $movil=$query->result();
+      $vencido=array();
+      if (isset($movil[0])){
         $vence_seguro = $this->flete->fechaVencida($movil[0]->vence_seguro);
+        if(!$vence_seguro){
+          $vencido[]=array("texto"=>$nromovil." VENCIDO SEGURO ","className"=>"error");
+        }elseif(!$this->flete->fecha24XVencer($movil[0]->vence_seguro)){
+          $vencido[]=array("texto"=>$nromovil." VENCE SEGURO 24HS","className"=>"warning1");
+        }else{
+          if (!$this->flete->fecha48XVencer($movil[0]->vence_seguro)){
+            $vencido[]=array("texto"=>$nromovil." VENCE SEGURO 48HS","className"=>"warning2");
+          }
+        }
         $vence_ruta = $this->flete->fechaVencida($movil[0]->vence_ruta);
+        if(!$vence_ruta){
+          $vencido[]=array("texto"=>$nromovil." VENCIDO RUTA ","className"=>"error");
+        }elseif(!$this->flete->fecha24XVencer($movil[0]->vence_ruta)){
+          $vencido[]=array("texto"=>$nromovil." VENCE RUTA 24HS","className"=>"warning1");
+        }else{
+          if (!$this->flete->fecha48XVencer($movil[0]->vence_ruta)){
+            $vencido[]=array("texto"=>$nromovil." VENCE RUTA 48HS","className"=>"warning2");
+          }
+        }
         $vence_vtv = $this->flete->fechaVencida($movil[0]->vence_vtv);
+        if(!$vence_vtv){
+          $vencido[]=array("texto"=>$nromovil." VENCIDO VTV ","className"=>"error");
+        }elseif(!$this->flete->fecha24XVencer($movil[0]->vence_vtv)){
+          $vencido[]=array("texto"=>$nromovil." VENCE VTV 24HS","className"=>"warning1");
+        }else{
+          if (!$this->flete->fecha48XVencer($movil[0]->vence_vtv)){
+            $vencido[]=array("texto"=>$nromovil." VENCE VTV 48HS","className"=>"warning2");
+          }
+        }
         $vence_moyano = $this->flete->fechaVencida($movil[0]->vence_moyano);
+        if(!$vence_moyano){
+          $vencido[]=array("texto"=>$nromovil." VENCIDO MOYANO ","className"=>"error");
+        }elseif(!$this->flete->fecha24XVencer($movil[0]->vence_moyano)){
+          $vencido[]=array("texto"=>$nromovil." VENCE MOYANO 24HS","className"=>"warning1");
+        }else{
+          if (!$this->flete->fecha48XVencer($movil[0]->vence_moyano)){
+            $vencido[]=array("texto"=>$nromovil." VENCE MOYANO 48HS","className"=>"warning2");
+          }
+        }
         $vence_sacta = $this->flete->fechaVencida($movil[0]->vence_sacta);
+        if(!$vence_sacta){
+          $vencido[]=array("texto"=>$nromovil." VENCIDO SACTA ","className"=>"error");
+        }elseif(!$this->flete->fecha24XVencer($movil[0]->vence_sacta)){
+          $vencido[]=array("texto"=>$nromovil." VENCE SACTA 24HS","className"=>"warning1");
+        }else{
+          if (!$this->flete->fecha48XVencer($movil[0]->vence_sacta)){
+            $vencido[]=array("texto"=>$nromovil." VENCE SACTA 48HS","className"=>"warning2");
+          }
+        }
         $sql="select c.* from choferes c, movil_chofer m where m.movilid=".$movil[0]->id." and m.choferid=c.id";
         $query=$this->db->query($sql);
         $chofer=$query->result();
         $vence_registro = $this->flete->fechaVencida($chofer[0]->vence_registro);
-        
-        return ($vence_seguro && $vence_ruta && $vence_vtv && $vence_moyano && $vence_sacta && $vence_registro);
-        
+        if(!$vence_registro){
+          $vencido[]=array("texto"=>$nromovil." VENCIDO REGISTRO ","className"=>"error");
+        }elseif(!$this->flete->fecha24XVencer($chofer[0]->vence_registro)){
+          $vencido[]=array("texto"=>$nromovil." VENCE REGISTRO 24HS","className"=>"warning1");
+        }else{
+          if (!$this->flete->fecha48XVencer($chofer[0]->vence_registro)){
+            $vencido[]=array("texto"=>$nromovil." VENCE REGISTRO 48HS","className"=>"warning2");
+          }
         }
-       }
-       else
-          return false; 
-   
-   
-   
+        return $vencido;
+      }else{
+        return null;
+      }
    }
    
    function ordenamiento($base)

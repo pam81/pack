@@ -964,6 +964,15 @@ list-style-type: none;
 padding: 10px;
 font-weight: bold;
 }
+.banner_aviso ul li.error{
+	color: red;
+}
+.banner_aviso ul li.warning1{
+	color: green;
+}
+.banner_aviso ul li.warning2{
+	color: blue;
+}
 .banner_aviso a{
 float:right;
 text-decoration: none;

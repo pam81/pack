@@ -75,7 +75,7 @@ function showAviso()
              
              $.each(data, function(i) {
              if (i != 'resultado')
-                $("#list_aviso").append('<li>'+data[i]+'</li>');
+                $("#list_aviso").append('<li class="'+data[i].className+'">'+data[i].texto+'</li>');
              
           
  	        });

@@ -24,11 +24,11 @@ window.onload=doLoad();
 </script>
 <div id="content">
    <div class="banner_aviso" id="div_aviso">
-   
+   <a href="#" onclick="flete.closeAviso();" >cerrar</a>
      <ul id="list_aviso">
       
      </ul>
-      <a href="#" onclick="flete.closeAviso();" >cerrar</a>
+      
    </div>
   <div id="panel_viajes">
    <table id="tableviaje" class="tablelist navigateable" cellspacing="0" cellpadding="0">
