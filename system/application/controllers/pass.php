@@ -14,6 +14,7 @@ class Pass extends Controller {
     $this->load->model("User_model");
     $this->load->config("site");
     $this->User_model->verified_login();
+    
    
    }
 
@@ -23,6 +24,10 @@ class Pass extends Controller {
             $query=$this->db->get("passwords");
             $data["codigos"]=$query->result();
             $data["content"]="password/password_viewlist";
+            if ($this->uri->segment(3)){
+             
+                  $this->message = "Se ha/n generado la/s clave/s.";
+            }
             $data["message"]=$this->message;
             $this->load->view("costoindex",$data);
 	   }
@@ -40,7 +45,7 @@ class Pass extends Controller {
                   $record["expire"] = date('Y-m-d H:i', strtotime("+1 day"));
                   $this->db->where("tipo","cliente_inhabilitar");
                   $this->db->update('passwords',$record);
-                  $this->message="Se ha generado la clave para inhabilitar cliente. <br>";
+                  $this->message="ok";
             }
 
             if ($this->input->post("modificar_docu")){
@@ -49,7 +54,7 @@ class Pass extends Controller {
                   $record["expire"] = date('Y-m-d H:i', strtotime("+1 day"));
                   $this->db->where("tipo","modificar_docu");
                   $this->db->update('passwords',$record);
-                  $this->message.="Se ha generado la clave para modificar documentación de movil. <br>";
+                  $this->message.="ok";
             }
 
             if ($this->input->post("asignar_viaje")){
@@ -58,9 +63,9 @@ class Pass extends Controller {
                   $record["expire"] = date('Y-m-d H:i', strtotime("+1 day"));
                   $this->db->where("tipo","asignar_viaje");
                   $this->db->update('passwords',$record);
-                  $this->message .= "Se ha generado la clave para asignar un viaje a movil. <br>"
+                  $this->message .= "ok";
             }
-            redirect("pass");
+            redirect("pass/index/".$this->message);
             
       }
    }
