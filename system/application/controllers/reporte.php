@@ -552,7 +552,8 @@ class Reporte extends Controller {
       
       $query=$this->flete->getRankingCliente($fdesde,$fhasta);
       $data["listado"]=$query->result();
-      $data["opciones"]=$fdesde."/".$fhasta;  
+      $data["opciones"]=$fdesde."/".$fhasta; 
+      $data["referidos"]=$this->flete->referidosEstadisticas();
       $data["content"]="rankingcliente_viewlist";
       $this->load->view("reporteindex",$data); 
     }

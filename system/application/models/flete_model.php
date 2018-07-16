@@ -945,6 +945,17 @@ class Flete_model extends Model{
       
     
     }
+
+    public function referidosEstadisticas(){
+      $sql="SELECT count(id) as total, tipo FROM `referidos` group by tipo";
+      $query=$this->db->query($sql);
+      $resultados=$query->result(); 
+      $referidos = array();
+      foreach($resultados as $r){
+        $referidos[$r->tipo]=$r->total;
+      }
+      return $referidos;
+    }
     
     public function getUltimoViaje($days)
     {

@@ -121,11 +121,27 @@ $(document).ready(function(){
    </div>
    
    <div class="rowform">
-   <div class="rowform-label"> <label for="showbanner"> <?php echo $this->lang->line("title_showbanner"); ?>  </label>
+    <div class="rowform-label"> 
+      <label for="showbanner"> <?php echo $this->lang->line("title_showbanner"); ?>  </label>
+    </div>
+    <input type="checkbox" tabindex="12" id="showbanner"   name="showbanner" value="1"  />
    </div>
-   <input type="checkbox" tabindex="12" id="showbanner"   name="showbanner" value="1"  />
+
+   <div class="rowform">
+    <div class="rowform-label"> 
+      <label for="conoce"> Cómo nos conoce? </label>
+    </div>
+    <select name="conoce">
+      <option value="email">Email</option>
+      <option value="web">Web</option>
+      <option value="referido">Referido</option>
+      <option value="otro">Otro</option>
+    </select> 
    </div>
-  
+   <div class="rowform">
+    <input type="text" name="conoce_otro" value="" placeholder="Indique cliente u otro medio">
+   </div>
+
    </div>
    <div id="form_rigth">
   

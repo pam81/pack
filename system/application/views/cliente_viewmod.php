@@ -142,6 +142,21 @@ $(document).ready(function(){
         <input type="password" name="pass" id="pass" value="" placeholder="Ingrese su password"  >
    </div>
   <?php } ?>
+
+  <div class="rowform">
+    <div class="rowform-label"> 
+      <label for="conoce"> Cómo nos conoce? </label>
+    </div>
+    <select name="conoce">
+      <option value="email" <?php if ($referidos[0]->tipo == 'email'){ echo "selected"; } ?> >Email</option>
+      <option value="web" <?php if ($referidos[0]->tipo == 'web'){ echo "selected"; } ?>>Web</option>
+      <option value="referido" <?php if ($referidos[0]->tipo == 'referido'){ echo "selected"; } ?>>Referido</option>
+      <option value="otro" <?php if ($referidos[0]->tipo == 'otro'){ echo "selected"; } ?>>Otro</option>
+    </select> 
+   </div>
+   <div class="rowform">
+    <input type="text" name="conoce_otro" value="<?php echo $referidos[0]->texto?>" placeholder="Indique cliente u otro medio">
+   </div>
   
    </div>
    <div id="form_rigth">

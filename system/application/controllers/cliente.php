@@ -425,13 +425,14 @@ class Cliente extends Controller {
           'mensaje'=>$this->input->post("mensaje"),
           'banner'=>$this->input->post("banner"),
           'show_banner'=>$show,
-          'comision'=>$this->input->post("comision")
+          'comision'=>$this->input->post("comision") ? $this->input->post("comision"): 0
          );
          $record["address"]=$record["calle"]." ".$record["numero"]." ".$record["piso"]." ".$record["dpto"];
          $record["entrecalles"]=$record["entrecalle1"]." y ".$record["entrecalle2"];
          $this->db->insert("clientes",$record);
          $clienteid=$this->db->insert_id();
          $this->addPhone($clienteid);
+         $this->addReferido($clienteid);
          if ($this->input->post("popup") == 1)
             redirect("cliente/addSuccess/1");
          else  
@@ -464,6 +465,14 @@ class Cliente extends Controller {
    
    }
    
+   public function addReferido($clienteid){
+     $record = array();
+     $record["clienteid"]=$clienteid;
+     $record["tipo"]=$this->input->post("conoce");
+     $record["texto"]=$this->input->post("conoce_otro");
+     $this->db->insert("referidos",$record);
+
+   }
   
    
    public function addSuccess()
@@ -666,6 +675,10 @@ class Cliente extends Controller {
           $query=$this->db->get_where("phones",array("clienteid"=>$id,"principal"=>0));
           $phones=$query->result();
           $data["phones"]=$phones;
+
+          $query=$this->db->get_where("referidos",array("clienteid"=>$id));
+          $referidos=$query->result();
+          $data["referidos"]=$referidos;
           
           $query=$this->db->get_where("iva");
           $data["iva"]= $query->result();
@@ -742,12 +755,23 @@ class Cliente extends Controller {
        $this->db->where("id",$id);
        $this->db->update("clientes",$record);
        $this->modPhones($id);
-       
+       $this->modReferidos($id);
        redirect("cliente/index/".$this->uri->segment(4));
        }  
     }
     else
       redirect("cliente/index/".$this->uri->segment(4)); 
+   }
+
+   public function modReferidos($id){
+    $query = $this->db->get_where("referidos",array("clienteid"=>$id));
+    $referido=$query->result();
+    $id_referido=$referido[0]->id;
+    $r=array();
+    $r["tipo"]=$this->input->post("conoce");
+    $r["texto"]=$this->input->post("conoce_otro");
+    $this->db->where("id",$id_referido);
+    $this->db->update("referidos",$r);
    }
    
    public function modPhones($clienteid)

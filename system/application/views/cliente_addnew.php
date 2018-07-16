@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url()."css/styles.css";?>" />
-<meta name="author" content="www.mizusoft.com.ar" />
+<meta name="author" content="www.pereyrapamela.com" />
 <link rel="shortcut icon" href="<?php echo base_url()."images/icono.jpg";?>">
 <script type="text/javascript" src="<?php echo base_url();?>js/yahoo/yahoo/yahoo-min.js"></script>  
 <script type="text/javascript" src="<?php echo base_url();?>js/yahoo/event/event-min.js"></script>
@@ -138,7 +138,20 @@ $('*').keyup(function(e){
    <input type="checkbox" tabindex="12" id="showbanner"   name="showbanner" value="1"  />
    </div>
    
-  
+   <div class="rowform">
+    <div class="rowform-label"> 
+      <label for="conoce"> Cómo nos conoce? </label>
+    </div>
+    <select name="conoce">
+      <option value="email">Email</option>
+      <option value="web">Web</option>
+      <option value="referido">Referido</option>
+      <option value="otro">Otro</option>
+    </select> 
+   </div>
+   <div class="rowform">
+    <input type="text" name="conoce_otro" value="" placeholder="Indique cliente u otro medio">
+   </div>
   
    </div>
    <div id="form_rigth">

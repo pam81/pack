@@ -21,7 +21,7 @@ function searching(e)
 </script>
 
 
-
+<script type="text/javascript" src="<?php echo base_url();?>js/Chart.min.js"></script>
 
 
 
@@ -137,4 +137,43 @@ function searching(e)
     <a href="<?php echo site_url()."pdf/makepdfrankingcliente/$opciones";?>"> <img src="<?php echo base_url()."images/img/excell.jpg";?>" width="50" height="50" alt="excell" />
 	    </a>
     <?php } ?> 
+    <div style="width: 600px">
+      <canvas id="myChart" ></canvas>
+    </div>
+    <script>
+      var ctx = document.getElementById("myChart").getContext('2d');
+      data = {
+            datasets: [{ 
+                data: [
+                  <?php $value= isset($referidos["email"]) ? $referidos["email"]:0; echo $value; ?>, 
+                  <?php $value= isset($referidos["web"]) ? $referidos["web"]:0; echo $value;?>, 
+                  <?php $value= isset($referidos["referido"]) ? $referidos["referido"]:0; echo $value;?>, 
+                  <?php $value= isset($referidos["otro"]) ? $referidos["otro"]:0; echo $value;?>]
+                  ,
+            
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(100, 100, 100, 0.2)'
+					  ]
+            
+            }],
+            
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+                'Email',
+                'Web',
+                'Referido',
+                'Otro'
+            ]
+        };
+      
+      var myPieChart = new Chart(ctx,{
+          type: 'pie',
+          data: data,
+         // options: options
+      });
+
+    </script>
 </div>
