@@ -795,13 +795,30 @@ class Chofer extends Controller {
      
      $this->form_validation->set_rules('foto4x4','','');
      $this->form_validation->set_rules('fotoregistro','',''); 
-     $this->form_validation->set_rules('observacion','','');      
-     
+     $this->form_validation->set_rules('observacion','','');   
+     $this->form_validation->set_rules('passdocu', "Código Modificar",'trim|required|callback_validPassword');   
+     $this->form_validation->set_message('validPassword',"El código no es válido");
    
     
      
       return $this->form_validation->run();
   
+  }
+
+  public function validPassword(){
+    $codigo = $this->input->post("passdocu");
+    $pass = sha1($codigo);
+    $this->db->where("tipo","modificar_docu");
+    $query=$this->db->get("passwords");
+    $password = $query->row(0);
+    $expire = strtotime($password->expire);
+    $today = strtotime("now");
+
+    if ($pass == $password->codigo && $today < $expire){
+      return true;
+    }else{
+      return false;
+    }
   }
   
    public function _submit_validateModMovil()

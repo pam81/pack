@@ -552,14 +552,19 @@ class Cliente extends Controller {
    }
 
    private function comparePass($pass){
-    $pass = sha1($pass);
-    $query=$this->db->get("passwords");
-    $password = $query->row(0);
-    if ($pass == $password->cliente_inhabilitar){
-      return true;
-    }else{
-      return false;
-    }
+      $pass = sha1($pass);
+      $this->db->where("tipo","cliente_inhabilitar");
+      $query=$this->db->get("passwords");
+      $password = $query->row(0);
+      $expire = strtotime($password->expire);
+      $today = strtotime("now");
+
+      if ($pass == $password->codigo && $today < $expire){
+        return true;
+      }else{
+        return false;
+      }
+
    }
    
    public function _submit_validateModCliente()

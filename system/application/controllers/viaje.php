@@ -146,7 +146,8 @@ class Viaje extends Controller {
        
       if ($this->flete->reservalock($reservaid))
       {  
-       $sql="select r.*,c.name,c.show_banner,c.banner,p.phone, cat.name as categoria from reservas r, clientes c, phones p, categorias cat
+       $sql="select r.*,c.name,c.show_banner,c.banner,p.phone, cat.name as categoria from reservas r, 
+       clientes c, phones p, categorias cat
         where r.clienteid=c.id and p.clienteid=c.id and
         p.principal=1 and r.id=$reservaid
         and r.categoriaid = cat.id
@@ -344,13 +345,34 @@ class Viaje extends Controller {
    }
    //verificar que la documentacion este bien
     function notDocMovil()
-   {
-      
-        $nromovil=$this->db->escape_str($this->input->post("movil"));
-        return $this->flete->verificaDocMovil($nromovil);
+   {    //si pone el codigo y valido no valido directamente asigna
+        //sino valida
+        if (!$this->validPassword()){
+          $nromovil=$this->db->escape_str($this->input->post("movil"));
+          return $this->flete->verificaDocMovil($nromovil);
+        }else{
+          return true;
+        }
         
    
    }
+
+   //verificar password para asignar movil sin documentación al día
+   public function validPassword(){
+    $codigo = $this->input->post("passmovil");
+    $pass = sha1($codigo);
+    $this->db->where("tipo","asignar_viaje");
+    $query=$this->db->get("passwords");
+    $password = $query->row(0);
+    $expire = strtotime($password->expire);
+    $today = strtotime("now");
+
+    if ($pass == $password->codigo && $today < $expire){
+      return true;
+    }else{
+      return false;
+    }
+  }
    
     function diferenciaTime($hora,$fecha,$regreso,$fecha_regreso)
    {

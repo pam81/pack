@@ -186,15 +186,24 @@ $(document).ready(function(){
    </div>
     
    <div class="rowform">
-   <div class="rowform-label"> <label for="aprox_hour"> <?php echo $this->lang->line("title_hora_llegada_aprox"); ?>  </label>
-   </div>
-   <div class="rowform-input">
-   
-   <input type="aprox_hour" id="aprox_hour" tabindex="3" value="<?php echo set_value("aprox_hour",00);?>" size="2"/>
-   :
-   <input type="aprox_min" id="aprox_min" tabindex="4" value="<?php echo set_value("aprox_min",00);?>" size="2"/>
+    <div class="rowform-label"> 
+        <label for="aprox_hour"> <?php echo $this->lang->line("title_hora_llegada_aprox"); ?>  </label>
+    </div>
+    <div class="rowform-input">
     
+    <input type="aprox_hour" id="aprox_hour" tabindex="3" value="<?php echo set_value("aprox_hour",00);?>" size="2"/>
+    :
+    <input type="aprox_min" id="aprox_min" tabindex="4" value="<?php echo set_value("aprox_min",00);?>" size="2"/>
+      
+    </div>
    </div>
+   <div class="rowform">
+    <div class="rowform-label">
+      <label>Código Asignar Movil</label>
+    </div>
+    <div class="rowform-input">
+    <input type="text" name="passmovil" value="">
+    </div>
    </div>
    
   

@@ -1,6 +1,7 @@
 <?php
 
 class Pass extends Controller {
+   public $message = '';
 
    function __construct()
    {
@@ -19,14 +20,11 @@ class Pass extends Controller {
    public function index(){
 	   	if ( $this->Current_User->isHabilitado("SETEO_PASSWORD") )
 	    {
-	 
-	    
-	    $query=$this->db->get("passwords");
-	    $data["pass"]=$query->result();
-	    $data["content"]="password/password_viewlist";
-	    $this->load->view("costoindex",$data);
-	   
-	   
+            $query=$this->db->get("passwords");
+            $data["codigos"]=$query->result();
+            $data["content"]="password/password_viewlist";
+            $data["message"]=$this->message;
+            $this->load->view("costoindex",$data);
 	   }
 	    else{
 	          redirect("inicio/denied");
@@ -34,13 +32,37 @@ class Pass extends Controller {
    }
 
    public function save(){
- 	if ($this->input->post("send")  )
-	{
-		$record["cliente_inhabilitar"] = sha1($this->db->escape_str($this->input->post("inhabilitar")));
-		$this->db->where("id",$this->uri->segment(3));
-        $this->db->update('passwords',$record);
-       	redirect("pass");
-    }
+      if ($this->input->post("send")  )
+      {
+            if ($this->input->post("cliente_inhabilitar")){
+                  $code = sha1($this->db->escape_str($this->input->post("cliente_inhabilitar")));
+                  $record["codigo"] = $code;
+                  $record["expire"] = date('Y-m-d H:i', strtotime("+1 day"));
+                  $this->db->where("tipo","cliente_inhabilitar");
+                  $this->db->update('passwords',$record);
+                  $this->message="Se ha generado la clave para inhabilitar cliente. <br>";
+            }
+
+            if ($this->input->post("modificar_docu")){
+                  $code = sha1($this->db->escape_str($this->input->post("modificar_docu")));
+                  $record["codigo"] = $code;
+                  $record["expire"] = date('Y-m-d H:i', strtotime("+1 day"));
+                  $this->db->where("tipo","modificar_docu");
+                  $this->db->update('passwords',$record);
+                  $this->message.="Se ha generado la clave para modificar documentación de movil. <br>";
+            }
+
+            if ($this->input->post("asignar_viaje")){
+                  $code = sha1($this->db->escape_str($this->input->post("asignar_viaje")));
+                  $record["codigo"] = $code;
+                  $record["expire"] = date('Y-m-d H:i', strtotime("+1 day"));
+                  $this->db->where("tipo","asignar_viaje");
+                  $this->db->update('passwords',$record);
+                  $this->message .= "Se ha generado la clave para asignar un viaje a movil. <br>"
+            }
+            redirect("pass");
+            
+      }
    }
 
 }

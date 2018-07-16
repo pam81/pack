@@ -392,14 +392,22 @@ $(document).ready(function(){
     
     <?php if ( $this->Current_User->isHabilitado("DOC_MOVIL") ){ ?>
     <div class="rowform">
-    <input type="checkbox" tabindex="56"  <?php if(isset($movil[0]) && $movil[0]->noverifica_documentacion == 1) echo "checked=\"checked\"";?> name="verifica" id="verifica" onkeypress="flete.checkElement(this,event); " />
-   <label for="verifica"> <?php echo $this->lang->line("title_noverifica_documentacion"); ?>  </label>
+      <input type="checkbox" tabindex="56"  <?php if(isset($movil[0]) && $movil[0]->noverifica_documentacion == 1) echo "checked=\"checked\"";?> name="verifica" id="verifica" onkeypress="flete.checkElement(this,event); " />
+      <label for="verifica"> <?php echo $this->lang->line("title_noverifica_documentacion"); ?>  </label>
     </div>
     <?php }?>
+
     <div class="rowform">
-   <div > <label for="observacion2"> <?php echo $this->lang->line("title_observacion"); ?>  </label>
+        <div > 
+          <label for="observacion2"> <?php echo $this->lang->line("title_observacion"); ?>  </label>
+        </div>
+        <textarea name="observacion2" id="observacion2" tabindex="57" rows="6" cols="30">
+        <?php if(isset($movil[0])) echo set_value("observacion2",$movil[0]->observacion_movil);?>
+        </textarea>
    </div>
-   <textarea name="observacion2" id="observacion2" tabindex="57" rows="6" cols="30"><?php if(isset($movil[0])) echo set_value("observacion2",$movil[0]->observacion_movil);?></textarea>
+   <div class="rowform"> 
+      <div> <label for="passdocu">Código Modificar</label> </div>
+      <input type="text" name="passdocu" value="" />
    </div>
    </div>
    </div>
