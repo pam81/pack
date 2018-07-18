@@ -128,7 +128,7 @@ class Chofer extends Controller {
     {
     $array=array("find"=>$search);  
     
-    $sql="select c.*, m.movil,m.observacion_movil, m.marca  from choferes c, movil m, movil_chofer mc where 
+    $sql="select c.*, m.movil,m.observacion_movil, m.marca, m.exmovil  from choferes c, movil m, movil_chofer mc where 
           c.id = mc.choferid and m.id = mc.movilid 
           and m.movil=$search order by m.movil";
     }
@@ -136,7 +136,7 @@ class Chofer extends Controller {
     {
     $array=array("name"=>$name);  
     
-    $sql="select c.*, m.movil,m.observacion_movil, m.marca  from choferes c, movil m, movil_chofer mc where 
+    $sql="select c.*, m.movil,m.observacion_movil, m.marca, m.exmovil  from choferes c, movil m, movil_chofer mc where 
           c.id = mc.choferid and m.id = mc.movilid 
           and c.name like '%".$name."' order by m.movil";
     
@@ -146,7 +146,7 @@ class Chofer extends Controller {
     {
     $array=array("patente"=>$name);  
     
-    $sql="select c.*, m.movil,m.observacion_movil, m.marca  from choferes c, movil m, movil_chofer mc where 
+    $sql="select c.*, m.movil,m.observacion_movil, m.marca, m.exmovil  from choferes c, movil m, movil_chofer mc where 
           c.id = mc.choferid and m.id = mc.movilid 
           and m.patente like '%".$patente."' order by m.movil";
     
