@@ -93,14 +93,18 @@ class Inicio extends Controller {
    public function avisoVencimiento(){
      //listado de vencimientos de documentación
      $listado = array();
+     $this->db->orderby("movil");
      $query=$this->db->get_where("movil",array("active"=>1));
      $moviles=$query->result();
      foreach($moviles as $movil){
-      $vencimiento=$this->flete->DocMovilVencida($movil->id);
-      if ($vencimiento){
-        $listado=array_merge($listado,$vencimiento);
-      }
+       if ($movil->movil != -1){
+          $vencimiento=$this->flete->DocMovilVencida($movil->movil);
+          if ($vencimiento){
+            $listado=array_merge($listado,$vencimiento);
+          }
+        }
      }
+    
      return $listado;
    }
    
