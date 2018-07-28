@@ -269,7 +269,7 @@ class Reporte extends Controller {
               }else{
 
                     $sql="select v.*, r.art_valor, r.hasMudanza from viajes v inner join reservas r on r.id = v.reservaid 
-                          where v.movilid=".$chofer[0]->movilid." and  v.cerrado = 1 and v.fecha_despacho='$fecha' ";
+                          where v.movilid=".$chofer[0]->movilid." and  v.cerrado = 1 and v.fecha_comisionar='$fecha' ";
                       
                     $query=$this->db->query($sql);
                     $viajes=$query->result();
@@ -390,7 +390,7 @@ class Reporte extends Controller {
     from viajes v, reservas r, movil m,
           clientes c where 
             ";
-     
+     //fecha_abordo ?
     $sql .="  (v.cerrado=1 or v.cancelado =1)
                 and v.fecha_abordo between $fdesde and $fhasta    
                 and v.movilid=m.id
@@ -574,10 +574,10 @@ class Reporte extends Controller {
          
        $data["movil"]=$movil;
       
-       if ($this->input->post("desde_day") && $this->input->post("desde_month") && $this->input->post("desde_year"))
+      if ($this->input->post("desde_day") && $this->input->post("desde_month") && $this->input->post("desde_year"))
          $fdesde=$this->db->escape_str($this->input->post("desde_year")).str_pad($this->db->escape_str($this->input->post("desde_month")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("desde_day")),2,"0",STR_PAD_LEFT);
       
-       $data["fdesde"]=$fdesde;
+      $data["fdesde"]=$fdesde;
       
       if ($this->input->post("hasta_day") && $this->input->post("hasta_month") && $this->input->post("hasta_year"))
          $fhasta=$this->db->escape_str($this->input->post("hasta_year")).str_pad($this->db->escape_str($this->input->post("hasta_month")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("hasta_day")),2,"0",STR_PAD_LEFT);

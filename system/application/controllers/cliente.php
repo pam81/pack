@@ -401,9 +401,11 @@ class Cliente extends Controller {
        else
        {
         $show=0;
-        if ($this->input->post("showbanner"))
+        if ($this->input->post("showbanner")){
           $show=1;
-          
+        }
+        $diferido = $this->input->post("showbanner") ? $this->input->post("showbanner") : 0;
+        
          $record=array(
           'name'=>$this->input->post("name"),
           'provincia'=>$this->db->escape_str($this->input->post("provincia")),
@@ -425,6 +427,7 @@ class Cliente extends Controller {
           'mensaje'=>$this->input->post("mensaje"),
           'banner'=>$this->input->post("banner"),
           'show_banner'=>$show,
+          'diferido' => $diferido,
           'comision'=>$this->input->post("comision") ? $this->input->post("comision"): 0
          );
          $record["address"]=$record["calle"]." ".$record["numero"]." ".$record["piso"]." ".$record["dpto"];
@@ -745,8 +748,14 @@ class Cliente extends Controller {
         $record["banner"]=$this->input->post("banner");
         $record["comision"]=$this->input->post("comision") ? $this->input->post("comision") : 0;
         $show=0;
-        if ($this->input->post("showbanner"))
+        if ($this->input->post("showbanner")){
           $show=1;
+        }
+        $diferido = 0;
+        if ($this->input->post("diferido")){
+          $diferido = 1;
+        }
+        $record["diferido"] = $diferido;
         $record["show_banner"]=$show;
         $record["deudor"]=$this->input->post("deudor");
         $record["bloqueado"]=0;

@@ -296,12 +296,12 @@ class Flete_model extends Model{
        //NO DISTINGO EFVO Y CTA CTE
         $sql= "SELECT 
             sum(v.mudanza) as total_mudanza,
-            m.movil as movil
+            m.movil as movil, v.movilid
             FROM `viajes` v,movil m, reservas r
             where v.cerrado=1  and v.movilid=m.id 
             and r.id=v.reservaid and r.hasMudanza=1
-            and v.fecha_despacho between $fdesde and $fhasta
-            group by v.movilid
+            and v.fecha_comisionar between $fdesde and $fhasta
+            group by v.movilid, movil
             order by movil
             ";
           $query=$this->db->query($sql);
@@ -318,14 +318,15 @@ class Flete_model extends Model{
     public function getRecaudacionGral($fdesde,$fhasta)
     {
     //obtengo cantidad de viajes - total de lo que se pone en subtotal y datos del chofer y movil
-    $sql= "SELECT count(v.id) as cant_viajes,sum(v.valor) as total,
-            m.movil as movil, c.name as name, c.lastname as lastname
+    $sql= "
+            SELECT  count(v.id) as cant_viajes,sum(v.valor) as total,
+            m.movil as movil, c.name as name, c.lastname as lastname, v.movilid
             FROM `viajes` v,reservas r,movil m,choferes c, movil_chofer mc
             where v.cerrado=1  and v.movilid=m.id 
-            and v.fecha_despacho between $fdesde and $fhasta
+            and v.fecha_comisionar between $fdesde and $fhasta
             and m.id=mc.movilid and c.id=mc.choferid
             and r.id=v.reservaid 
-            group by v.movilid
+            group by v.movilid, movil, name, lastname
             order by movil
             ";
 
@@ -348,13 +349,13 @@ class Flete_model extends Model{
             sum(r.art_valor) as total_art,
             sum(v.porcentaje_ctacte) as total_porcentajecc,
             sum(v.iva) as total_iva,
-            m.movil as movil
+            m.movil as movil, v.movilid
             FROM `viajes` v,movil m, reservas r
             where v.cerrado=1  and v.movilid=m.id 
             and r.id=v.reservaid
-            and v.fecha_despacho between $fdesde and $fhasta
+            and v.fecha_comisionar between $fdesde and $fhasta
             and v.forma_pago=1
-            group by v.movilid
+            group by v.movilid, movil
             order by movil
             ";
     $query=$this->db->query($sql);
@@ -372,13 +373,14 @@ class Flete_model extends Model{
             sum(r.art_valor) as total_art,
             sum(v.porcentaje_ctacte) as total_porcentajecc,
             sum(v.iva) as total_iva,
-            m.movil as movil
+            m.movil as movil, 
+            v.movilid
             FROM `viajes` v,movil m, reservas r
             where v.cerrado=1  and v.movilid=m.id 
             and r.id=v.reservaid 
-            and v.fecha_despacho between $fdesde and $fhasta
+            and v.fecha_comisionar between $fdesde and $fhasta
             and v.forma_pago=2
-            group by v.movilid
+            group by v.movilid, movil
             order by movil
             ";
             
@@ -502,13 +504,13 @@ class Flete_model extends Model{
         // NO DEBERIA SUMAR PEONES Y KM ??
     
          $sql= "SELECT count(v.id) as cant_viajes,sum(v.valor) as total,
-            m.movil as movil, c.name as name, c.lastname as lastname
+            m.movil as movil, c.name as name, c.lastname as lastname, v.movilid
             FROM `viajes` v,reservas r,movil m,choferes c, movil_chofer mc
             where v.cerrado=1  and v.movilid=m.id 
-            and v.fecha_despacho between $fdesde and $fhasta
+            and v.fecha_comisionar between $fdesde and $fhasta
             and m.id=mc.movilid and c.id=mc.choferid
             and r.id=v.reservaid and r.hasMudanza=0
-            group by v.movilid
+            group by v.movilid, movil, name, lastname
             order by movil
             ";
 
@@ -531,13 +533,14 @@ class Flete_model extends Model{
             sum(r.art_valor) as total_art,
             sum(v.porcentaje_ctacte) as total_porcentajecc,
             sum(v.iva) as total_iva,
-            m.movil as movil
+            m.movil as movil, 
+            v.movilid
             FROM `viajes` v,movil m, reservas r
             where v.cerrado=1  and v.movilid=m.id 
             and r.id=v.reservaid and r.hasMudanza=0
-            and v.fecha_despacho between $fdesde and $fhasta
+            and v.fecha_comisionar between $fdesde and $fhasta
             and v.forma_pago=1
-            group by v.movilid
+            group by v.movilid, movil
             order by movil
             ";
     $query=$this->db->query($sql);
@@ -555,13 +558,14 @@ class Flete_model extends Model{
             sum(r.art_valor) as total_art,
             sum(v.porcentaje_ctacte) as total_porcentajecc,
             sum(v.iva) as total_iva,
-            m.movil as movil
+            m.movil as movil,
+            v.movilid
             FROM `viajes` v,movil m, reservas r
             where v.cerrado=1  and v.movilid=m.id 
             and r.id=v.reservaid  and r.hasMudanza=0
-            and v.fecha_despacho between $fdesde and $fhasta
+            and v.fecha_comisionar between $fdesde and $fhasta
             and v.forma_pago=2
-            group by v.movilid
+            group by v.movilid, movil
             order by movil
             ";
             
@@ -630,7 +634,7 @@ class Flete_model extends Model{
               m.movil, c.name as cliente  from viajes v,reservas r, movil m, 
                clientes c where
               r.id=v.reservaid and m.id=v.movilid and v.clienteid = c.id
-              and fecha_despacho=$fecha and (v.cerrado=1 or v.cancelado =1)
+              and fecha_comisionar=$fecha and (v.cerrado=1 or v.cancelado =1)
        ";
      
     
@@ -656,7 +660,7 @@ class Flete_model extends Model{
                 ";
          
         $sql .="  (v.cerrado=1 or v.cancelado =1)
-                    and v.fecha_despacho between $fdesde and $fhasta    
+                    and v.fecha_comisionar between $fdesde and $fhasta    
                     and v.movilid=m.id
                     and v.reservaid = r.id
                     and v.clienteid = c.id";
@@ -673,19 +677,19 @@ class Flete_model extends Model{
     {
     
     $sql="select distinct v.id as viaje, c.name as cliente,r.desde, r.destino, r.monto_excedente as seguro,
-            r.art_valor, v.valor,v.voucher,v.fecha_despacho,v.fecha_abordo,v.habordo, v.km,
+            r.art_valor, v.valor,v.voucher,v.fecha_comisionar,v.fecha_abordo,v.habordo, v.km,
             m.movil , v.forma_pago, v.peones, v.otros, v.espera, v.estacionamiento, v.peaje,
             v.mudanza, v.porcentaje_mudanza, v.porcentaje_ctacte, v.iva
             from viajes v,reservas r, clientes c,phones p,movil m where v.clienteid=c.id
             and p.phone='".$telefono."' and p.clienteid=c.id 
-            and v.fecha_despacho between $fdesde and $fhasta ";
+            and v.fecha_comisionar between $fdesde and $fhasta ";
      if ($tipo !=3)       
             $sql .=" and v.forma_pago=$tipo ";
      
      $sql.=" and v.reservaid=r.id
             and v.cerrado=1
             and v.movilid = m.id
-            order by v.fecha_despacho 
+            order by v.fecha_comisionar 
       ";
       
       

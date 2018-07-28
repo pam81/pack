@@ -205,9 +205,12 @@ class Viaje extends Controller {
           $movil=$query->result();
           $query=$this->db->get_where("reservas",array("id"=>$this->db->escape_str($this->input->post("reservaid"))));
           $reserva=$query->result();
+          $query=$this->db->get_where("clientes",array("id"=>$this->db->escape_str($this->input->post("clienteid"))));
+          $cliente=$query->result();
           if (isset($movil[0])){   
           if ( isset($reserva[0]) && $reserva[0]->despachado != 1)
           {
+
           $record=array(
           'clienteid'=>$this->db->escape_str($this->input->post("clienteid")),
           'reservaid'=>$this->db->escape_str($this->input->post("reservaid")),
@@ -220,6 +223,9 @@ class Viaje extends Controller {
           'forma_pago'=>$this->db->escape_str($this->input->post("pago")),
           'hexacta_puerta'=>$this->db->escape_str($this->input->post("hpuerta"))
           );
+          if (!$cliente[0]->diferido){ //si no es un cliente diferido comisiona el mismo dia del despacho
+            $record["fecha_comisionar"] = date("Ymd");
+          }
           $this->db->insert("viajes",$record);
           $nroviaje=$this->db->insert_id();
           
@@ -950,8 +956,11 @@ class Viaje extends Controller {
         $record["habordo"]=str_pad($this->db->escape_str($this->input->post("hora_abordo")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("min_abordo")),2,"0",STR_PAD_LEFT);
         
         $record["observaciones"]=$this->input->post("observacion"); 
-                  
-       
+       if ($this->input->post("comisionar_year") && $this->input->post("comisionar_month") && $this->input->post("comisionar_day")){           
+          $record["fecha_comisionar"]=$this->db->escape_str($this->input->post("comisionar_year")).
+                                  str_pad($this->db->escape_str($this->input->post("comisionar_month")),2,"0",STR_PAD_LEFT)
+                                  .str_pad($this->db->escape_str($this->input->post("comisionar_day")),2,"0",STR_PAD_LEFT);
+        }
         if($this->input->post("subtotal"))
           $record["valor"]=$this->input->post("subtotal");
         else

@@ -215,6 +215,12 @@ $(document).ready(function(){
    </div>
    <input type="text" tabindex="19"  id="comision"  name="comision" value="<?php echo set_value("comision");?>" maxsize="10" />
    </div>
+   <div class="rowform">
+      <div class="rowform-label"> 
+        <label for="diferido"> Reporte Diferido  </label>
+      </div>
+        <input type="checkbox" tabindex="19" id="diferido" <?php if (isset($cliente[0]) && ($cliente[0]->diferido == 1) ) echo "checked";?>   name="diferido" value="1"  />
+   </div>
    <div class="subtitle"> <?php echo $this->lang->line("title_phone_adicionales");?> </div>
    <div class="rowform">
    <div class="rowform-label"> <label for="phone1"> <?php echo $this->lang->line("title_telefono"); ?>  </label>

@@ -279,10 +279,10 @@ $(document).ready(function(){
     <?php } }?>
   
     <?php if($viaje[0]->cerrado == 0){ ?>
-    <input type="submit" tabindex="24" id="send" accesskey="e" name="send" value="<?php echo $this->lang->line("title_close");?>" onclick="if ( flete.validarCloseViaje('<?php echo $this->lang->line("ask_close_viaje");?>','<?php echo $viaje[0]->forma_pago;?>') ) { form.action='<?php echo site_url()."viaje/update/".$viaje[0]->id;?>'; form.submit();}  " />
+    <input type="submit" tabindex="27" id="send" accesskey="e" name="send" value="<?php echo $this->lang->line("title_close");?>" onclick="if ( flete.validarCloseViaje('<?php echo $this->lang->line("ask_close_viaje");?>','<?php echo $viaje[0]->forma_pago;?>') ) { form.action='<?php echo site_url()."viaje/update/".$viaje[0]->id;?>'; form.submit();}  " />
     <?php } ?>
-    <input type="submit" tabindex="22" id="mod" accesskey="e" name="mod" value="<?php echo $this->lang->line("title_mod");?>" onclick="return confirm('<?php echo $this->lang->line("ask_mod_viaje");?>'); " />
-    <input type="reset" tabindex="23" id="clean" accesskey="l" name="clean" value="<?php echo $this->lang->line("button_clean");?>" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " />
+    <input type="submit" tabindex="25" id="mod" accesskey="e" name="mod" value="<?php echo $this->lang->line("title_mod");?>" onclick="return confirm('<?php echo $this->lang->line("ask_mod_viaje");?>'); " />
+    <input type="reset" tabindex="26" id="clean" accesskey="l" name="clean" value="<?php echo $this->lang->line("button_clean");?>" onclick="return confirm('<?php echo $this->lang->line("ask_clean");?>'); " />
    <input type="button" name="ruta" id="ruta" value="Calcular ruta" onclick="flete.showRuta('<?php echo base_url()."ruta.php";?>')" />
    </div>
    <?php } ?>
@@ -438,16 +438,37 @@ $(document).ready(function(){
    </div>
    
    
-   
-   
-   
-   
-     <div class="rowform">
-   <div class="rowform-label"> <label for="otro"> <?php echo $this->lang->line("title_otros")." $"; ?>  </label>
+   <div class="rowform">
+      <div class="rowform-label"> 
+        <label for="otro"> <?php echo $this->lang->line("title_otros")." $"; ?>  </label>
+      </div>
+      <div class="rowform-input">
+        <input type="text" id="otro" name="otro" value="<?php echo set_value("otro",$viaje[0]->otros);?>" tabindex="19" onKeyUp="getTotal()"/>
+      </div>
    </div>
-    <div class="rowform-input">
-    <input type="text" id="otro" name="otro" value="<?php echo set_value("otro",$viaje[0]->otros);?>" tabindex="19" onKeyUp="getTotal()"/>
-    </div>
+
+   <div class="rowform">
+      <div class="rowform-label"> 
+        <label for="comisionar"> Fecha Comisionar </label>
+      </div>
+      <?php
+         $dia=substr($viaje[0]->fecha_comisionar,6,2);
+         $mes=substr($viaje[0]->fecha_comisionar,4,2);
+         $year=substr($viaje[0]->fecha_comisionar,0,4);
+         
+  ?> 
+      <div class="rowform-input">
+        <input type="text" name="comisionar_day" id="comisionar_day" 
+           size="2" maxlength="2" tabindex="22" 
+          value="<?php echo set_value("comisionar_day",$dia);?>" />
+        <input type="text" name="comisionar_month" id="comisionar_month" 
+          tabindex="3" size="2" maxlength="23" 
+          value="<?php echo set_value("comisionar_month",$mes);?>" />    
+        <input type="text" name="comisionar_year" id="comisionar_year" 
+          tabindex="4" size="4" maxlength="24" 
+          value="<?php echo set_value("comisionar_year",$year);?>" />
+        <span><?php echo $this->lang->line("fecha_formato");?></span>
+      </div>
    </div>
    
    <?php if ($viaje[0]->forma_pago == 2) {?>
