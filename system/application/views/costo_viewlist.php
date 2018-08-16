@@ -15,7 +15,7 @@ $(document).ready(function(){
     <h2> <?php echo $this->lang->line("title_mod_costos");?></h2>
     </div>
    <hr class="separador">
-  <form name="formusuario"  class="form_col" method="post" action="<?php echo site_url()."costo/add";?>" onsubmit=" var categoria=document.getElementById('categoria'); if (categoria.options[categoria.selectedIndex].value  == 0){ alert('Debe seleccionar una categoria'); return false} else return true;" >
+  <form name="formusuario"  class="form_col" method="post" action="<?php echo site_url()."costo/add";?>" onsubmit=" var categoria=document.getElementById('categoria'); if (categoria.options[categoria.selectedIndex].value  == 0){ swal('Debe seleccionar una categoria'); return false} else return true;" >
    <?php echo validation_errors('<p class="error">','</p>'); ?>
    <div class="rowform">
    <div class="rowform-label"> <label for="categoria"> <?php echo $this->lang->line("title_categorias"); ?>  </label>

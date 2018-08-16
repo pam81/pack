@@ -26,7 +26,7 @@ $(document).ready(function(){
 			$("#list_viajes").html(listado);
 		  	$('#myModal').modal('show');
 		}).fail(function(){
-			alert("error no se pudieron obtener los datos");
+			swal({ text:"error no se pudieron obtener los datos", icon: "warning"});
 		});
 
 	});

@@ -888,6 +888,15 @@ class Cliente extends Controller {
       }
    
    }
+
+   public function export(){
+    $sql="select c.name, c.email from clientes c order by c.name asc";
+    $query=$this->db->query($sql);
+    $data["clientes"]=$query->result();
+    $filename = "clientes";
+    $this->load->plugin('to_excel');
+    to_excel_cliente($data,$filename);
+   }
   
 }
 

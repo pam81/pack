@@ -677,19 +677,19 @@ class Flete_model extends Model{
     {
     
     $sql="select distinct v.id as viaje, c.name as cliente,r.desde, r.destino, r.monto_excedente as seguro,
-            r.art_valor, v.valor,v.voucher,v.fecha_comisionar,v.fecha_abordo,v.habordo, v.km,
+            r.art_valor, v.valor,v.voucher,v.fecha_despacho,v.fecha_comisionar,v.fecha_abordo,v.habordo, v.km,
             m.movil , v.forma_pago, v.peones, v.otros, v.espera, v.estacionamiento, v.peaje,
             v.mudanza, v.porcentaje_mudanza, v.porcentaje_ctacte, v.iva
             from viajes v,reservas r, clientes c,phones p,movil m where v.clienteid=c.id
             and p.phone='".$telefono."' and p.clienteid=c.id 
-            and v.fecha_comisionar between $fdesde and $fhasta ";
+            and v.fecha_despacho between $fdesde and $fhasta ";
      if ($tipo !=3)       
             $sql .=" and v.forma_pago=$tipo ";
      
      $sql.=" and v.reservaid=r.id
             and v.cerrado=1
             and v.movilid = m.id
-            order by v.fecha_comisionar 
+            order by v.fecha_despacho 
       ";
       
       

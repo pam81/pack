@@ -5,7 +5,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()."css/styles.css";?>" />
     <meta name="author" content="www.pereyrapamela.com" />
     <link rel="shortcut icon" href="<?php echo base_url()."images/favicon.ico";?>">
- 
+    <link href="<?php echo base_url();?>css/defaultTheme.css" rel="stylesheet" media="screen" />
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/shadowbox/shadowbox.css">
     <script type="text/javascript" src="<?php echo base_url();?>js/yahoo/yahoo/yahoo-min.js"></script>  
     <script type="text/javascript" src="<?php echo base_url();?>js/yahoo/event/event-min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/yahoo/connection/connection-min.js"></script>
@@ -15,16 +16,11 @@
     <script type="text/javascript" src="<?php echo base_url();?>js/json.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery.table_navigation.js"></script>
-    <script type="text/javascript" src="<?php echo base_url();?>js/apprise-1.5.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>js/shadowbox/shadowbox.css">
+    <script type="text/javascript" src="<?php echo base_url();?>js/sweetalert.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/shadowbox/shadowbox.js"></script>
-
-    <link rel="stylesheet" href="<?php echo base_url();?>css/apprise.min.css" type="text/css" />
-
-    <link href="<?php echo base_url();?>css/defaultTheme.css" rel="stylesheet" media="screen" />
     <script type="text/javascript" src="<?php echo base_url();?>js/jquery.fixedheadertable.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/demo.js"></script>
-    
+  
     <title><?php echo $this->lang->line('name_empresa');?></title>
 
     <script type="text/javascript" >

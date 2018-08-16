@@ -140,15 +140,14 @@ var flete ={
    else
        return true;     
 },
-
- validarRegistrarUsuario:function()
+validarRegistrarUsuario:function()
  {
  
    var name=document.getElementById("name");
  
    if(name.value == '')
    {
-      alert(messages.name_not_valid);
+      swal({ text: messages.name_not_valid, icon: "warning"});
       name.focus();
       return false;
    }
@@ -157,7 +156,7 @@ var flete ={
  
    if(lastname.value == '')
    {
-      alert(messages.lastname_not_valid);
+      swal({ text:messages.lastname_not_valid, icon: "warning"});
       lastname.focus();
       return false;
    }
@@ -168,7 +167,7 @@ var flete ={
  
    if(username.value == '')
    {
-      alert(messages.username_not_valid);
+      swal({ text:messages.username_not_valid, icon: "warning"});
       username.focus();
       return false;
    }
@@ -177,14 +176,14 @@ var flete ={
    var confirmpass=document.getElementById("confirm");
    if (pass.value == '')
    {
-     alert(messages.pass_not_valid);
+     swal({ text:messages.pass_not_valid, icon: "warning"});
      pass.focus();
      return false;
    }
    
    if(pass.value != confirmpass.value)
    {
-     alert(messages.not_confirm_pass);
+     swal({ text:messages.not_confirm_pass, icon: "warning"});
      pass.focus();
      return false;
    }
@@ -198,7 +197,7 @@ var flete ={
  
    if(name.value == '')
    {
-      alert(messages.name_not_valid);
+      swal({ text:messages.name_not_valid, icon: "warning"});
       name.focus();
       return false;
    }
@@ -207,7 +206,7 @@ var flete ={
  
    if(lastname.value == '')
    {
-      alert(messages.lastname_not_valid);
+      swal({ text:messages.lastname_not_valid, icon: "warning"});
       lastname.focus();
       return false;
    }
@@ -218,7 +217,7 @@ var flete ={
  
    if(username.value == '')
    {
-      alert(messages.username_not_valid);
+      swal({ text:messages.username_not_valid, icon: "warning"});
       username.focus();
       return false;
    }
@@ -231,7 +230,7 @@ var flete ={
       
    if(pass.value != confirmpass.value)
    {
-     alert(messages.not_confirm_pass);
+     swal({ text:messages.not_confirm_pass, icon: "warning"});
      pass.focus();
      return false;
    }
@@ -246,19 +245,19 @@ var flete ={
     
      if (isNaN(anio) || anio.length<4 || parseFloat(anio)<1900)
      {  
-      //       alert('Año inválido')  
+      //       ('Año inválido')  
          return false  
      }  
   
      if (isNaN(mes) || parseFloat(mes)<1 || parseFloat(mes)>12)
      {  
-        // alert('Mes inválido')  
+        // ('Mes inválido')  
          return false  
      }  
   
      if (isNaN(dia) || parseInt(dia, 10)<1 || parseInt(dia, 10)>31)
      {  
-        // alert('Día inválido')  
+        // ('Día inválido')  
          return false  
      }  
      
@@ -266,7 +265,7 @@ var flete ={
      {  
          if (dia>30) 
          {  
-          //   alert('Día inválido')  
+          //   ('Día inválido')  
              return false  
          }  
      }
@@ -327,7 +326,7 @@ esBisiesto:function(anio)
    
    if (pass.length < 6 || pass.length > 16)
    {
-     alert(messages.error_pass_long);
+     swal({ text:messages.error_pass_long, icon: "warning"});
      return false;
    }
    
@@ -342,7 +341,7 @@ esBisiesto:function(anio)
       }
    if (espacios) {
   
-      alert (messages.error_pass_space);
+      swal({ text:messages.error_pass_space, icon: "warning"});
   
       return false;
     }
@@ -430,21 +429,21 @@ validarCaja:function(){
 
   var movil=document.getElementById("movil");
   if (movil.value == 0){
-    alert(messages.movil_not_valid);
+    swal({ text:messages.movil_not_valid, icon: "warning"});
     movil.focus();
     return false;
   }
 
   var monto=document.getElementById("monto");
   if (monto.value == ''){
-    alert(messages.monto_empty);
+   swal({ text:messages.monto_empty, icon: "warning"});
     monto.focus();
     return false;
   }else{
     val = parseFloat(monto);
     valInt = parseInteger(monto);
     if(isNaN(val) && isNaN(valInt)){
-      alert(messages.monto_not_valid);
+      swal({ text:messages.monto_not_valid, icon: "warning"});
       monto.focus();
       return false;
     }
@@ -455,14 +454,14 @@ validarCaja:function(){
    var yearn=document.getElementById("fecha_year");
    if (!this.validarFecha( dian.value,mesn.value,yearn.value))
    {
-       alert(messages.fecha_not_valid);
+       swal({ text:messages.fecha_not_valid, icon: "warning"});
        dian.focus();
        return false;   
    }
 
    var descripcion=document.getElementById("descripcion");
    if (descripcion.value == ''){
-      alert(messages.description_empty);
+      swal({ text:messages.description_empty, icon: "warning"});
       descripcion.focus();
       return false;
    }
@@ -475,7 +474,7 @@ validarAddChofer:function()
  
    if(name.value == '')
    {
-      alert(messages.name_not_valid);
+      swal({ text:messages.name_not_valid, icon: "warning"});
       name.focus();
       return false;
    }
@@ -484,7 +483,7 @@ validarAddChofer:function()
  
    if(lastname.value == '')
    {
-      alert(messages.lastname_not_valid);
+      swal({ text:messages.lastname_not_valid, icon: "warning"});
       lastname.focus();
       return false;
    }
@@ -493,7 +492,7 @@ validarAddChofer:function()
    var yearn=document.getElementById("fecnac_year");
    if (!this.validarFecha( dian.value,mesn.value,yearn.value))
    {
-       alert(messages.fecha_nac_not_valid);
+       swal({ text:messages.fecha_nac_not_valid, icon: "warning"});
        dian.focus();
        return false;   
    }
@@ -501,14 +500,14 @@ validarAddChofer:function()
  
    if(nrodoc.value == '')
    {
-      alert(messages.dni_not_valid);
+      swal({ text:messages.dni_not_valid, icon: "warning"});
       nrodoc.focus();
       return false;
    }
    var provincia=document.getElementById("provincia");
    if (provincia.options[provincia.selectedIndex].value == -1)
    {
-       alert(messages.provincia_not_selected);
+       swal({ text:messages.provincia_not_selected, icon: "warning"});
        provincia.focus();
        return false;
    
@@ -517,7 +516,7 @@ validarAddChofer:function()
    var localidad=document.getElementById("localidad");
    if (localidad.options[localidad.selectedIndex].value == -1)
    {
-       alert(messages.localidad_not_selected);
+       swal({ text:messages.localidad_not_selected, icon: "warning"});
        localidad.focus();
        return false;
    
@@ -526,7 +525,7 @@ validarAddChofer:function()
  
    if(comefvo.value == '')
    {
-      alert(messages.comefvo_not_valid);
+      swal({ text:messages.comefvo_not_valid, icon: "warning"});
       comefvo.focus();
       return false;
    }
@@ -535,7 +534,7 @@ validarAddChofer:function()
  
    if(comctacte.value == '')
    {
-      alert(messages.comctacte_not_valid);
+      swal({ text:messages.comctacte_not_valid, icon: "warning"});
       comctacte.focus();
       return false;
    }
@@ -545,7 +544,7 @@ validarAddChofer:function()
    var yearr=document.getElementById("venceregistro_year");
    if (!this.validarFecha( diar.value,mesr.value,yearr.value))
    {
-       alert(messages.fecha_vreg_not_valid);
+       swal({ text:messages.fecha_vreg_not_valid, icon: "warning"});
        diar.focus();
        return false;   
    }
@@ -554,7 +553,7 @@ validarAddChofer:function()
  
    if(movil.value == '')
    {
-      alert(messages.movil_not_valid);
+      swal({ text:messages.movil_not_valid, icon: "warning"});
       movil.focus();
       return false;
    }
@@ -562,7 +561,7 @@ validarAddChofer:function()
     var patente=document.getElementById("patente");
    if(patente.value == '')
    {
-      alert(messages.patente_not_valid);
+      swal({ text:messages.patente_not_valid, icon: "warning"});
       patente.focus();
       return false;
    }
@@ -572,7 +571,7 @@ validarAddChofer:function()
    var years=document.getElementById("venceseguro_year");
    if (!this.validarFecha( dias.value,mess.value,years.value ))
    {
-       alert(messages.fecha_vseg_not_valid);
+       swal({ text:messages.fecha_vseg_not_valid, icon: "warning"});
        dias.focus();
        return false;   
    }
@@ -582,7 +581,7 @@ validarAddChofer:function()
    var yearru=document.getElementById("venceruta_year");
    if (!this.validarFecha( diaru.value,mesru.value,yearru.value ))
    {
-       alert(messages.fecha_vrut_not_valid);
+       swal({ text:messages.fecha_vrut_not_valid, icon: "warning"});
        diaru.focus();
        return false;   
    }
@@ -592,7 +591,7 @@ validarAddChofer:function()
    var yearsacta=document.getElementById("vencesacta_year");
    if (!this.validarFecha( diasacta.value,messacta.value,yearsacta.value))
    {
-       alert(messages.fecha_vsacta_not_valid);
+       swal({ text:messages.fecha_vsacta_not_valid, icon: "warning"});
        diasacta.focus();
        return false;   
    }
@@ -602,7 +601,7 @@ validarAddChofer:function()
    var yearvtv=document.getElementById("vencevtv_year");
    if (!this.validarFecha( diavtve.value,mesvtv.value,yearvtv.value ))
    {
-       alert(messages.fecha_vvtv_not_valid);
+       swal({ text:messages.fecha_vvtv_not_valid, icon: "warning"});
        diavtv.focus();
        return false;   
    }
@@ -612,7 +611,7 @@ validarAddChofer:function()
    var yearmoy=document.getElementById("vencemoy_year");
    if (!this.validarFecha( diamoy.value,mesmoy.value,yearmoy.value ))
    {
-       alert(messages.fecha_vmoy_not_valid);
+       swal({ text:messages.fecha_vmoy_not_valid, icon: "warning"});
        diamoy.focus();
        return false;   
    }
@@ -628,7 +627,7 @@ var name=document.getElementById("name");
  
    if(name.value == '')
    {
-      alert(messages.name_not_valid);
+      swal({ text:messages.name_not_valid, icon: "warning"});
       name.focus();
       return false;
    }
@@ -637,7 +636,7 @@ var name=document.getElementById("name");
  
    if(lastname.value == '')
    {
-      alert(messages.lastname_not_valid);
+      swal({ text:messages.lastname_not_valid, icon: "warning"});
       lastname.focus();
       return false;
    }
@@ -646,7 +645,7 @@ var name=document.getElementById("name");
    var yearn=document.getElementById("fecnac_year");
    if (!this.validarFecha( dian.value,mesn.value,yearn.value))
    {
-       alert(messages.fecha_nac_not_valid);
+       swal({ text:messages.fecha_nac_not_valid, icon: "warning"});
        dian.focus();
        return false;   
    }
@@ -654,7 +653,7 @@ var name=document.getElementById("name");
  
    if(nrodoc.value == '')
    {
-      alert(messages.dni_not_valid);
+      swal({ text:messages.dni_not_valid, icon: "warning"});
       nrodoc.focus();
       return false;
    }
@@ -662,7 +661,7 @@ var name=document.getElementById("name");
    var provincia=document.getElementById("provincia");
    if (provincia.options[provincia.selectedIndex].value == -1)
    {
-       alert(messages.provincia_not_selected);
+       swal({ text:messages.provincia_not_selected, icon: "warning"});
        provincia.focus();
        return false;
    
@@ -671,7 +670,7 @@ var name=document.getElementById("name");
    var localidad=document.getElementById("localidad");
    if (localidad.options[localidad.selectedIndex].value == -1)
    {
-       alert(messages.localidad_not_selected);
+       swal({ text:messages.localidad_not_selected, icon: "warning"});
        localidad.focus();
        return false;
    
@@ -682,7 +681,7 @@ var name=document.getElementById("name");
  
    if(comefvo.value == '')
    {
-      alert(messages.comefvo_not_valid);
+      swal({ text:messages.comefvo_not_valid, icon: "warning"});
       comefvo.focus();
       return false;
    }
@@ -691,7 +690,7 @@ var name=document.getElementById("name");
  
    if(comctacte.value == '')
    {
-      alert(messages.comctacte_not_valid);
+      swal({ text:messages.comctacte_not_valid, icon: "warning"});
       comctacte.focus();
       return false;
    }
@@ -701,7 +700,7 @@ var name=document.getElementById("name");
    var yearr=document.getElementById("venceregistro_year");
    if (!this.validarFecha( diar.value,mesr.value,yearr.value ))
    {
-       alert(messages.fecha_vreg_not_valid);
+       swal({ text:messages.fecha_vreg_not_valid, icon: "warning"});
        diar.focus();
        return false;   
    }
@@ -710,14 +709,14 @@ var name=document.getElementById("name");
  
    if(movil.value == '')
    {
-      alert(messages.movil_not_valid);
+      swal({ text:messages.movil_not_valid, icon: "warning"});
       movil.focus();
       return false;
    }
     var patente=document.getElementById("patente");
    if(patente.value == '')
    {
-      alert(messages.patente_not_valid);
+      swal({ text:messages.patente_not_valid, icon: "warning"});
       patente.focus();
       return false;
    }
@@ -727,7 +726,7 @@ var name=document.getElementById("name");
    var years=document.getElementById("venceseguro_year");
    if (!this.validarFecha( dias.value,mess.value,years.value ))
    {
-       alert(messages.fecha_vseg_not_valid);
+       swal({ text:messages.fecha_vseg_not_valid, icon: "warning"});
        dias.focus();
        return false;   
    }
@@ -737,7 +736,7 @@ var name=document.getElementById("name");
    var yearru=document.getElementById("venceruta_year");
    if (!this.validarFecha( diaru.value,mesru.value,yearru.value ))
    {
-       alert(messages.fecha_vrut_not_valid);
+       swal({ text:messages.fecha_vrut_not_valid, icon: "warning"});
        diaru.focus();
        return false;   
    }
@@ -747,7 +746,7 @@ var name=document.getElementById("name");
    var yearsacta=document.getElementById("vencesacta_year");
    if (!this.validarFecha( diasacta.value,messacta.value,yearsacta.value ))
    {
-       alert(messages.fecha_vsacta_not_valid);
+       swal({ text:messages.fecha_vsacta_not_valid, icon: "warning"});
        diasacta.focus();
        return false;   
    }
@@ -757,7 +756,7 @@ var name=document.getElementById("name");
    var yearvtv=document.getElementById("vencevtv_year");
    if (!this.validarFecha( diavtv.value,mesvtv.value,yearvtv.value ))
    {
-       alert(messages.fecha_vvtv_not_valid);
+       swal({ text:messages.fecha_vvtv_not_valid, icon: "warning"});
        diavtv.focus();
        return false;   
    }
@@ -767,7 +766,7 @@ var name=document.getElementById("name");
    var yearmoy=document.getElementById("vencemoy_year");
    if (!this.validarFecha( diamoy.value,mesmoy.value,yearmoy.value ))
    {
-       alert(messages.fecha_vmoy_not_valid);
+       swal({ text:messages.fecha_vmoy_not_valid, icon: "warning"});
        diamoy.focus();
        return false;   
    }
@@ -807,7 +806,7 @@ validarSearchChofer:function()
    var patente=document.getElementById('patente');
    if (g.value == '' && name.value == '' && patente.value == '')
    {
-         alert(messages.error_search_empty);
+         swal({ text:messages.error_search_empty, icon: "warning"});
          g.focus();
          return false;
    }
@@ -815,7 +814,7 @@ validarSearchChofer:function()
   
   if (g.value != ''){  
      if (! this.isInteger(g.value) )
-     {   alert(messages.not_numeric);
+     {   swal({ text:messages.not_numeric, icon: "warning"});
          g.focus();
          return false;
      }
@@ -832,7 +831,7 @@ validarSearch:function(type)
   var s = document.getElementById('searchfield');
   if( s.value == '')
   {
-         alert(messages.error_search_empty);
+         swal({ text:messages.error_search_empty, icon: "warning"});
          s.focus();
          return false;
   } 
@@ -841,7 +840,7 @@ validarSearch:function(type)
   {
      var s=document.getElementById('searchfield').value;
      if (s.length > 8 )
-     {   alert(messages.max_length_phone);
+     {   swal({ text:messages.max_length_phone, icon: "warning"});
          
          return false;
      }
@@ -855,7 +854,7 @@ validarSearch:function(type)
      
      var g=document.getElementById('searchfield');
      if (! this.isInteger(g.value) )
-     {   alert(messages.not_numeric);
+     {   swal({ text:messages.not_numeric, icon: "warning"});
          g.focus();
          return false;
      }
@@ -870,7 +869,7 @@ validarSearch:function(type)
      if (! this.isInteger(g.value) )
      {   
         
-         alert(messages.movil_not_numeric);
+         swal({ text:messages.movil_not_numeric, icon: "warning"});
          g.focus();
          return false;
      }
@@ -882,7 +881,7 @@ validarSearch:function(type)
     if (!this.validarFecha( dia_desde.value,mes_desde.value,year_desde.value))
    {
       
-       alert(messages.fecha_desde_not_valid);
+       swal({ text:messages.fecha_desde_not_valid, icon: "warning"});
        dia_desde.focus();
        return false;   
    } 
@@ -892,7 +891,7 @@ validarSearch:function(type)
     year_hasta=document.getElementById('hasta_year');
     if (!this.validarFecha( dia_hasta.value,mes_hasta.value,year_hasta.value))
    {
-       alert(messages.fecha_hasta_not_valid);
+       swal({ text:messages.fecha_hasta_not_valid, icon: "warning"});
        dia_hasta.focus();
        return false;   
    }
@@ -912,7 +911,7 @@ validarRecaudacionGral:function()
     year_desde=document.getElementById('desde_year');
     if (!this.validarFecha( dia_desde.value,mes_desde.value,year_desde.value))
    {
-       alert(messages.fecha_desde_not_valid);
+       swal({ text:messages.fecha_desde_not_valid, icon: "warning"});
        dia_desde.focus();
        return false;   
    } 
@@ -922,7 +921,7 @@ validarRecaudacionGral:function()
     year_hasta=document.getElementById('hasta_year');
     if (!this.validarFecha( dia_hasta.value,mes_hasta.value,year_hasta.value))
    {
-       alert(messages.fecha_hasta_not_valid);
+       swal({ text:messages.fecha_hasta_not_valid, icon: "warning"});
        dia_hasta.focus();
        return false;   
    }
@@ -935,11 +934,11 @@ validarMensual:function(){
   var year=document.getElementById('year');
   var movil=document.getElementById('movil');
   if(year.value == ''){
-    alert("Debe ingresar un año");
+    swal({ text:"Debe ingresar un año", icon: "warning"});
     return false;
   }
   if (movil.value == ''){
-    alert("Debe ingresar un número de movil");
+    swal({ text:"Debe ingresar un número de movil", icon: "warning"});
     return false;
   }
   return true;
@@ -950,7 +949,7 @@ validarCtacte:function()
  var tel=document.getElementById('telefono');
  if(tel.value == '') 
  { 
-    alert('Debe ingresar un telefono');
+    swal({ text:'Debe ingresar un telefono', icon: "warning"});
     tel.focus(); 
     return false; 
  } 
@@ -960,7 +959,7 @@ validarCtacte:function()
     year_desde=document.getElementById('year');
     if (!this.validarFecha( dia_desde.value,mes_desde.value,year_desde.value))
    {
-       alert(messages.fecha_desde_not_valid);
+       swal({ text:messages.fecha_desde_not_valid, icon: "warning"});
        dia_desde.focus();
        return false;   
    } 
@@ -970,7 +969,7 @@ validarCtacte:function()
     year_hasta=document.getElementById('hyear');
     if (!this.validarFecha( dia_hasta.value,mes_hasta.value,year_hasta.value))
    {
-       alert(messages.fecha_hasta_not_valid);
+       swal({ text:messages.fecha_hasta_not_valid, icon: "warning"});
        dia_hasta.focus();
        return false;   
    }
@@ -988,7 +987,7 @@ validarReservaListado:function()
     year_desde=document.getElementById('year');
     if (!this.validarFecha( dia_desde.value,mes_desde.value,year_desde.value))
    {
-       alert(messages.fecha_desde_not_valid);
+       swal({ text:messages.fecha_desde_not_valid, icon: "warning"});
        dia_desde.focus();
        return false;   
    } 
@@ -998,7 +997,7 @@ validarReservaListado:function()
     year_hasta=document.getElementById('hyear');
     if (!this.validarFecha( dia_hasta.value,mes_hasta.value,year_hasta.value))
    {
-       alert(messages.fecha_hasta_not_valid);
+       swal({ text:messages.fecha_hasta_not_valid, icon: "warning"});
        dia_hasta.focus();
        return false;   
    }
@@ -1014,7 +1013,7 @@ validarRecaudacionxday:function()
   var g=document.getElementById('movil');
  
   if ( g.value == '' || ! this.isInteger(g.value) )
-     {   alert(messages.movil_not_numeric);
+     {   swal({ text:messages.movil_not_numeric, icon: "warning"});
          g.focus();
          return false;
      }
@@ -1023,7 +1022,7 @@ validarRecaudacionxday:function()
    var year_desde=document.getElementById('year');
     if (!this.validarFecha( dia_desde.value,mes_desde.value,year_desde.value))
    {
-       alert(messages.fecha_not_valid);
+       swal({ text:messages.fecha_not_valid, icon: "warning"});
        dia_desde.focus();
        return false;   
    }   
@@ -1185,7 +1184,7 @@ showClienteReserva:function(o)
                 });
        
                 if (show_banner == 1 ){
-                  alert(banner);
+                  swal({ text:banner, icon: "warning"});
                 }
         
                             
@@ -1298,7 +1297,7 @@ showClienteReserva2:function(o)
                         } );
        
                         if (show_banner == 1 ){
-                          alert(banner);
+                          swal({ text:banner, icon: "warning"});
                         }
         
         
@@ -1335,13 +1334,13 @@ var c=mm.charAt(0); //<=5
 var d=mm.charAt(1); 
 
 if ((a==2 && b>3) || (a>2)){
-   alert(messages.hora_not_valid);
+   swal({ text:messages.hora_not_valid, icon: "warning"});
    return false;
 }
 
 if (c>5)
 {
-   alert(messages.minuto_not_valid);
+   swal({ text:messages.minuto_not_valid, icon: "warning"});
    return false;
 }
 
@@ -1354,14 +1353,14 @@ validarRepetirReserva:function()
    var year=document.getElementById("repeticion_year");
    if (!this.validarFecha( dia.value,mes.value,year.value))
    {
-       alert(messages.fecha_reserva_not_valid);
+       swal({ text:messages.fecha_reserva_not_valid, icon: "warning"});
        dia.focus();
        return false;   
    }
    
    if (!this.fechaMayor(year.value,mes.value,dia.value))
    {
-       alert(messages.fecha_reserva_menor);
+       swal({ text:messages.fecha_reserva_menor, icon: "warning"});
        dia.focus();
        return false;
    }
@@ -1376,7 +1375,7 @@ validarReserva:function()
   var tel=document.getElementById("telefono");
    if (tel.value == '')
    {
-       alert(messages.tel_empty);
+       swal({ text:messages.tel_empty, icon: "warning"});
        tel.focus();
        return false;
    }
@@ -1385,7 +1384,7 @@ validarReserva:function()
    var year=document.getElementById("reserva_year");
    if (!this.validarFecha( dia.value,mes.value,year.value))
    {
-       alert(messages.fecha_reserva_not_valid);
+       swal({ text:messages.fecha_reserva_not_valid, icon: "warning"});
        dia.focus();
        return false;   
    }
@@ -1402,7 +1401,7 @@ validarReserva:function()
    var minuto=document.getElementById("puerta_min");
    if (hora.value == '' || minuto.value == '')
    {
-        alert(messages.horario_not_valid);
+        swal({ text:messages.horario_not_valid, icon: "warning"});
         hora.focus();
         return false;
         
@@ -1422,7 +1421,7 @@ validarReserva:function()
    var mAlarma=document.getElementById("alarma_min");
    if (hAlarma.value == '' || mAlarma.value == '')
    {
-        alert(messages.horario_not_valid);
+        swal({ text:messages.horario_not_valid, icon: "warning"});
         hAlarma.focus();
         return false;
         
@@ -1442,14 +1441,14 @@ validarReserva:function()
    var desde=document.getElementById("desde");
    if (desde.value == '')
    {
-       alert(messages.desde_empty);
+       swal({ text:messages.desde_empty, icon: "warning"});
        desde.focus();
        return false;
    }
    var destino=document.getElementById("destino");
    if (destino.value == '')
    {
-       alert(messages.destino_empty);
+       swal({ text:messages.destino_empty, icon: "warning"});
        destino.focus();
        return false;
    }
@@ -1478,13 +1477,13 @@ validarReserva:function()
    var ctacte = document.getElementById("ctacte");
    if (contado.checked && ctacte.checked)
    {
-       alert(messages.one_way_pay);
+       swal({ text:messages.one_way_pay, icon: "warning"});
        contado.focus();
        return false;
    }
    if (!contado.checked && !ctacte.checked)
    {
-       alert(messages.one_way_pay);
+       swal({ text:messages.one_way_pay, icon: "warning"});
        contado.focus();
        return false;
    }
@@ -1495,7 +1494,7 @@ validarReserva:function()
    if (dia.value != '' ){
    if (!this.validarFecha( dia.value,mes.value,year.value))
    {
-       alert(messages.fecha_desde_not_valid);
+       swal({ text:messages.fecha_desde_not_valid, icon: "warning"});
        dia.focus();
        return false;   
    }
@@ -1507,7 +1506,7 @@ validarReserva:function()
    if (dia.value != '' ){
    if (!this.validarFecha( dia.value,mes.value,year.value))
    {
-       alert(messages.fecha_hasta_not_valid);
+       swal({ text:messages.fecha_hasta_not_valid, icon: "warning"});
        dia.focus();
        return false;   
    }
@@ -1527,7 +1526,7 @@ validarModCliente: function(){
     
     var pass = document.getElementById("pass");
     if (pass.value == ''){
-      alert("Debe ingresar su password");
+      swal({ text:"Debe ingresar su password", icon: "warning"});
       return false;
     }else{
       return true;
@@ -1545,7 +1544,7 @@ validarViaje:function()
 var movil=document.getElementById("movil");
    if (movil.value == '')
    {
-       alert(messages.movil_empty);
+       swal({ text:messages.movil_empty, icon: "warning"});
        movil.focus();
        return false;
    }
@@ -1566,7 +1565,7 @@ validarAsignarBase:function()
 {
    var base=document.getElementById("base");
    if (base.options[base.selectedIndex].value == 0)
-   {     alert(messages.base_empty);
+   {     swal({ text:messages.base_empty, icon: "warning"});
          base.focus();
          return false;
    }  
@@ -1574,7 +1573,7 @@ validarAsignarBase:function()
    var position=document.getElementById("position");
    if (position.value == '')
    {
-       alert(messages.position_empty);
+       swal({ text:messages.position_empty, icon: "warning"});
        position.focus();
        return false;
    }
@@ -1639,7 +1638,7 @@ allDays:function(form)
    
    if (pago == 2 && voucher.value == '')
    {
-      alert(messages.voucher_empty);
+      swal({ text:messages.voucher_empty, icon: "warning"});
       voucher.focus();
       return false;
    }
@@ -1656,7 +1655,7 @@ allDays:function(form)
          
     if (excedente.value != '')
     {
-   document.getElementById("excedente_monto").value='';
+    document.getElementById("excedente_monto").value='';
     var callAjax=new callbackClass();
     callAjax.argument=["showExcedente"];
     arg='excedente='+excedente.value;
@@ -1705,7 +1704,7 @@ allDays:function(form)
     });
  }
  else{
-   alert("Debe ingresar la dirección origen y destino");
+   swal({ text:"Debe ingresar la dirección origen y destino", icon: "warning"});
  }
  },
  
@@ -1728,7 +1727,7 @@ allDays:function(form)
   
     }
   else
-     alert('Previamente debe ingresar la dirección');
+     swal({ text:'Previamente debe ingresar la dirección', icon: "warning"});
  
  }
  

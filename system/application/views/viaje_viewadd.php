@@ -6,13 +6,13 @@ $(document).ready(function(){
   $("#movil").focus();
   
   <?php if ($reserva[0]->show_banner) { ?>
-  alert("<?php echo str_replace("\r\n", " ", $reserva[0]->banner); ?>");
+  swal("<?php echo str_replace("\r\n", " ", $reserva[0]->banner); ?>");
     
   <?php } ?>
   
   <?php if($reserva[0]->art) { ?>
   
-   alert("<?php echo "VIAJE CON ART: $".$reserva[0]->art_valor; ?>");
+   swal("<?php echo "VIAJE CON ART: $".$reserva[0]->art_valor; ?>");
   <?php } ?>
   
  });

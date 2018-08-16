@@ -17,7 +17,7 @@ $(document).ready(function(){
   </div>
    <hr class="separador">
    <?php echo "Nro de Viaje: ".$nroviaje;?>
-  <form name="formbase" method="post" action="<?php echo site_url()."viaje/cancel/$nroviaje";?>" onsubmit=" if ( document.getElementById('motivo').value.length > 20) return true; else  { alert(messages.lengthminimo); return false;} ">
+  <form name="formbase" method="post" action="<?php echo site_url()."viaje/cancel/$nroviaje";?>" onsubmit=" if ( document.getElementById('motivo').value.length > 20) return true; else  { swal(messages.lengthminimo); return false;} ">
    <?php echo validation_errors('<p class="error">','</p>'); ?>
      <div class="rowform">
    <div class="rowform-label"> 

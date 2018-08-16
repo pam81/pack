@@ -16,12 +16,12 @@ $(document).ready(function(){
 
  <?php  if ($viaje[0]->show_banner) { ?>
   
-    alert("<?php echo str_replace("\r\n", " ", $viaje[0]->banner); ?>");
+    swal("<?php echo str_replace("\r\n", " ", $viaje[0]->banner); ?>");
   <?php } ?>
   
   <?php  if ($viaje[0]->art) { ?>
   
-    alert("<?php echo  "VIAJE CON ART: $".$viaje[0]->art_valor; ?>");
+    swal("<?php echo  "VIAJE CON ART: $".$viaje[0]->art_valor; ?>");
   <?php } ?>   
   });
 
