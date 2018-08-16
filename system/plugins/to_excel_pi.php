@@ -285,4 +285,23 @@ function to_excel_ctacliente($datos,$filename){
 
 }
 
+function to_excel_cliente($datos,$filename){
+  
+  $headers="Nombre\t Email\t \n";
+
+  $headers=iconv ( "UTF-8", "ISO-8859-1", $headers );
+  $data='';
+
+
+  foreach($datos["clientes"] as $k=>$u){
+    $data .=str_replace(',', '', $u->name)."\t".$u->email."\t \n";
+  }
+ 
+  $data=iconv ( "UTF-8", "ISO-8859-1", $data ); 
+  header("Content-type: application/x-msdownload");
+  header("Content-Disposition: attachment; filename=$filename.xls");
+  echo "$headers\n$data"; 
+   
+}
+
 ?>

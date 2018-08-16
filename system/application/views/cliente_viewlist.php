@@ -53,6 +53,7 @@ function searching(e)
 		    </label>
         <label>
 			<input type="submit" name="search" id="search" value="<?php echo $this->lang->line("button_search");?>" />
+			<a class="btn-link" href="<?php echo site_url()."cliente/export";?>">Exportar</a>
 			</label>
 		</form>	
 		  </div>
