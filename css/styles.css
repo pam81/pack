@@ -1100,3 +1100,9 @@ input[type=button], a.btn-link{
 
 
 
+.error{
+  color: red;
+}
+.success{
+  color: green;
+}

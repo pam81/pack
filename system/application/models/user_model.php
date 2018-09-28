@@ -12,10 +12,18 @@ class User_model extends Model {
     
    public static function verified_login()
    {
-      if ( !$user=Current_User::user() )
-         redirect('home');    
-  
-    
+      $CI =& get_instance();
+      $token=$CI->input->cookie("flet-token");
+      $user=Current_User::user(); // verificar que este la cookie y sea valida en base al permiso
+      if ($user){
+        $valid_token = Current_User::checkToken($token, $user);
+        if (!$valid_token){
+          $CI->session->sess_destroy();
+          redirect('home');
+        }
+      }else{
+        redirect('home');
+      }
    }
    
    

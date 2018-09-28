@@ -5,6 +5,7 @@ $lang["direccion_empresa"]="José de Artigas 1124,(1416) C.A.B.A.,Buenos Aires -
 $lang["phones"]="Telefonos";
 $lang["user"]="Usuario";
 $lang["error_login"]="Usuario o Contraseñas no validos";
+$lang["not_valid_token"]="No hay un token válido para el dispositivo.";
 $lang["password"]="clave";
 $lang["change_password"]="cambiar clave";
 $lang["confirm_password"]="confirmar clave";
@@ -387,4 +388,6 @@ $lang["title_mod_caja"]="Modificar registro";
 $lang["ask_mod_caja"]="Desea modificar el registro";
 $lang["title_type"]="Tipo";
 $lang["title_bannerdeudor"]="Banner Deudor";
+$lang["btn_generate_token"]="Generar Token";
+$lang["ask_generate_token"]="Seguro quiere generar el token?";
 ?>
