@@ -1820,7 +1820,7 @@ function getTotal(){
  
  var porcentaje_ctacte = 0; 
  var total1 = parseFloat(subtotal) + parseFloat(espera) + parseFloat(km) + parseFloat(peones)  + parseFloat(estacionamiento) + parseFloat(peaje) + parseFloat(art) + parseFloat(otro) +  parseFloat(iva);
- var suma_ctacte = parseFloat(subtotal) + parseFloat(espera) + parseFloat(peones)  +  parseFloat(otro)  ; 
+ var suma_ctacte = parseFloat(subtotal) + parseFloat(espera) + parseFloat(km) + parseFloat(peones)  +  parseFloat(otro)  ; 
  if ($("#comision_ctacte").val()){
     var comision_ctacte = ($("#comision_ctacte").val() != '') ? parseFloat($("#comision_ctacte").val()).toFixed(2)  : 0;
     porcentaje_ctacte = ( suma_ctacte * comision_ctacte) / 100;
