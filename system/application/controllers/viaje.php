@@ -244,7 +244,7 @@ class Viaje extends Controller {
           $query=$this->db->query($sql);
           
           $mt=$query->result();
-          if (!$mt[0]){
+          if (!isset($mt[0])){
           $record=array(
             'idmovil'=> $movil[0]->id,
             'fecha_ingreso'=>$record["fecha_despacho"],
