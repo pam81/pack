@@ -613,6 +613,7 @@ class Reserva extends Controller {
         $record["bloqueado"]=0;
         $record["bloqueado_by"]=''; 
         //verificar  antes que no tenga codigo asignado previamente
+        $codigo='';
         if ($this->input->post("excedente_monto") && !$this->input->post("excedente_codigo"))
          {
           $record['codigo_excedente']=$this->getCodigo();
