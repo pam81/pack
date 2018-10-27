@@ -203,7 +203,7 @@ class Usuario extends Controller {
           'name'=>$this->input->post("name"),
           'lastname'=>$this->input->post("lastname"),
           'username'=>$this->input->post("username"),
-          'password'=>User_model::transform_password($this->input->post("password")),
+          'password'=>$this->User_model->transform_password($this->input->post("password")),
           'date_created'=>date("Ymd"),
           'created_by'=>$usuario->username
          );
@@ -290,7 +290,7 @@ class Usuario extends Controller {
    
    public function existUsuario() {
         
-      if (User_model::existUsername($this->db->escape_str($this->input->post('username'))))
+      if ($this->User_model->existUsername($this->db->escape_str($this->input->post('username'))))
 	    { 
           return false;
 	    }
@@ -354,7 +354,7 @@ class Usuario extends Controller {
        );
        
        if ($this->input->post('password') != '')
-         $record["password"]=User_model::transform_password($this->input->post('password'));
+         $record["password"]=$this->User_model->transform_password($this->input->post('password'));
        
        $this->db->where("id",$id);
        $this->db->update("admusers",$record);
