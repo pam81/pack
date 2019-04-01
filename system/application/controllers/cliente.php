@@ -634,25 +634,29 @@ class Cliente extends Controller {
    
    public function unlock()
    {
-     $id=$this->db->escape_str($this->uri->segment(3));
-     if ($id)
-     { 
-      $this->db->trans_start();
-      $query=$this->db->get_where("clientes",array("id"=>$id));
-      $cliente=$query->result();
-      
-      if (isset( $cliente[0]) && $cliente[0]->bloqueado == 1)
-      {
-         $record=array(
-          'bloqueado'=>0,
-          'bloqueado_by'=>''
-         );
-         $this->db->update("clientes",$record,array("id"=>$id));
-       
+      $id=$this->db->escape_str($this->uri->segment(3));
+      $retorna = array("status"=>"ok", "msg"=>'');
+      if ($id)
+      { 
+        $this->db->trans_start();
+        $query=$this->db->get_where("clientes",array("id"=>$id));
+        $cliente=$query->result();
+        
+        if (isset( $cliente[0]) && $cliente[0]->bloqueado == 1)
+        {
+          $record=array(
+            'bloqueado'=>0,
+            'bloqueado_by'=>''
+          );
+          $this->db->update("clientes",$record,array("id"=>$id));
+        
+        }
+        $this->db->trans_complete();
+      }else{
+        $retorna["estatus"]="error";
+        $retorna["msg"]="No se definio ID del cliente";
       }
-      $this->db->trans_complete();
-     }
-      redirect('cliente/index/'.$this->uri->segment(4));
+      echo json_encode($retorna);
    }
 	    
 	   
@@ -702,6 +706,7 @@ class Cliente extends Controller {
       else
       {  
           $data["content"]="lockeado";
+          $data["dir_desbloquea"]=site_url()."cliente/unlock/".$id;
           $data["message"]=$this->lang->line("client_lockeado");
           $this->load->view("index",$data);
       }   

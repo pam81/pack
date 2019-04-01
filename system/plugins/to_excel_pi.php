@@ -304,4 +304,23 @@ function to_excel_cliente($datos,$filename){
    
 }
 
+function to_excel_referidos($datos,$filename){
+  
+  $headers="Medio\t Total\t \n";
+
+  $headers=iconv ( "UTF-8", "ISO-8859-1", $headers );
+  $data='';
+
+
+  foreach($datos as $k=>$u){
+    $data .=$k."\t".$u."\t \n";
+  }
+ 
+  $data=iconv ( "UTF-8", "ISO-8859-1", $data ); 
+  header("Content-type: application/x-msdownload");
+  header("Content-Disposition: attachment; filename=$filename.xls");
+  echo "$headers\n$data"; 
+   
+}
+
 ?>

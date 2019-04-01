@@ -688,6 +688,7 @@ class Chofer extends Controller {
    public function unlock()
    {
      $id=$this->db->escape_str($this->uri->segment(3));
+     $retorna = array("status"=>"ok", "msg"=>'');
      if ($id)
      { 
       $this->db->trans_start();
@@ -704,8 +705,11 @@ class Chofer extends Controller {
        
       }
       $this->db->trans_complete();
-     }
-      redirect('chofer/index/'.$this->uri->segment(4));
+     }else{
+      $retorna["estatus"]="error";
+      $retorna["msg"]="No se definio ID del chofer";
+    }
+    echo json_encode($retorna);
    }
   
   
@@ -751,6 +755,7 @@ class Chofer extends Controller {
            else
             {  
                 $data["content"]="lockeado";
+                $data["dir_desbloquea"]=site_url()."chofer/unlock/".$id;
                 $data["message"]=$this->lang->line("chofer_lockeado");
                 $this->load->view("index",$data);
              } 

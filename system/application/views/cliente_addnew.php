@@ -146,6 +146,7 @@ $('*').keyup(function(e){
       <option value="email">Email</option>
       <option value="web">Web</option>
       <option value="referido">Referido</option>
+      <option value="rsocial">Red Social</option>
       <option value="otro">Otro</option>
     </select> 
    </div>

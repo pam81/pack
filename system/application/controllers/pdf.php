@@ -219,6 +219,32 @@ function makepdfxday()
     $this->load->view("pdfrankingCliente",$data);*/
    
    }
+
+   public function makepdfreferidos()
+   {
+   
+  
+   $fdesde=date("Ymd");
+   $fhasta=date("Ymd");
+   
+   if ($this->uri->segment(3))
+      $fdesde=$this->db->escape_str($this->uri->segment(3));
+   if ($this->uri->segment(4))   
+      $fhasta=$this->db->escape_str($this->uri->segment(4));
+   
+   
+   $data["fdesde"]=$fdesde;
+   $data["fhasta"]=$fhasta;
+    
+   $referidos=$this->flete->referidosEstadisticas($fdesde,$fhasta);
+ 
+  
+  
+   $this->load->plugin('to_excel');
+   to_excel_referidos($referidos,"referidosCliente_".$fdesde."_".$fhasta);
+  
+   
+   }
    
      function makepdfgral()
   {

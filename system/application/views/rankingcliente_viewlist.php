@@ -137,9 +137,29 @@ function searching(e)
     <a href="<?php echo site_url()."pdf/makepdfrankingcliente/$opciones";?>"> <img src="<?php echo base_url()."images/img/excell.jpg";?>" width="50" height="50" alt="excell" />
 	    </a>
     <?php } ?> 
+
+    <?php if (count($referidos) > 0){  ?>
     <div style="width: 600px">
       <canvas id="myChart" ></canvas>
+
+      <table class="tablelist navigateable ">
+        <thead>
+          <tr>
+            <th> Medio </th>
+            <th> Total </th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php 
+            foreach($referidos as $k=>$v){
+              echo "<tr> <td> $k </td> <td> $v </td> </tr>";
+            }
+          ?>
+        </tbody>
+      </table>
+      <a href="<?php echo site_url()."pdf/makepdfreferidos/$opciones";?>"> <img src="<?php echo base_url()."images/img/excell.jpg";?>" width="50" height="50" alt="excell" />
     </div>
+    <?php } ?>
     <script>
       var ctx = document.getElementById("myChart").getContext('2d');
       data = {

@@ -106,7 +106,7 @@ function searching(e)
           </td>
            <td>
            <?php if ($u->bloqueado == 1){ ?>
-           <a href="<?php echo site_url()."chofer/unlock/$u->id/".$this->uri->segment(3);?>" onclick=" return confirm('<?php echo $this->lang->line("ask_debloquear_movil");?>') ;" > <img src="<?php echo base_url()."images/img/lock.png";?>" width="16" height="16" alt="bloqueado" title="bloqueado por <?php echo $u->bloqueado_by;?>" /> </a>
+           <a class="desbloquea" data-url="<?php echo site_url()."chofer/unlock/$u->id/".$this->uri->segment(3);?>" onclick=" return confirm('<?php echo $this->lang->line("ask_debloquear_movil");?>') ;" > <img src="<?php echo base_url()."images/img/lock.png";?>" width="16" height="16" alt="bloqueado" title="bloqueado por <?php echo $u->bloqueado_by;?>" /> </a>
            <?php }?>
           </td>
          

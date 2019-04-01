@@ -197,6 +197,7 @@ class Caja extends Controller {
    public function unlock()
    {
      $id=$this->db->escape_str($this->uri->segment(3));
+     $retorna = array("status"=>"ok", "msg"=>'');
      if ($id)
      { 
       $this->db->trans_start();
@@ -213,8 +214,11 @@ class Caja extends Controller {
        
       }
       $this->db->trans_complete();
-     }
-      redirect('caja/index/'.$this->uri->segment(4));
+     }else{
+      $retorna["estatus"]="error";
+      $retorna["msg"]="No se definio ID de la caja";
+    }
+    echo json_encode($retorna);
    }
   
   
@@ -246,7 +250,8 @@ class Caja extends Controller {
            else
             {  
                 $data["content"]="lockeado";
-                $data["message"]="El resgitro esta bloqueado";
+                $data["dir_desbloquea"]=site_url()."caja/unlock/".$id;
+                $data["message"]="El registro esta bloqueado";
                 $this->load->view("index",$data);
              } 
             

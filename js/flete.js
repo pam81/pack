@@ -351,11 +351,20 @@ esBisiesto:function(anio)
 
 unlock:function(dir)
 {
-  
-    var callAjax=new callbackClass();
-    callAjax.argument=["unlock"];
-    
-    var ajax=ajaxClass.asyncRequest(dir,0,callAjax,'');
+    $.ajax({
+      url: dir,
+    })
+    .done(function( response ) {
+      var data = $.parseJSON(response);
+      if(data.status == 'ok'){
+        location.reload();
+      }else{
+        swal(data.msg);
+      }
+    })
+    .fail(function(){
+      swal("Error al intentar desbloquear.");
+    });
 },
 
  getLocalidad:function(dir)

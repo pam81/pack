@@ -13,6 +13,6 @@ $(document).ready(function(){
 <div id="content">
 
   <p> <?php echo $message; ?> </p>
-  <input type="button" class="desbloquea" data-url="<?php echo $dir_desbloquea;?>" value="Desbloquear" />
+ 
   
 </div>

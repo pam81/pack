@@ -537,7 +537,7 @@ class Reporte extends Controller {
    {
     if ( $this->Current_User->isHabilitado("RANKINGCLIENTE")) {
       
-       $fdesde=date("Ymd");
+     $fdesde=date("Ymd");
      $fhasta=date("Ymd");
      
      if ($this->input->post("desde_day") && $this->input->post("desde_month") && $this->input->post("desde_year"))
@@ -553,7 +553,7 @@ class Reporte extends Controller {
       $query=$this->flete->getRankingCliente($fdesde,$fhasta);
       $data["listado"]=$query->result();
       $data["opciones"]=$fdesde."/".$fhasta; 
-      $data["referidos"]=$this->flete->referidosEstadisticas();
+      $data["referidos"]=$this->flete->referidosEstadisticas($data["fdesde"], $data["fhasta"]);
       $data["content"]="rankingcliente_viewlist";
       $this->load->view("reporteindex",$data); 
     }

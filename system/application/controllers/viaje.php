@@ -157,20 +157,21 @@ class Viaje extends Controller {
        
        if ($reserva[0]->despachado == 1)
        {
-          $data["content"]="lockeado";
+          $data["content"]="message";
           $data["message"]=$this->lang->line("reserva_just_despachada");
           $this->load->view("index",$data);
        
        }
        else{
-       $data["reserva"]=$reserva;
-       $data["content"]="viaje_viewadd";
-       $this->load->view("index",$data);
-       }
+        $data["reserva"]=$reserva;
+        $data["content"]="viaje_viewadd";
+        $this->load->view("index",$data);
+      }
       }
       else
       {
           $data["content"]="lockeado";
+          $data["dir_desbloquea"]=site_url()."reserva/unlock/".$reservaid;
           $data["message"]=$this->lang->line("reserva_lockeado");
           $this->load->view("index",$data);
       
@@ -510,6 +511,7 @@ class Viaje extends Controller {
    public function unlock()
    {
      $id=$this->db->escape_str($this->uri->segment(3));
+     $retorna = array("status"=>"ok", "msg"=>'');
      if ($id)
      { 
       $this->db->trans_start();
@@ -526,8 +528,11 @@ class Viaje extends Controller {
        
       }
       $this->db->trans_complete();
+     }else{
+        $retorna["estatus"]="error";
+        $retorna["msg"]="No se definio ID del viaje";
      }
-      redirect('inicio');
+      echo json_encode($retorna);
    }
    
    
@@ -585,6 +590,7 @@ class Viaje extends Controller {
      else
       {  
           $data["content"]="lockeado";
+          $data["dir_desbloquea"]=site_url()."viaje/unlock/".$id;
           $data["message"]=$this->lang->line("viaje_lockeado");
           $this->load->view("index",$data);
       } 
@@ -930,6 +936,7 @@ class Viaje extends Controller {
        else
       {  
           $data["content"]="lockeado";
+          $data["dir_desbloquea"]=site_url()."viaje/unlock/".$id;
           $data["message"]=$this->lang->line("viaje_lockeado");
           $this->load->view("index",$data);
       } 
@@ -1061,6 +1068,7 @@ class Viaje extends Controller {
        else
       {  
           $data["content"]="lockeado";
+          $data["dir_desbloquea"]=site_url()."viaje/unlock/".$id;
           $data["message"]=$this->lang->line("viaje_lockeado");
           $this->load->view("index",$data);
       } 

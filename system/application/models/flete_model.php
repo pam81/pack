@@ -950,8 +950,11 @@ class Flete_model extends Model{
     
     }
 
-    public function referidosEstadisticas(){
-      $sql="SELECT count(id) as total, tipo FROM `referidos` group by tipo";
+    public function referidosEstadisticas($fdesde, $fhasta){
+      $sql="SELECT r.tipo, count(r.id) as total FROM `referidos` r INNER JOIN  clientes c ON c.id = r.clienteid 
+               where c.fecha_ingreso between '$fdesde' and '$fhasta'
+              group by r.tipo";
+              
       $query=$this->db->query($sql);
       $resultados=$query->result(); 
       $referidos = array();
