@@ -57,6 +57,7 @@
        
          <th>% <?php echo $this->lang->line("title_ctacte");?></th>
          <th><?php echo $this->lang->line("title_iva");?></th>
+         <th><?php echo $this->lang->line("title_total");?></th>
     </tr>    
    </thead>
    <tbody>
@@ -115,6 +116,10 @@
         
          <td><?php echo number_format($v->porcentaje_ctacte,2,".",''); $porcentaje_ctacte +=$v->porcentaje_ctacte; ?></td>
          <td><?php echo number_format($v->iva,2,".",''); $iva +=$v->iva; ?></td>
+         <td>
+          <?php $totalRow = $v->valor + $v->peones + $v->km + $v->espera + $v->peaje + $v->estacionamiento + $v->otros + $v->art_valor + $v->monto_excedente + $v->porcentaje_ctacte + $v->iva; 
+                echo number_format($totalRow, 2, '.', ''); ?>
+          </td>
        </tr>
      <?php 
      if ($v->cancelado == 1)
