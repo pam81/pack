@@ -54,8 +54,8 @@ $(document).ready(function(){
       <select name="type" id="type" tabindex="6">
         <option value="1">PAGA AGENCIA</option>
         <option value="2">PAGA MOVIL</option>
-        <option value="3">C/CO</option>
-        <option value="4">ANTERIOR</option>
+        <option value="3">IVA</option>
+        <option value="4">AJUSTE</option>
       </select>
    
    </div>

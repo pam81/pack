@@ -1106,3 +1106,10 @@ input[type=button], a.btn-link{
 .success{
   color: green;
 }
+
+#formCajaModal .rowform{
+  float: none;
+}
+#formCajaModal label{
+  text-transform: capitalize;
+}

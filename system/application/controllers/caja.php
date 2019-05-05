@@ -12,6 +12,7 @@ class Caja extends Controller {
     $this->load->model("Current_User");
     $this->load->model("User_model");
     $this->load->model("Flete_model","flete");
+    $this->load->model("Caja_model");
     $this->load->config("site");
     $this->User_model->verified_login();
    
@@ -43,19 +44,10 @@ class Caja extends Controller {
     if ($movil != 0 ){ 
         $sql="select c.* from cajas c inner join movil m on c.idmovil=m.id where m.movil=$movil  and c.created_at between $fdesde and $fhasta order by c.created_at asc"; 
         $query=$this->db->query($sql);
-    
         $cajas=$query->result(); 
     }
-          
-    
-     
-    
-    
     
     $data["cajas"]=$cajas;
-    
-    
-    
     
     $data["content"]="caja/cajas_viewlist";
     $this->load->view("index",$data);
@@ -64,7 +56,7 @@ class Caja extends Controller {
    
     
   
-   public function del()
+ /*  public function del()
    {
     if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") )
     {
@@ -88,7 +80,7 @@ class Caja extends Controller {
      }
      else
            redirect("inicio/denied");
-   }
+   }*/
    
    
    
@@ -135,12 +127,43 @@ class Caja extends Controller {
          
          
          $this->db->insert("cajas",$record);
+         $this->Caja_model->updateRecaudacion($record);
          
          redirect("caja/addSuccess");
        }
         redirect("caja"); 
    }
    
+
+   public function addCaja()
+   {
+      $retorna=array("code"=>"400", "message"=>"");
+
+      if ($this->_submit_validate() === FALSE ) {
+            $retorna["message"]="Datos no válidos";
+            echo json_encode($retorna);
+      }else{
+         $monto=str_replace(",",".",$this->input->post("monto"));
+         
+         $query = $this->db->get_where("movil", array("movil"=>$this->input->post("movil")));
+         $movil=$query->result();
+         $record=array(
+          'idmovil'=>$movil[0]->id,
+          'monto'=>$monto,
+          'tipo'=>$this->input->post("type"),
+          'descripcion'=>$this->input->post("descripcion"),
+          'created_at'=>$this->input->post("fecha"),
+          'updated_at'=>date("Ymd"),
+          'created_by'=>$this->Current_User->getUsername()
+         );
+         $this->db->insert("cajas",$record);
+         $this->Caja_model->updateRecaudacion($record);
+         $retorna["code"]=200;
+         $retorna["message"]="Movimiento agregado.";
+         echo json_encode($retorna);
+      }
+       
+   }
    
    
    public function addSuccess()
@@ -223,7 +246,7 @@ class Caja extends Controller {
   
   
   
-   public function mod()
+  /* public function mod()
    {
      
    if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") )
@@ -299,7 +322,7 @@ class Caja extends Controller {
     }
     else
       redirect("caja/index/".$this->uri->segment(4)); 
-   }
+   }*/
    
    
   

@@ -56,7 +56,7 @@
    <thead>
     <tr>
         <th>Día</th>
-        <th>Recaudación</th>
+        <th>Recaud.</th>
         <th>Porcentaje</th>
         <th>Radio</th>
         <th>P Movil</th>
