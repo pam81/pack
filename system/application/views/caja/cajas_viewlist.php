@@ -28,7 +28,7 @@ function searching(e)
 
   <div id="top-bar">
   <a href="<?php echo site_url()."caja/add";?>" accesskey="n" class="button"><?php echo $this->lang->line("title_add_new");?> </a>
-  <h2> Listado de A cuenta</h2>
+  <h2> Listado Cuenta Chofer</h2>
   
   </div>
    <hr class="separador">
@@ -107,11 +107,6 @@ function searching(e)
         <th width="80"> <?php echo mb_convert_case($this->lang->line("title_monto"),MB_CASE_UPPER,"UTF-8");?> </th>
         <th width="80"> <?php echo mb_convert_case($this->lang->line("created_by"),MB_CASE_UPPER,"UTF-8");?> </th>
         <th width="80"> <?php echo mb_convert_case($this->lang->line("title_type"),MB_CASE_UPPER,"UTF-8");?> </th>
-        <th width="25"> <?php echo mb_convert_case($this->lang->line("title_mod"),MB_CASE_UPPER,"UTF-8");?> </th>
-        
-        <th width="25"> <?php echo mb_convert_case($this->lang->line("title_del"),MB_CASE_UPPER,"UTF-8");?> </th>
-         <th width="25"> <?php echo mb_convert_case($this->lang->line("title_bloqueado"),MB_CASE_UPPER,"UTF-8");?> </th>
-        
     </tr>    
    </thead>
    <tbody>
@@ -143,30 +138,15 @@ function searching(e)
 
             }
             if ($u->tipo == 3){
-              echo "C/CO";
+              echo "IVA";
             }
             if ($u->tipo == 4){
-              echo "ANTERIOR";
+              echo "AJUSTE";
             }
            ?>
          </td>
         
-         <td> <a href="<?php echo site_url()."caja/mod/$u->id/".$this->uri->segment(3);?>" class="activation"> <img src="<?php echo base_url()."images/img/edit-icon.gif";?>" width="16" height="16" alt="modificar" title="modificar" /> </a>  </td>
         
-          
-          <td> 
-          <?php if ($u->borrado != 1){ ?>
-          <a href="<?php echo site_url()."caja/del/$u->id/".$this->uri->segment(3);?>" onclick=" return confirm('<?php echo $this->lang->line("ask_del_caja");?>') ;" > <img src="<?php echo base_url()."images/img/hr.gif";?>" width="16" height="16" alt="borrar" title="borrar"/> </a> 
-          <?php }
-            
-          ?>
-          
-          </td>
-           <td>
-           <?php if ($u->bloqueado == 1){ ?>
-           <a class="desbloquea" data-url="<?php echo site_url()."caja/unlock/$u->id/".$this->uri->segment(3);?>" onclick=" return confirm('<?php echo $this->lang->line("ask_debloquear_caja");?>') ;" > <img src="<?php echo base_url()."images/img/lock.png";?>" width="16" height="16" alt="bloqueado" title="bloqueado por <?php echo $u->bloqueado_by;?>" /> </a>
-           <?php }?>
-          </td>
          
        </tr>
      <?php   }?>

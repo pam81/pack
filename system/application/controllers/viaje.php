@@ -12,6 +12,7 @@ class Viaje extends Controller {
     $this->load->model("Current_User");
     $this->load->model("User_model");
     $this->load->model("Flete_model","flete");
+    $this->load->model("Viaje_model");
     $this->load->config("site");
     $this->User_model->verified_login();
    
@@ -645,7 +646,7 @@ class Viaje extends Controller {
    {
     $id=$this->db->escape_str($this->uri->segment(3));
     
-     if ($id && $this->input->post("send"))
+     if ($id && $this->input->post("send"))  //se cierra el viaje
      {
         $record=array();
         
@@ -720,6 +721,7 @@ class Viaje extends Controller {
          $record["cerrado_by"]=$this->Current_User->getUsername();
        
        $this->db->update("viajes",$record,array("id"=>$id));
+       $this->Viaje_model->updateDiaria($id);
        redirect("viaje/asignarBase/$id");
      }
       else
@@ -954,16 +956,18 @@ class Viaje extends Controller {
      $id=$this->db->escape_str($this->uri->segment(3));
      if ($id  )
      {
-        $record=array();
-        
-       
-          $record["fecha_regreso"]=$this->db->escape_str($this->input->post("regreso_year")).str_pad($this->db->escape_str($this->input->post("regreso_month")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("regreso_day")),2,"0",STR_PAD_LEFT);  
-        
-        $record["hregreso"]=str_pad($this->db->escape_str($this->input->post("hora_regreso")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("min_regreso")),2,"0",STR_PAD_LEFT);
-        $record["habordo"]=str_pad($this->db->escape_str($this->input->post("hora_abordo")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("min_abordo")),2,"0",STR_PAD_LEFT);
-        
-        $record["observaciones"]=$this->input->post("observacion"); 
-       if ($this->input->post("comisionar_year") && $this->input->post("comisionar_month") && $this->input->post("comisionar_day")){           
+      $record=array();
+      $sql=" select * from viajes WHERE id=".$id;
+      $query=$this->db->query($sql);
+      $viaje=$query->result();
+      
+      $record["fecha_regreso"]=$this->db->escape_str($this->input->post("regreso_year")).str_pad($this->db->escape_str($this->input->post("regreso_month")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("regreso_day")),2,"0",STR_PAD_LEFT);  
+      
+      $record["hregreso"]=str_pad($this->db->escape_str($this->input->post("hora_regreso")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("min_regreso")),2,"0",STR_PAD_LEFT);
+      $record["habordo"]=str_pad($this->db->escape_str($this->input->post("hora_abordo")),2,"0",STR_PAD_LEFT).str_pad($this->db->escape_str($this->input->post("min_abordo")),2,"0",STR_PAD_LEFT);
+      
+      $record["observaciones"]=$this->input->post("observacion"); 
+      if ($this->input->post("comisionar_year") && $this->input->post("comisionar_month") && $this->input->post("comisionar_day")){           
           $record["fecha_comisionar"]=$this->db->escape_str($this->input->post("comisionar_year")).
                                   str_pad($this->db->escape_str($this->input->post("comisionar_month")),2,"0",STR_PAD_LEFT)
                                   .str_pad($this->db->escape_str($this->input->post("comisionar_day")),2,"0",STR_PAD_LEFT);
@@ -1032,6 +1036,10 @@ class Viaje extends Controller {
          $record["causa_cancel"]=$this->input->post("cancelado");
        
        $this->db->update("viajes",$record,array("id"=>$id));
+       //al modificar en estado cerrado debo actualizar el saldo de recaudacion chofer
+       if ($viaje[0]->cerrado == 1){
+         $this->Viaje_model->diffDiaria($id);
+       }
        
        redirect("viaje/index/$id/".$this->uri->segment(4));
      }
@@ -1253,6 +1261,43 @@ class Viaje extends Controller {
      echo json_encode($viajes);
     
    }
+
+   public function getDiaria(){
+    $day=date("d");
+    if ( $this->input->post("day")){
+      $day = $this->input->post("day");
+    }
+    $month=date("m");
+    if ( $this->input->post("month")){
+      $month = $this->input->post("month");
+    }
+    $year=date("Y");
+    if ($this->input->post("year")){
+      $year=$this->input->post("year");
+    }
+    
+    $movil=$this->input->post("movil");
+    $fecha=$year.str_pad($month,2,0,STR_PAD_LEFT).str_pad($day,2,0,STR_PAD_LEFT);
+
+    $sql="select d.* from diaria d , movil m where m.id = d.idmovil and m.movil=".$movil.
+    " and d.fecha='".$fecha."'";
+ 
+   $query=$this->db->query($sql);
+   $diaria=$query->result(); 
+   echo json_encode($diaria);
+  
+ }
+
+ public function processDiaria(){
+   $fechaInicio=$this->uri->segment(3);
+   $fechaFin=$this->uri->segment(4);
+   $sql="select * from viajes where cerrado=1 and fecha_comisionar between '$fechaInicio' and '$fechaFin' ";
+   $query=$this->db->query($sql);
+   $viajes = $query->result();
+   foreach($viajes as $v){
+    $this->Viaje_model->updateDiaria($v->id);
+   }
+ }
    
  }  
 ?>

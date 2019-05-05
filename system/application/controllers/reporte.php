@@ -205,6 +205,51 @@ class Reporte extends Controller {
 
    }
    
+   public function rendicion(){
+    if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") ){
+      $month=date("m");
+      if ( $this->input->post("month")){
+        $month = str_pad($this->db->escape_str($this->input->post("month")),2,"0",STR_PAD_LEFT);
+      }
+      $year=date("Y");
+      if ($this->input->post("year")){
+        $year=$this->input->post("year");
+      }
+      $movil='';
+      if ($this->input->post("movil")){
+        $movil=$this->input->post("movil");
+      }
+      
+      $nroDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+      $inicio=$year."-".$month."-01";
+      $final=$year."-".$month."-".$nroDays;
+      
+      $listado=array();
+      if ($movil != ''){
+
+        $sql="select m.id  from  movil m where m.movil=$movil";
+        $query=$this->db->query($sql);
+        $movilData=$query->result();
+
+        if (isset($movilData[0])){
+            
+          $sql="select * from recaudacion where idmovil=".$movilData[0]->id." and fecha between \"$inicio\" and \"$final\" order by fecha asc";
+          $query=$this->db->query($sql);
+          $listado= $query->result();
+        }
+      }
+
+      $data["year"]=$year;
+      $data["month"]=$month;
+      $data["movil"]=$movil;
+      $data["content"]="recaudacion/reporte_recaudacion_viewlist";
+      $data["listado"]=$listado;
+      $this->load->view("reporteindex",$data);
+
+    }else{
+      redirect("inicio/denied");
+    }
+   }
    public function mensual(){
     if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") ){
       $month=date("m");
