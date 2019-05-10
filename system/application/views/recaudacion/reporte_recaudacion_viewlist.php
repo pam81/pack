@@ -89,8 +89,8 @@
             <td><?php echo $v->art; ?></td>
             <td><?php echo $v->saldo; ?></td>
             <td>
-              <button id="view_diaria" data-dia="<?php echo date("d",$fecha)?>" >Diaria</button>
-              <button id="caja" data-fecha="<?php echo date("Ymd",$fecha);?>">Nuevo</button>
+              <button class="view_diaria" data-dia="<?php echo date("d",$fecha)?>" >Diaria</button>
+              <button class="caja" data-fecha="<?php echo date("Ymd",$fecha);?>">Nuevo</button>
               <button class="view_viajes" data-dia="<?php echo date("d",$fecha)?>">Viajes</button>
             </td>
           </tr> 
@@ -205,8 +205,8 @@
                 <label for="type"> <?php echo $this->lang->line("title_type"); ?>  </label>
               </div>
               <select name="type" id="typeCaja" tabindex="2" clas="form-control">
-                <option value="1">PAGA AGENCIA</option>
                 <option value="2">PAGA MOVIL</option>
+                <option value="1">PAGA AGENCIA</option>
                 <option value="3">IVA</option>
                 <option value="4">AJUSTE</option>
               </select>
