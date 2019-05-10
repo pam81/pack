@@ -33,7 +33,7 @@ $(document).ready(function(){
 
 	});
 
-	$("#view_diaria").on("click",function(){
+	$(".view_diaria").on("click",function(){
 		var dia=$(this).data("dia");
 		var mes=$("#month").val();
 		var year=$("#year").val();
@@ -64,7 +64,7 @@ $(document).ready(function(){
 
 	});
 
-	$("#caja").on("click", function(){
+	$(".caja").on("click", function(){
 		var movil=$("#movil").val();
 		var fecha = $(this).data("fecha");
 		$("#caja_movil").text(movil);
