@@ -332,10 +332,10 @@ class Viaje extends Controller {
    
    public function _submit_validateViaje(){
    
-   $this->form_validation->set_rules('movil', $this->lang->line('title_movil'),'trim|required|max_lenght[50]|callback_existMovil|callback_notDocMovil');
-   
-   $this->form_validation->set_message('notDocMovil',$this->lang->line("error_notdocumentacion_movil"));
-   $this->form_validation->set_message('existMovil',$this->lang->line("error_notexist_movil"));   
+   $this->form_validation->set_rules('movil', $this->lang->line('title_movil'),'trim|required|max_lenght[50]|callback_existMovil|callback_notDocMovil|callback_limitSaldoMovil');
+   $this->form_validation->set_message('existMovil',$this->lang->line("error_notexist_movil")); 
+   $this->form_validation->set_message('notDocMovil',$this->lang->line("error_notdocumentacion_movil"));  
+   $this->form_validation->set_message('limitSaldoMovil',$this->lang->line("error_limit_saldo_movil"));  
    return $this->form_validation->run();
    
    }
@@ -352,7 +352,7 @@ class Viaje extends Controller {
    
    }
    //verificar que la documentacion este bien
-    function notDocMovil()
+   function notDocMovil()
    {    //si pone el codigo y valido no valido directamente asigna
         //sino valida
         if (!$this->validPassword()){
@@ -363,6 +363,26 @@ class Viaje extends Controller {
         }
         
    
+   }
+
+   function limitSaldoMovil(){
+    $movil=$this->db->escape_str($this->input->post("movil"));
+    $sql="select r.* from recaudacion r inner join movil m on m.id = r.idmovil where 
+    m.movil=".$movil." order by r.fecha desc limit 0,1";
+    $query=$this->db->query($sql);
+    $recaudacion=$query->result();
+    if (count($recaudacion) == 1){
+      $saldoMovil = $recaudacion[0]->saldo;
+      $query=$this->db->get("comision");
+      $comision=$query->result();
+      if ($saldoMovil > $comision[0]->saldo){
+        return false;
+      }else{
+        return true;
+      }
+    }else{ //no hay recaudacion definida
+      return true;
+    }
    }
 
    //verificar password para asignar movil sin documentación al día

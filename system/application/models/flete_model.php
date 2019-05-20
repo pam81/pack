@@ -650,6 +650,53 @@ class Flete_model extends Model{
       return $query->result();
     
     }
+
+    public function getRecaudacionMensual($movil,$month,$year){
+      $nroDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+      $inicio=$year."-".$month."-01";
+      $final=$year."-".$month."-".$nroDays;
+      
+      $listado=array();
+      if ($movil != ''){
+
+        $sql="select m.id  from  movil m where m.movil=$movil";
+        $query=$this->db->query($sql);
+        $movilData=$query->result();
+
+        if (isset($movilData[0])){
+            
+          $sql="select * from recaudacion where idmovil=".$movilData[0]->id." 
+                        and fecha between \"$inicio\" and \"$final\" order by fecha asc";
+          $query=$this->db->query($sql);
+          $listado= $query->result();
+        }
+      }
+      return $listado;
+
+    }
+
+    public function getRecaudacionMensualAll($month, $year){
+      $nroDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+      $inicio=$year."-".$month."-01";
+      $final=$year."-".$month."-".$nroDays;
+      
+      $listado=array();
+      
+      $sql="select * from  movil where movil != -1 order by movil asc";
+      $query=$this->db->query($sql);
+      $moviles=$query->result();
+      foreach($moviles as $m){ //tomar ultimo recaudacion del movil para saber el saldo
+        $sql="select r.*, m.movil from recaudacion r inner join movil m on m.id = r.idmovil where 
+              r.idmovil=".$m->id." and r.fecha between \"$inicio\" and \"$final\" order by r.fecha desc limit 0,1";
+        
+        $query=$this->db->query($sql);
+        $row= $query->result();
+        if (count($row) == 1){
+          $listado[]=$row[0];
+        }
+      }
+      return $listado;
+    }
     
     public function getRecaudacionMovil($fdesde,$fhasta,$movil)
     {

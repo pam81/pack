@@ -218,6 +218,7 @@ $lang["ask_add_base"]="Desea ingresar la nueva base?";
 $lang["message_success_add_reserva"]="Se ha ingresado la Reserva. Nro Reserva ";
 $lang["message_success_add_viaje"]="El viaje se ha despachado. Nro Viaje ";
 $lang["error_notexist_movil"]="El movil no existe o no esta activo";
+$lang["error_limit_saldo_movil"]="El saldo del movil es superior al permitido";
 $lang["button_abordo"]="Abordo";
 $lang["ask_abordo_viaje"]="Desea guardar el horario de abordo";
 $lang["title_espera"]="Tiempo Espera";

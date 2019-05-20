@@ -21,7 +21,8 @@
 
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.fixedheadertable.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/demo.js"></script> 
-<?php if ( $content == 'reportemensual_viewlist' || $content == 'recaudacion/reporte_recaudacion_viewlist') { ?>
+<?php if ( $content == 'reportemensual_viewlist' || $content == 'recaudacion/reporte_recaudacion_viewlist' 
+|| $content == 'recaudacion/reporte_recaudacion_all_viewlist') { ?>
 <link href="<?php echo base_url();?>vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet"  />
 <script type="text/javascript" src="<?php echo base_url();?>vendors/bootstrap/js/bootstrap.min.js"></script>  
 <script type="text/javascript" src="<?php echo base_url();?>js/reportemensual.js"></script>          

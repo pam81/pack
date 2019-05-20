@@ -38,15 +38,20 @@
       size="10" maxsize="10" value="<?php echo set_value("movil",$movil);?>" />
    
     </div>
+   
     <div class="form-group">
 			<button type="submit" tabindex="4" name="search" class="btn btn-primary" >
         <?php echo $this->lang->line("button_search");?></button>
+    </div>
+    <div class="form-group">
+			<a style="color: #fff;" href="<?php echo site_url()."reporte/rendicionPdf/".$opciones;?>" class="btn btn-primary" id="exportPdf" >Exportar</a>
+      <a style="color: #fff;" class="btn btn-primary" href="<?php echo site_url()."reporte/rendicionAll";?>" >Resumen Todos</a>
     </div>
   </form>	
 		 
   <input type="hidden" name="url" id="url" value="<?php echo site_url()?>">
 
-  <table  class="tablelist "  >
+  <table  class="tablelist " id="rendicionTable" >
    <thead>
     <tr>
         <th>Día</th>
