@@ -220,28 +220,12 @@ class Reporte extends Controller {
         $movil=$this->input->post("movil");
       }
       
-      $nroDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-      $inicio=$year."-".$month."-01";
-      $final=$year."-".$month."-".$nroDays;
-      
-      $listado=array();
-      if ($movil != ''){
-
-        $sql="select m.id  from  movil m where m.movil=$movil";
-        $query=$this->db->query($sql);
-        $movilData=$query->result();
-
-        if (isset($movilData[0])){
-            
-          $sql="select * from recaudacion where idmovil=".$movilData[0]->id." and fecha between \"$inicio\" and \"$final\" order by fecha asc";
-          $query=$this->db->query($sql);
-          $listado= $query->result();
-        }
-      }
+      $listado = $this->flete->getRecaudacionMensual($movil,$month,$year);
 
       $data["year"]=$year;
       $data["month"]=$month;
       $data["movil"]=$movil;
+      $data["opciones"]=$movil."/".$month."/".$year;
       $data["content"]="recaudacion/reporte_recaudacion_viewlist";
       $data["listado"]=$listado;
       $this->load->view("reporteindex",$data);
@@ -250,6 +234,76 @@ class Reporte extends Controller {
       redirect("inicio/denied");
     }
    }
+
+   public function rendicionPdf()
+   {
+    
+      if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") )
+    {
+    if ($this->uri->segment(3)){
+     $movil=$this->db->escape_str($this->uri->segment(3));
+     $month=$this->db->escape_str($this->uri->segment(4)); 
+     $year=$this->db->escape_str($this->uri->segment(5));
+     $this->load->plugin('to_pdf');
+     $html = file_get_contents(site_url()."pdf/makepdfRendicion/$movil/$month/$year");
+     pdf_create($html, "rendicion_$movil");
+     
+    }
+      
+    else
+       show_404();
+    }
+    else
+        redirect("inicio/denied");
+   }
+
+   public function rendicionAll(){
+    if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") ){
+      $month=date("m");
+      if ( $this->input->post("month")){
+        $month = str_pad($this->db->escape_str($this->input->post("month")),2,"0",STR_PAD_LEFT);
+      }
+      $year=date("Y");
+      if ($this->input->post("year")){
+        $year=$this->input->post("year");
+      }
+      
+      
+      $listado = $this->flete->getRecaudacionMensualAll($month,$year);
+      
+      $data["year"]=$year;
+      $data["month"]=$month;
+      $data["opciones"]=$month."/".$year;
+      $data["content"]="recaudacion/reporte_recaudacion_all_viewlist";
+      $data["listado"]=$listado;
+      $this->load->view("reporteindex",$data);
+
+    }else{
+      redirect("inicio/denied");
+    }
+   }
+
+   public function rendicionAllPdf()
+   {
+    
+      if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") )
+    {
+    if ($this->uri->segment(3)){
+     $month=$this->db->escape_str($this->uri->segment(3)); 
+     $year=$this->db->escape_str($this->uri->segment(4));
+     $this->load->plugin('to_pdf');
+     $html = file_get_contents(site_url()."pdf/makepdfRendicionAll/$month/$year");
+     pdf_create($html, "rendicion".$month."_".$year);
+     
+    }
+      
+    else
+       show_404();
+    }
+    else
+        redirect("inicio/denied");
+   }
+
    public function mensual(){
     if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") ){
       $month=date("m");

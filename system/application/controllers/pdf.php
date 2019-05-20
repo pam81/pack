@@ -46,6 +46,29 @@ function makepdfxday()
     $this->load->view("pdfrecaudacion",$data);
   
   }
+
+  function makepdfRendicion()
+  {
+  
+   $movil=$this->db->escape_str($this->uri->segment(3));
+   $month=$this->db->escape_str($this->uri->segment(4)); 
+   $year=$this->db->escape_str($this->uri->segment(5));
+
+   $data["movil"] = $movil;
+   $data["date"] = $month."/".$year; 
+   $data["listado"]= $this->flete->getRecaudacionMensual($movil,$month,$year);
+   $this->load->view("pdf/pdf_recaudacion_mensual",$data);
+  
+  }
+
+  function makepdfRendicionAll()
+  {
+   $month=$this->db->escape_str($this->uri->segment(3)); 
+   $year=$this->db->escape_str($this->uri->segment(4));
+   $data["date"] = $month."/".$year; 
+   $data["listado"]= $this->flete->getRecaudacionMensualAll($month,$year);
+   $this->load->view("pdf/pdf_recaudacion_mensual_all",$data);
+  }
   
   function makepdfctaCliente()
   {

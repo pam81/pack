@@ -39,14 +39,22 @@ $(document).ready(function(){
    <div class="rowform-label"> <label for="ctacte"> Radio </label>
    </div>
    <div class="rowform-input">
-   <input type="text" tabindex="2"  name="radio" id="radio" value="<?php if(isset($comision[0]->radio)) echo set_value("radio",$comision[0]->radio); ?>" maxsize="10" />
+   <input type="text" tabindex="3"  name="radio" id="radio" value="<?php if(isset($comision[0]->radio)) echo set_value("radio",$comision[0]->radio); ?>" maxsize="10" />
+   </div>
+   </div>
+
+   <div class="rowform">
+   <div class="rowform-label"> <label for="ctacte"> Límite Saldo </label>
+   </div>
+   <div class="rowform-input">
+   <input type="text" tabindex="4"  name="saldo" id="saldo" value="<?php if(isset($comision[0]->saldo)) echo set_value("saldo",$comision[0]->saldo); ?>" maxsize="10" />
    </div>
    </div>
    
    
     <div class="rowform">
-   <input type="submit" tabindex="3" accesskey="e" id="send" name="send" value="<?php echo $this->lang->line("button_send");?>" onclick="return confirm('<?php echo $this->lang->line("ask_mod_seguro");?>'); "/>
-    <input type="reset" tabindex="4" accesskey="l" id="clear" name="clean" value="<?php echo $this->lang->line("button_clean");?>" />
+   <input type="submit" tabindex="5" accesskey="e" id="send" name="send" value="<?php echo $this->lang->line("button_send");?>" onclick="return confirm('<?php echo $this->lang->line("ask_mod_seguro");?>'); "/>
+    <input type="reset" tabindex="6" accesskey="l" id="clear" name="clean" value="<?php echo $this->lang->line("button_clean");?>" />
    </div>
   </form>
   

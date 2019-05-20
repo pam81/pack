@@ -41,7 +41,7 @@ public function calcularComision($comision, $v){
 
   if ($v->hasMudanza == 0){ //solo lo sumo en el caso que no sea mudanza
     //porque la mudanza se quita ya el 30% de comisión
-    $recauda +=$v->valor + $v->espera; //el valor es el subtotal + sumar el tiempo de espera
+    $recauda +=$v->valor + $v->espera + $v->km; //el valor es el subtotal + sumar el tiempo de espera
   }
   if ($v->forma_pago == 1){
     $iva += $v->iva; //sumar el iva solo si el viaje es en efectivo
