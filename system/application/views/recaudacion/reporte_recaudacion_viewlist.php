@@ -121,6 +121,7 @@
               <th>Origen</th>
               <th>Destino</th>
               <th>Subtotal</th>
+              <th>Kms</th>
               <th>Espera</th>
               <th>IVA</th>
               <th>Peon</th>
