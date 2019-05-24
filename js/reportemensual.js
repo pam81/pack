@@ -46,17 +46,36 @@ $(document).ready(function(){
 		  data: {movil: movil, day: dia, month: mes, year: year}
 		}).done(function(response) {
 			$("#list_diaria").empty();
+			$("#list_ajuste").empty();
 			$("#diaria_movil").text(movil);
 			$("#diaria_fecha").text(dia+"-"+mes+"-"+year);
 			var listado = '';
-			$.each(response, function(i, item){
+			var ajustes = '';
+			$.each(response.diaria, function(i, item){
 				
 				listado += "<tr><td>"+item.recaudacion+"</td><td>"+item.comision+"</td>";
 				listado += "<td>"+item.porcentaje+"</td><td>"+item.cco+"</td><td>"+item.iva+"</td>";
 				listado += "<td>"+item.peon+"</td><td>"+item.peaje+"</td><td>"+item.estacionamiento+"</td>";
 				listado +="<td>"+item.art+"</td><td>"+item.mudanza+"</td><td>"+item.total+"</td><td>"+item.descripcion+"</td></tr>";
 			});
+
+			$.each(response.ajustes, function(i, item){
+				var type = '';
+				switch(item.tipo){
+					case '1': type = 'Paga Agencia'; 
+									break;
+					case '2':type = 'Paga Movil'; 
+									break;
+					case '3':type = 'IVA'; 
+									break;
+					case '4': type = 'Ajuste'; 
+									break;
+				}
+				ajustes += "<tr><td>"+item.monto+"</td><td>"+item.descripcion+"</td>";
+				ajustes += "<td>"+type+"</td><td>"+item.created_by+"</td></tr>";
+			});
 			$("#list_diaria").html(listado);
+			$("#list_ajuste").html(ajustes);
 			$('#myDiariaModal').modal('show');
 		}).fail(function(){
 			swal({ text:"error no se pudieron obtener los datos", icon: "warning"});

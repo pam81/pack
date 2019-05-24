@@ -177,6 +177,20 @@
 
           </tbody>
         </table>
+        <h4>Ajustes del día</h4>
+        <table class="table table-striped table-bordered">
+          <thead>
+            
+              <th>Monto</th>
+              <th>Descripción</th>
+              <th>Tipo</th>
+              <th>Creado por</th>
+          </thead>
+          <tbody id="list_ajuste">
+            
+
+          </tbody>
+        </table>
         
       </div>
       <div class="modal-footer">

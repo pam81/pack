@@ -1304,7 +1304,18 @@ class Viaje extends Controller {
  
    $query=$this->db->query($sql);
    $diaria=$query->result(); 
-   echo json_encode($diaria);
+
+
+  $sql="select c.* from cajas c , movil m where m.id = c.idmovil and m.movil=".$movil.
+   " and c.created_at='".$fecha."'";
+
+  $query=$this->db->query($sql);
+  $ajustes=$query->result(); 
+
+  $resultados=array();
+  $resultados["diaria"] = $diaria;
+  $resultados["ajustes"] = $ajustes;
+  echo json_encode($resultados);
   
  }
 
