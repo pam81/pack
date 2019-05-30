@@ -60,6 +60,7 @@
         <th>Radio</th>
         <th>P Movil</th>
         <th>P Agencia</th>
+        <th>Ajuste</th>
         <th>C/ CO</th>
         <th>Peón</th>
         <th>Peaje</th>
@@ -85,6 +86,7 @@
             <td><?php echo $v->radio; ?></td>
             <td><?php echo $v->pmovil; ?></td>
             <td><?php echo $v->pagencia; ?></td>
+            <td><?php echo $v->ajuste; ?></td>
             <td><?php echo $v->cco; ?></td>
             <td><?php echo $v->peon; ?></td>
             <td><?php echo $v->peaje; ?></td>
@@ -95,7 +97,7 @@
             <td><?php echo $v->saldo; ?></td>
             <td>
               <button class="view_diaria" data-dia="<?php echo date("d",$fecha)?>" >Diaria</button>
-              <button class="caja" data-fecha="<?php echo date("Ymd",$fecha);?>">Nuevo</button>
+              <button class="caja" data-fecha="<?php echo date("Ymd");?>">Nuevo</button> <!-- siempre se refleja el dia de hoy-->
               <button class="view_viajes" data-dia="<?php echo date("d",$fecha)?>">Viajes</button>
             </td>
           </tr> 

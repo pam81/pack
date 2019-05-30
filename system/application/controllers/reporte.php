@@ -382,6 +382,7 @@ class Reporte extends Controller {
                     $art=0;
                     $pmovil=0;
                     $pagencia=0;
+                    $ajuste=0;
                     $cco=0;
                     $saldo=0;
                     $peaje=0;
@@ -418,9 +419,10 @@ class Reporte extends Controller {
                       if ($c->tipo == 2){
                         $pmovil += $c->monto;
                       }
-                      /*if ($c->tipo == 3){
-                        $cco += $c->monto;
-                      }*/
+
+                      if ($c->tipo == 4){ //AJUSTE
+                        $ajuste += $c->monto;
+                      }
                     }
 
                     $saldo=$radio+$porcentaje+$pagencia+$mudanza-$pmovil-$cco-$peon-$peaje-$cochera+$iva+$art+$anterior;
@@ -428,7 +430,7 @@ class Reporte extends Controller {
               }
               $listado[$i]=array("recauda"=>$recauda,"iva"=>$iva,"radio"=>$radio,"porcentaje"=>$porcentaje,
                 "peon"=>$peon,"peaje"=>$peaje,"cochera"=>$cochera,"mudanza"=>$mudanza,"art"=>$art,"pmovil"=>$pmovil,
-                "pagencia"=>$pagencia,"cco"=>$cco, "saldo"=>$saldo);
+                "pagencia"=>$pagencia,"cco"=>$cco, "saldo"=>$saldo, "ajuste"=>$ajuste);
             }
         }
       }

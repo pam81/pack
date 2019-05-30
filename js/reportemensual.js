@@ -22,7 +22,7 @@ $(document).ready(function(){
 				}
 				listado += "<tr><td><a href='"+url+"viaje/visualiza/"+item.id+"'>"+item.id+"</a></td><td>"+item.desde+"</td><td>"+item.destino+"</td>";
 				listado += "<td>"+item.valor+"</td><td>"+item.km+"</td><td>"+item.espera+"</td><td>"+item.iva+"</td>";
-				listado += "<td>"+item.peaje+"</td><td>"+item.peones+"</td><td>"+item.estacionamiento+"</td>";
+				listado += "<td>"+item.peones+"</td><td>"+item.peaje+"</td><td>"+item.estacionamiento+"</td>";
 				listado +="<td>"+item.art_valor+"</td><td>"+contado+"</td></tr>";
 			});
 			$("#list_viajes").html(listado);

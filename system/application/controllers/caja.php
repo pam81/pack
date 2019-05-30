@@ -54,36 +54,6 @@ class Caja extends Controller {
    
    }
    
-    
-  
- /*  public function del()
-   {
-    if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") )
-    {
-   
-         //no se debe borrar debe quedar el historial
-         
-         $id = $this->db->escape_str($this->uri->segment(3));
-          if ($id)
-          {
-            $record=array(
-             'borrado'=>1,
-             'delete_by'=>$this->Current_User->getUsername(),
-             'delete_at'=>date("Ymd")
-            );
-            
-            $this->db->where("id",$id);
-            $this->db->update("cajas",$record);
-            
-          }
-          redirect('caja/index/'.$this->uri->segment(4));
-     }
-     else
-           redirect("inicio/denied");
-   }*/
-   
-   
-   
    public function add()
    {
      if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") )
@@ -244,86 +214,6 @@ class Caja extends Controller {
     echo json_encode($retorna);
    }
   
-  
-  
-  /* public function mod()
-   {
-     
-   if ( $this->Current_User->isHabilitado("RECAUDACIONGRAL") )
-    {
-         $id = $this->db->escape_str($this->uri->segment(3));
-          if ($id)
-          {
-          if ( $this->lock($id) )
-         {  
-            
-            $this->db->where("active",1);
-             $this->db->order_by("movil");
-            $query=$this->db->get("movil");
-            $data["moviles"]=$query->result();
-            
-            $query=$this->db->get_where("cajas",array("id"=>$id));
-            $caja=$query->result();
-            $data["caja"]=$caja; 
-            
-            $data["dir_desbloquea"]=site_url()."caja/unlock/".$id;
-            $data["content"]="caja/caja_viewmod";
-            $this->load->view("index",$data);
-           }
-           else
-            {  
-                $data["content"]="lockeado";
-                $data["dir_desbloquea"]=site_url()."caja/unlock/".$id;
-                $data["message"]="El registro esta bloqueado";
-                $this->load->view("index",$data);
-             } 
-            
-          }
-          else
-             redirect('caja/index/'.$this->uri->segment(4));
-      }
-      else
-         redirect("inicio/denied"); 
-             
-   }
-  
-  
-  
-  
-   
-   public function update()
-   {
-    $id=$this->db->escape_str($this->uri->segment(3));
-    if ($id)
-    {
-       if ($this->_submit_validate() === FALSE  ) {
-            $this->mod();
-            return;
-       }
-       else
-       {
-       
-        $record=array();
-        $monto=str_replace(",",".",$this->input->post("monto"));
-        $record['idmovil']=$this->input->post("movil");
-        $record['monto']=$monto;
-        $record['descripcion']=$this->input->post("descripcion");
-        $record['tipo']=$this->input->post("type");
-       
-       $record["bloqueado"]=0;
-       $record["bloqueado_by"]='';  
-       
-       $this->db->where("id",$id);
-       $this->db->update("cajas",$record);
-      
-       
-         redirect("caja/index/".$this->uri->segment(4));
-       }  
-    }
-    else
-      redirect("caja/index/".$this->uri->segment(4)); 
-   }*/
-   
    
   
 }
