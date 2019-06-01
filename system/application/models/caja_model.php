@@ -45,14 +45,21 @@ class Caja_model extends Model {
       $record["saldo"] = $recaudacion[0]->saldo + $pagencia - $pmovil + $ajuste + $iva; 
       $this->db->update('recaudacion',$record, array("id"=>$recaudacion[0]->id));
     }else{
+      $sql="select c.* from comision c ";
+      $query=$this->db->query($sql);
+      $valores=$query->result();
+      $record=array();
+      $record["radio"] = $valores[0]->radio;
+
       $anterior = $this->getSaldoAnterior($data["idmovil"]);
-      $record["saldo"] = $anterior + $pagencia - $pmovil + $ajuste + $iva;
+      $record["saldo"] = $anterior + $record["radio"] + $pagencia - $pmovil + $ajuste + $iva;
       $record["fecha"] = $data["created_at"];
       $record["idmovil"] = $data["idmovil"];
       $record["pagencia"] = $pagencia;
       $record["pmovil"] = $pmovil;
       $record["iva"] = $iva;
       $record["ajuste"] = $ajuste;
+      
       $this->db->insert('recaudacion',$record);
     }
   }
