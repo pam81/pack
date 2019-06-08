@@ -1335,7 +1335,8 @@ class Viaje extends Controller {
     $sql="select d.* from dias d where d.dia = '$today'"; 
     $query=$this->db->query($sql);
     $dia=$query->result(); 
-    if (count($dia) == 0){ //es dia laborable
+    $day = strtolower(date("l"));
+    if (count($dia) == 0 && $day != "sunday"){ //es dia laborable y no es domingo
       //obtener todos los moviles que no tienen recaudacion para el día de hoy
       $today= date("Y-m-d");
       $sql="select m.* from movil m where m.active=1 and m.movil != -1 and 
