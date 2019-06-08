@@ -1329,6 +1329,43 @@ class Viaje extends Controller {
     $this->Viaje_model->updateDiaria($v->id);
    }
  }
+
+ public function chargeRadio(){
+    $today= date("Ymd");
+    $sql="select d.* from dias d where d.dia = '$today'"; 
+    $query=$this->db->query($sql);
+    $dia=$query->result(); 
+    if (count($dia) == 0){ //es dia laborable
+      //obtener todos los moviles que no tienen recaudacion para el día de hoy
+      $today= date("Y-m-d");
+      $sql="select m.* from movil m where m.active=1 and m.movil != -1 and 
+      m.id not in (select r.idmovil from recaudacion r where r.fecha = '$today' ) ";
+      $query=$this->db->query($sql);
+      $moviles=$query->result();
+      foreach($moviles as $m){
+        $data = array(
+          'recaudacion'=> 0,
+          'porcentaje'=> 0,
+          'comision'=> 0,
+          'fecha'=> $today,
+          'viaje'=>0,
+          'descripcion'=> '',
+          'idmovil'=>$m->id,
+          'cco'=> 0,
+          'peon'=> 0,
+          'peaje'=> 0,
+          'estacionamiento'=> 0,
+          'iva'=> 0,
+          'mudanza'=> 0,
+          'art'=> 0,
+          'total'=> 0
+        );
+        $this->Viaje_model->updateRecaudacion($data);
+      }
+
+    }
+   
+ }
    
  }  
 ?>
