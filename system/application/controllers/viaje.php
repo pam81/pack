@@ -741,7 +741,10 @@ class Viaje extends Controller {
          $record["cerrado_by"]=$this->Current_User->getUsername();
        
        $this->db->update("viajes",$record,array("id"=>$id));
-       $this->Viaje_model->updateDiaria($id);
+        // se agrega en la diaria de hoy porque comisiona hoy
+       if ($viajes[0]->fecha_comisionar && $viajes[0]->fecha_comisionar == date("Ymd")){
+        $this->Viaje_model->updateDiaria($id);
+       }
        redirect("viaje/asignarBase/$id");
      }
       else
@@ -1056,8 +1059,15 @@ class Viaje extends Controller {
          $record["causa_cancel"]=$this->input->post("cancelado");
        
        $this->db->update("viajes",$record,array("id"=>$id));
+
+       $sql=" select * from viajes WHERE id=".$id;
+       $query=$this->db->query($sql);
+       $viaje=$query->result();
+
        //al modificar en estado cerrado debo actualizar el saldo de recaudacion chofer
-       if ($viaje[0]->cerrado == 1){
+       //si fecha_comisionar no esta seteada no debo actualizar recaudaciones
+       if ($viaje[0]->cerrado == 1 && $viaje[0]->fecha_comisionar){
+         
          $this->Viaje_model->diffDiaria($id);
        }
        
@@ -1268,7 +1278,7 @@ class Viaje extends Controller {
       $sql .=" and m.movil=$movil ";
 
 
-      $sql .=" and v.cerrado = 1 and v.fecha_despacho='$fecha' ";
+      $sql .=" and v.cerrado = 1 and v.fecha_comisionar='$fecha' ";
 
           
       $sql .=" order by r.fecha desc, r.hsalida asc  ";      
@@ -1367,6 +1377,40 @@ class Viaje extends Controller {
     }
    
  }
+
+ public function testSendEmail(){
+  $to= 'papereyra@gmail.com'; //$this->uri->segment(3);
+  $this->config->load('site');
+  $config['mailtype']=$this->config->item("mail_type");
+  $config['smtp_host']=$this->config->item("smtp_host");
+  $config['smtp_user']=$this->config->item("smtp_user");
+  $config['smtp_pass']=$this->config->item("smtp_pass");
+  $config['smtp_port']=$this->config->item("smtp_port");
+  $config['protocol']=$this->config->item("protocol");
+  $config['validate'] = $this->config->item("validate");
+   $this->load->library('email',$config);
+   $this->email->set_newline("\r\n"); 
+  $this->email->from($this->config->item("email_send"), $this->config->item("name_from"));
+  $this->email->to($to);
+  $this->email->subject("Confirmación de Envió - Fletpack");
+           
+  $message="<p>Hola </p> 
+    <p>Queremos informarte que ya se ha enviado el móvil</p>
+     <br /> <br />
+    <p>Saludos <br> Fletpack</p>
+  ";
+  
+  $this->email->message($message);
+  if ( $this->email->send())
+  {    
+     echo "enviado";
+  }    
+  else{    
+    echo "Error: "; 
+    echo $this->email->print_debugger();
+     
+  }   
+}
    
  }  
 ?>
