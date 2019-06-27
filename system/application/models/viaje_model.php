@@ -134,6 +134,8 @@ public function diffDiaria($viajeId){
 
     //lo modificado calculo y hago un ingreso nuevo
     $this->updateDiaria($viajeId);
+  }else{
+    $this->updateDiaria($viajeId);
   }
 }
 

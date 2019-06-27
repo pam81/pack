@@ -225,9 +225,7 @@ class Viaje extends Controller {
           'forma_pago'=>$this->db->escape_str($this->input->post("pago")),
           'hexacta_puerta'=>$this->db->escape_str($this->input->post("hpuerta"))
           );
-          if (!$cliente[0]->diferido){ //si no es un cliente diferido comisiona el mismo dia del despacho
-            $record["fecha_comisionar"] = date("Ymd");
-          }
+          
           $this->db->insert("viajes",$record);
           $nroviaje=$this->db->insert_id();
           
@@ -739,12 +737,19 @@ class Viaje extends Controller {
          $record["voucher"]=$this->db->escape_str($this->input->post("voucher"));
          $record["cerrado"]=1;
          $record["cerrado_by"]=$this->Current_User->getUsername();
+         
+         $sql="select c.* from clientes c inner join viajes v on v.clienteid=c.id where v.id=$id";
+         $query=$this->db->query($sql);
+         $cliente=$query->result();
+         if (!$cliente[0]->diferido){ //si no es un cliente diferido comisiona el mismo dia del cierre del viaje
+          $record["fecha_comisionar"] = date("Ymd");
+          $this->db->update("viajes",$record,array("id"=>$id));
+          $this->Viaje_model->updateDiaria($id);
+        }else{
+          $this->db->update("viajes",$record,array("id"=>$id));
+        }
        
-       $this->db->update("viajes",$record,array("id"=>$id));
-        // se agrega en la diaria de hoy porque comisiona hoy
-       if ($viajes[0]->fecha_comisionar && $viajes[0]->fecha_comisionar == date("Ymd")){
-        $this->Viaje_model->updateDiaria($id);
-       }
+      
        redirect("viaje/asignarBase/$id");
      }
       else
@@ -1067,7 +1072,6 @@ class Viaje extends Controller {
        //al modificar en estado cerrado debo actualizar el saldo de recaudacion chofer
        //si fecha_comisionar no esta seteada no debo actualizar recaudaciones
        if ($viaje[0]->cerrado == 1 && $viaje[0]->fecha_comisionar){
-         
          $this->Viaje_model->diffDiaria($id);
        }
        
