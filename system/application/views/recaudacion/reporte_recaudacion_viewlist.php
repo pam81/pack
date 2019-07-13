@@ -167,6 +167,7 @@
               <th>CCO</th>
               <th>IVA</th>
               <th>Peon</th>
+              <th>Km</th>
               <th>Peaje</th>
               <th>Estacio.</th>
               <th>Art</th>

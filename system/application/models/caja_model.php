@@ -36,7 +36,7 @@ class Caja_model extends Model {
     $sql="select * from recaudacion where fecha ='".$fecha."' and idmovil = ".$data["idmovil"];
     $query=$this->db->query($sql);
     $recaudacion=$query->result();
-    if (count($recaudacion) == 1){
+    if (count($recaudacion) > 0){
       $record=array();
       $record["pagencia"] = $recaudacion[0]->pagencia + $pagencia;
       $record["pmovil"] =$recaudacion[0]->pmovil + $pmovil;
@@ -68,7 +68,7 @@ class Caja_model extends Model {
     $sql=" select * from recaudacion WHERE idmovil=".$idmovil." order by id desc limit 1";
     $query=$this->db->query($sql);
     $recaudacion=$query->result();
-    if (count($recaudacion) == 1){
+    if (count($recaudacion) > 0 ){
      return $recaudacion[0]->saldo;
     }else{
       return 0;

@@ -72,6 +72,7 @@ public function calcularComision($comision, $v){
     'idmovil'=>$v->movilid,
     'cco'=>$cco,
     'peon'=>$peon,
+    'km'=> $v->km,
     'peaje'=>$peaje,
     'estacionamiento'=>$estacionamiento,
     'iva'=>$iva,
@@ -111,7 +112,7 @@ public function diffDiaria($viajeId){
   $sql=" select * from diaria WHERE viaje=".$viajeId." order by id desc limit 1";
   $query=$this->db->query($sql);
   $diaria=$query->result();
-  if (count($diaria) == 1){
+  if (count($diaria) > 0){
   $data = array(
       'recaudacion'=> ($diaria[0]->recaudacion * -1),
       'porcentaje'=> ($diaria[0]->porcentaje * -1),
@@ -122,6 +123,7 @@ public function diffDiaria($viajeId){
       'idmovil'=>$diaria[0]->idmovil,
       'cco'=> ($diaria[0]->cco * -1),
       'peon'=> ($diaria[0]->peon * -1),
+      'km'=> ($diaria[0]->km * -1),
       'peaje'=> ($diaria[0]->peaje * -1),
       'estacionamiento'=> ( $diaria[0]->estacionamiento * -1),
       'iva'=> ($diaria[0]->iva * -1),
@@ -145,7 +147,7 @@ public function diffDiaria($viajeId){
   $sql="select * from recaudacion where fecha ='".$data["fecha"]."' and idmovil = ".$data["idmovil"];
   $query=$this->db->query($sql);
   $recaudacion=$query->result();
-  if (count($recaudacion) == 1){
+  if (count($recaudacion) > 0){
     //actualizar valores y calcular saldo
     $record=array();
     $record["recaudacion"] = $recaudacion[0]->recaudacion + $data["recaudacion"];
@@ -192,7 +194,7 @@ public function diffDiaria($viajeId){
    $sql=" select * from recaudacion WHERE idmovil=".$idmovil." order by id desc limit 1";
    $query=$this->db->query($sql);
    $recaudacion=$query->result();
-   if (count($recaudacion) == 1){
+   if (count($recaudacion) > 0){
     return $recaudacion[0]->saldo;
    }else{
      return 0;

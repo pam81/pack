@@ -55,7 +55,7 @@ $(document).ready(function(){
 				
 				listado += "<tr><td>"+item.recaudacion+"</td><td>"+item.comision+"</td>";
 				listado += "<td>"+item.porcentaje+"</td><td>"+item.cco+"</td><td>"+item.iva+"</td>";
-				listado += "<td>"+item.peon+"</td><td>"+item.peaje+"</td><td>"+item.estacionamiento+"</td>";
+				listado += "<td>"+item.peon+"</td><td>"+item.km+"</td><td>"+item.peaje+"</td><td>"+item.estacionamiento+"</td>";
 				listado +="<td>"+item.art+"</td><td>"+item.mudanza+"</td><td>"+item.total+"</td><td>"+item.descripcion+"</td></tr>";
 			});
 
@@ -93,6 +93,7 @@ $(document).ready(function(){
 
 
 	$("#saveCaja").on("click", function(){
+		
 		var description = $("#descripcionCaja").val();
 		var typeCaja = $("#typeCaja").val();
 		var montoCaja = $("#montoCaja").val();
@@ -107,7 +108,8 @@ $(document).ready(function(){
 			swal({ text:"Debe ingresar una descripción.", icon: "warning"});
 			return false;
 		}
-	
+		var self = $(this);
+		$(this).prop('disabled', true);
 		$.ajax({
 		  url: url+"caja/addCaja",
 		  dataType: 'json',
@@ -115,9 +117,11 @@ $(document).ready(function(){
 		  data: {movil: movil, type: typeCaja,monto: montoCaja,descripcion: description, fecha: fecha }
 		}).done(function(response) {
 			$('#myCajaModal').modal('hide');
+			self.prop('disabled', false);
 			location.reload();
 		}).fail(function(){
 			swal({ text:"No se ha podido agregar el movimiento de caja.", icon: "warning"});
+			self.prop('disabled', false);
 		});
 
 	});
