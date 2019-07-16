@@ -53,7 +53,7 @@ public function calcularComision($comision, $v){
     $peaje +=$v->peaje;
     $peon +=$v->peones;
     $estacionamiento +=$v->estacionamiento;
-    $cco += $v->valor + $v->espera; // resto tiempo espera + subtotal cuando es cuenta corriente
+    $cco += $v->valor + $v->espera + $v->km; // resto tiempo espera + subtotal + kms cuando es cuenta corriente
   }
   $art +=$v->art_valor;
   $mudanza += $v->mudanza;
