@@ -373,7 +373,7 @@ class Viaje extends Controller {
       $saldoMovil = $recaudacion[0]->saldo;
       $query=$this->db->get("comision");
       $comision=$query->result();  //cuando le debemos la movil esta en negativo
-      if ($saldoMovil < $comision[0]->saldo){
+      if ($saldoMovil > $comision[0]->saldo){
         return false;
       }else{
         return true;
