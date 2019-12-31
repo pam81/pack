@@ -1643,18 +1643,51 @@ allDays:function(form)
  },
  validarCloseViaje:function(texto,pago)
  {
-   var voucher=document.getElementById("voucher");
+   swal({
+     title: "Cerrar Viaje?",
+     text: "Desea Cerrar el viaje",
+     icon: "warning",
+     buttons: true,
+     dangerMode: true,
+   })
+     .then((response) => {
+       if (response) {
+
+         //si el pago es cta cte debe estar el voucher completado
+         if (pago == 2) {
+           var voucher = document.getElementById("voucher");
+           if (voucher.value == '') {
+             swal({ text: messages.voucher_empty, icon: "warning" });
+             voucher.focus();
+             return false;
+           }
+           $("#formViajeClose").submit();
+         } else { //si el viaje es efectivo consultar si cierra como pendiente de pago
+           swal({
+             title: "Cerrar Pendiente de Pago?",
+             text: "Cerrar el viaje como pendiente de pago",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+           })
+             .then((pending) => {
+               if (pending) {
+                 $("#pendiente").attr('checked', true);
+               }
+               $("#formViajeClose").submit();
+             });
+         }
+         
+       }else{
+         return false;
+       }
+       
+     });
+
+
    
-   if (pago == 2 && voucher.value == '')
-   {
-      swal({ text:messages.voucher_empty, icon: "warning"});
-      voucher.focus();
-      return false;
-   }
-   
-   return confirm(texto);
-  
  },
+  
  
  getExcedente:function(dir)
  {

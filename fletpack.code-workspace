@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "php.validate.enable": true,
+    "php.validate.executablePath": null,
+    "php.validate.run": "onSave",
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "prettier.semi": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "typescript.validate.enable": false,
+    "javascript.validate.enable": false,
+    "git.ignoreLimitWarning": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    }
+  }
+}
