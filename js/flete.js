@@ -1662,20 +1662,9 @@ allDays:function(form)
              return false;
            }
            $("#formViajeClose").submit();
-         } else { //si el viaje es efectivo consultar si cierra como pendiente de pago
-           swal({
-             title: "Cerrar Pendiente de Pago?",
-             text: "Cerrar el viaje como pendiente de pago",
-             icon: "warning",
-             buttons: true,
-             dangerMode: true,
-           })
-             .then((pending) => {
-               if (pending) {
-                 $("#pendiente").attr('checked', true);
-               }
-               $("#formViajeClose").submit();
-             });
+         } else { //si el viaje es efectivo enviar directo
+         
+             $("#formViajeClose").submit();
          }
          
        }else{
