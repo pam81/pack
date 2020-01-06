@@ -337,11 +337,12 @@
           <span class="span_total_viaje">TOTAL $</span>
           <span class="span_total_viaje" id="total_viaje">
             <?php
-            $total = $viaje[0]->valor + $viaje[0]->espera + $viaje[0]->peones +
-              $viaje[0]->estacionamiento + $viaje[0]->peaje +   $viaje[0]->art_valor + $viaje[0]->otros +
-              $viaje[0]->iva;
-
+            $total= $viaje[0]->valor + $viaje[0]->espera + $viaje[0]->peones + $viaje[0]->km +
+            $viaje[0]->estacionamiento + $viaje[0]->peaje +   $viaje[0]->art_valor + $viaje[0]->otros +
+            $viaje[0]->iva;
+            
             echo $total;
+            
             ?>
           </span>
           <?php if ($viaje[0]->forma_pago == 2) {
@@ -434,7 +435,14 @@
                                     $m = substr($viaje[0]->hora_reserva, 2, 2);
                                     echo "$day-$month-$year  a las $h:$m"; ?></div>
       </div>
-
+      <?php  if ($viaje[0]->cerrado == 1) { ?>
+      <div class="rowform">
+        <div class="rowform-label"> 
+        <label for="cerrado_by"> <?php echo $this->lang->line("title_cerrado_by"); ?></label>
+        </div>
+      <div class="rowform-text"><?php echo $viaje[0]->cerrado_by;?></div>
+      </div> 
+      <?php } ?>
     </div> <!-- left2 -->
     <div class="form_right">
       <?php if ($abordo) { ?>
