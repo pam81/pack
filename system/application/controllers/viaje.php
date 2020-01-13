@@ -964,6 +964,17 @@ class Viaje extends Controller
       else
         $record["iva"] = 0;
 
+      $record["pendiente"] = $this->input->post('pendiente');
+      if ($this->input->post('descripcion_pago')) {
+        $record["descripcion_pago"] = $this->input->post('descripcion_pago');
+      }
+      if ($this->input->post("fecha_pago_year")) {
+        $record["fecha_pago"] = $this->db->escape_str($this->input->post("fecha_pago_year")) . str_pad($this->db->escape_str($this->input->post("fecha_pago_month")), 2, "0", STR_PAD_LEFT) . str_pad($this->db->escape_str($this->input->post("fecha_pago_day")), 2, "0", STR_PAD_LEFT);
+      }
+      if ($this->input->post("hora_libera")){
+        $record["hlibera"] = str_pad($this->db->escape_str($this->input->post("hora_libera")), 2, "0", STR_PAD_LEFT) . str_pad($this->db->escape_str($this->input->post("min_libera")), 2, "0", STR_PAD_LEFT);  
+      }
+
       $record["voucher"] = $this->input->post("voucher");
       $record["causa_cancel"] = $this->input->post("cancelado");
 
