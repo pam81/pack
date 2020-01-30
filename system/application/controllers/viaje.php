@@ -896,14 +896,19 @@ class Viaje extends Controller
       $record["fecha_regreso"] = $this->db->escape_str($this->input->post("regreso_year")) . str_pad($this->db->escape_str($this->input->post("regreso_month")), 2, "0", STR_PAD_LEFT) . str_pad($this->db->escape_str($this->input->post("regreso_day")), 2, "0", STR_PAD_LEFT);
 
       $record["hregreso"] = str_pad($this->db->escape_str($this->input->post("hora_regreso")), 2, "0", STR_PAD_LEFT) . str_pad($this->db->escape_str($this->input->post("min_regreso")), 2, "0", STR_PAD_LEFT);
-      $record["habordo"] = str_pad($this->db->escape_str($this->input->post("hora_abordo")), 2, "0", STR_PAD_LEFT) . str_pad($this->db->escape_str($this->input->post("min_abordo")), 2, "0", STR_PAD_LEFT);
-
+      
+      if ($this->db->escape_str($this->input->post("hora_abordo"))){
+        $record["habordo"] = str_pad($this->db->escape_str($this->input->post("hora_abordo")), 2, "0", STR_PAD_LEFT) . str_pad($this->db->escape_str($this->input->post("min_abordo")), 2, "0", STR_PAD_LEFT);
+      }
+      
       $record["observaciones"] = $this->input->post("observacion");
+      
       if ($this->input->post("comisionar_year") && $this->input->post("comisionar_month") && $this->input->post("comisionar_day")) {
         $record["fecha_comisionar"] = $this->db->escape_str($this->input->post("comisionar_year")) .
           str_pad($this->db->escape_str($this->input->post("comisionar_month")), 2, "0", STR_PAD_LEFT)
           . str_pad($this->db->escape_str($this->input->post("comisionar_day")), 2, "0", STR_PAD_LEFT);
       }
+      
       if ($this->input->post("subtotal"))
         $record["valor"] = $this->input->post("subtotal");
       else
@@ -965,18 +970,26 @@ class Viaje extends Controller
         $record["iva"] = 0;
 
       $record["pendiente"] = $this->input->post('pendiente');
+      
       if ($this->input->post('descripcion_pago')) {
         $record["descripcion_pago"] = $this->input->post('descripcion_pago');
       }
+      
       if ($this->input->post("fecha_pago_year")) {
         $record["fecha_pago"] = $this->db->escape_str($this->input->post("fecha_pago_year")) . str_pad($this->db->escape_str($this->input->post("fecha_pago_month")), 2, "0", STR_PAD_LEFT) . str_pad($this->db->escape_str($this->input->post("fecha_pago_day")), 2, "0", STR_PAD_LEFT);
       }
+      
       if ($this->input->post("hora_libera")){
         $record["hlibera"] = str_pad($this->db->escape_str($this->input->post("hora_libera")), 2, "0", STR_PAD_LEFT) . str_pad($this->db->escape_str($this->input->post("min_libera")), 2, "0", STR_PAD_LEFT);  
       }
 
-      $record["voucher"] = $this->input->post("voucher");
-      $record["causa_cancel"] = $this->input->post("cancelado");
+      if ($this->input->post("voucher")){
+        $record["voucher"] = $this->input->post("voucher");
+      }
+
+      if ($this->input->post("cancelado")){
+        $record["causa_cancel"] = $this->input->post("cancelado");
+      }
 
       $this->db->update("viajes", $record, array("id" => $id));
 
