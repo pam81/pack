@@ -27,6 +27,7 @@ class Viaje extends Controller
     $code = '';
     $cancelado = 0;
     $pendiente = 0;
+    $mudanza = 0;
     $art = 0;
     $fdesde = date("Ymd");
     $fhasta = date("Ymd");
@@ -63,6 +64,14 @@ class Viaje extends Controller
         $pendiente = $this->db->escape_str($urlarray["checkpendiente"]);
     }
     $data["pendiente"] = $pendiente;
+
+    if ($this->input->post("checkmudanza"))
+      $mudanza = $this->db->escape_str($this->input->post("checkmudanza"));
+    else {
+      if (isset($urlarray["checkmudanza"]))
+        $mudanza = $this->db->escape_str($urlarray["checkmudanza"]);
+    }
+    $data["mudanza"] = $mudanza;
 
 
     if ($this->input->post("checkart"))
@@ -103,11 +112,13 @@ class Viaje extends Controller
     if ($cancelado)
       $sql .= " and v.cancelado=1 ";
     if ($pendiente)
-      $sql .= " and v.pendiente = 1";
+      $sql .= " and v.pendiente = 1 ";
+    if ($mudanza)
+      $sql .= " and ( v.mudanza IS NOT NULL and v.mudanza > 0) ";
     if ($art)
       $sql .= " and r.art=1 ";
     if ($code)
-      $sql .= " and r.codigo_excedente = '$code'";
+      $sql .= " and r.codigo_excedente = '$code' ";
 
     $sql .= "    and v.movilid=m.id
                 and v.fecha_despacho between $fdesde and $fhasta

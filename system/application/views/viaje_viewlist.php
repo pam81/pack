@@ -105,7 +105,13 @@
       </label>
 
       <label>
-        <input type="submit" tabindex="10" name="search" value="<?php echo $this->lang->line("button_search"); ?>" />
+
+        <input type="checkbox" tabindex="10" name="checkmudanza" value="1" <?php if (isset($mudanza) && $mudanza) echo "checked"; ?> />
+        mudanza
+      </label>
+
+      <label>
+        <input type="submit" tabindex="11" name="search" value="<?php echo $this->lang->line("button_search"); ?>" />
       </label>
     </form>
   </div>

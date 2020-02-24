@@ -196,9 +196,9 @@ $(document).ready(function() {
       }
     })
       .done(function(response) {
-        $("#myCajaModal").modal("hide")
-        self.prop("disabled", false)
-        location.reload()
+        $("#myCajaModal").modal("hide");
+        self.prop("disabled", false);
+        window.location=window.location;
       })
       .fail(function() {
         swal({

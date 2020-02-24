@@ -357,7 +357,7 @@ unlock:function(dir)
     .done(function( response ) {
       var data = $.parseJSON(response);
       if(data.status == 'ok'){
-        location.reload();
+        window.location=window.location;
       }else{
         swal(data.msg);
       }

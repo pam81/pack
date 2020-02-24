@@ -506,6 +506,14 @@ word-wrap:break-word;
   width: 980px;
   table-layout: fixed;
 }
+
+#rendicionTable th{
+  position:sticky;
+  top:0;
+  z-index:1;
+
+}
+
 .tablelist th{
 padding: 2px ;
 font-size: 11px !important;
