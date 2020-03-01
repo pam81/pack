@@ -6,7 +6,7 @@
   <title>UBICAR LUGAR</title>
   
   <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkjlcWB75mEf0524bDQFP6tbLYCFmpPOY&sensor=false">
+      src="https://maps.googleapis.com/maps/api/js?key=apikey-reemplazar&sensor=false">
     </script>
     
     <script type="text/javascript">
