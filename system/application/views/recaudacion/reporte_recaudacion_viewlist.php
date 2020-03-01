@@ -75,9 +75,10 @@
    <tbody>
      <?php 
      
-      
+      $total = 0;
          foreach($listado as $v) {
           $fecha = strtotime($v->fecha);
+          $total += $v->recaudacion;
          ?> 
           <tr class="modotr">
             <td class="view_viajes" data-dia="<?php echo date("d",$fecha)?>" ><?php echo date("d-m-Y",$fecha); ?></td>
@@ -104,6 +105,7 @@
     <?php } ?>
    </tbody>
   </table>
+  <p> Total Recaudación: $ <?php echo $total; ?> </p>
 </div>
 
 

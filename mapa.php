@@ -1,12 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML >
 <html>
   <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="author" content="www.mizusoft.com.ar">
+  <meta name="author" content="amautasoft.com">
   <title>UBICAR LUGAR</title>
   
   <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?sensor=false">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkjlcWB75mEf0524bDQFP6tbLYCFmpPOY&sensor=false">
     </script>
     
     <script type="text/javascript">
