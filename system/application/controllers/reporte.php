@@ -786,6 +786,16 @@ class Reporte extends Controller {
         redirect("inicio/denied"); 
        
    }
+
+    public function getRemoteFile($url, $timeout = 10) {
+      $ch = curl_init();
+      curl_setopt ($ch, CURLOPT_URL, $url);
+      curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+      $file_contents = curl_exec($ch);
+      curl_close($ch);
+      return ($file_contents) ? $file_contents : FALSE;
+    }
    
    public function pdfreca()
    {
@@ -806,7 +816,7 @@ class Reporte extends Controller {
             "verify_peer_name"=> true,
         ),
       );
-      $html = file_get_contents(site_url()."pdf/makepdfreca/$movil/$fdesde/$fhasta/$see", false, stream_context_create($arrContextOptions));
+      $html = $this->getRemoteFile(site_url()."pdf/makepdfreca/$movil/$fdesde/$fhasta/$see"); //file_get_contents(site_url()."pdf/makepdfreca/$movil/$fdesde/$fhasta/$see", false, stream_context_create($arrContextOptions));
       pdf_create($html, "recaudacion$fdesde");
      
     }
