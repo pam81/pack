@@ -801,8 +801,9 @@ class Reporte extends Controller {
       $this->load->plugin('to_pdf');
       $arrContextOptions=array(
         "ssl"=>array(
-            "verify_peer"=>false,
-            "verify_peer_name"=>false,
+            "cafile" => "/etc/letsencrypt/live/fletpackcpanel.com.ar/fullchain.pem",
+            "verify_peer"=> true,
+            "verify_peer_name"=> true,
         ),
       );
       $html = file_get_contents(site_url()."pdf/makepdfreca/$movil/$fdesde/$fhasta/$see", false, stream_context_create($arrContextOptions));
