@@ -790,17 +790,23 @@ class Reporte extends Controller {
    public function pdfreca()
    {
     if ( $this->Current_User->isHabilitado("PRINTRECMOVIL")) {
-    if ($this->uri->segment(4)){
-     $movil=$this->db->escape_str($this->uri->segment(3));
-     $fdesde=$this->db->escape_str($this->uri->segment(4)); 
-     $fhasta=$this->db->escape_str($this->uri->segment(5));
-     $see=0;
-     if ($this->Current_User->isHabilitado("TOTALRECMOVIL"))
-        $see=1;
+      if ($this->uri->segment(4)){
+      $movil=$this->db->escape_str($this->uri->segment(3));
+      $fdesde=$this->db->escape_str($this->uri->segment(4)); 
+      $fhasta=$this->db->escape_str($this->uri->segment(5));
+      $see=0;
+      if ($this->Current_User->isHabilitado("TOTALRECMOVIL"))
+          $see=1;
      
-     $this->load->plugin('to_pdf');
-     $html = file_get_contents(site_url()."pdf/makepdfreca/$movil/$fdesde/$fhasta/$see");
-     pdf_create($html, "recaudacion$fdesde");
+      $this->load->plugin('to_pdf');
+      $arrContextOptions=array(
+        "ssl"=>array(
+            "verify_peer"=>false,
+            "verify_peer_name"=>false,
+        ),
+      );
+      $html = file_get_contents(site_url()."pdf/makepdfreca/$movil/$fdesde/$fhasta/$see", false, stream_context_create($arrContextOptions));
+      pdf_create($html, "recaudacion$fdesde");
      
     }
       
