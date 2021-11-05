@@ -26,7 +26,8 @@ class Backup extends Controller {
      $filename="fletpack".date("Ymd").".sql";
      $user=$this->db->username;
      $pass=$this->db->password;
-     $command = "mysqldump -u$user -p$pass fletpack > backup/".$filename;
+     $db=$this->db->database;
+     $command = "mysqldump -u$user -p$pass $db > backup/".$filename;
     
      system($command);
      
