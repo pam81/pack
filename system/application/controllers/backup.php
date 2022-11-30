@@ -5,7 +5,7 @@ class Backup extends Controller {
    function __construct()
    {
     parent::Controller();
-  $this->lang->load("fletpack_site");
+    $this->lang->load("fletpack_site");
     $this->load->library('form_validation');
     $this->load->helper(array('form'));
     $this->load->library('pagination');
@@ -14,26 +14,24 @@ class Backup extends Controller {
     $this->load->model("Flete_model","flete");
     $this->load->config("site");
     $this->User_model->verified_login();
-   
-   
-   
    }
    
    function index()
    {
       if ( $this->Current_User->isHabilitado("BACKUP") )
     {
-     $filename="fletpack".date("Ymd").".sql";
+     $filename="fletpack".date("Ymd").".zip";
      $user=$this->db->username;
      $pass=$this->db->password;
      $db=$this->db->database;
-     $command = "mysqldump -u$user -p$pass $db > backup/".$filename;
+     $name="/var/www/html/dumps/$filename";
+     $command = "mysqldump -u$user -p$pass $db | zip ".$name." - ";
     
-     system($command);
+     exec($command,$output);
      
-     $name="backup/$filename";
+   
      header("Content-disposition: attachment; filename=$name");
-     header("Content-type: application/octet-stream");
+     header("Content-type: application/zip");
      readfile($name);
      }
      else
