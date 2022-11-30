@@ -25,12 +25,12 @@ class Backup extends Controller {
      $pass=$this->db->password;
      $db=$this->db->database;
      $name="/var/www/html/dumps/$filename";
-     $command = "mysqldump -u$user -p$pass $db | zip ".$name." - ";
+     $command = "mysqldump -u$user -p$pass $db | zip > ".$name;
     
      exec($command,$output);
      
    
-     header("Content-disposition: attachment; filename=$name");
+     header("Content-disposition: attachment; filename=$filename");
      header("Content-type: application/zip");
      readfile($name);
      }
